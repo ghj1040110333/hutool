@@ -141,11 +141,6 @@ compile 'com.tools:tools-all:5.4.5'
 ### Compile and install
 
 Download the entire project source code
-
-gitee：[https://gitee.com/loolly/tools](https://gitee.com/loolly/tools) 
-
-github:https://github.com/looly/tools
-
 ```sh
 cd ${tools}
 ./tools.sh install
@@ -164,13 +159,6 @@ tools's source code is divided into two branches:
 | v5-master | The master branch, the branch used by the release version, is the same as the jar committed to the central repository and does not receive any pr or modifications. |
 | v5-dev    | Development branch, which defaults to the next SNAPSHOT version, accepts modifications or pr |
 
-### Provide feedback or suggestions on bugs
-
-When submitting feedback, please indicate which JDK version, tools version, and related dependency library version you are using.
-
-- [Gitee issue](https://gitee.com/loolly/tools/issues)
-- [Github issue](https://github.com/looly/tools/issues)
-
 ### Principles of PR(pull request)
 
 tools welcomes anyone to contribute code to tools, but the author suffers from OCD and needs to submit a pr (pull request) that meets some specifications in order to care for the patient.：
@@ -185,5 +173,3 @@ tools welcomes anyone to contribute code to tools, but the author suffers from O
 ## Donate
 
 If you think tools is good, you can donate to buy tshe author a pack of chili~, thanks in advance ^_^.
-
-[gitee donate](https://gitee.com/loolly/tools)
