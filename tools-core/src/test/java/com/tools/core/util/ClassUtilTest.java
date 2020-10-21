@@ -101,7 +101,7 @@ public class ClassUtilTest {
 	public void getShortClassNameTest() {
 		String className = "com.tools.core.util.StrUtil";
 		String result = ClassUtil.getShortClassName(className);
-		Assert.assertEquals("c.h.c.u.StrUtil", result);
+		Assert.assertEquals("c.t.c.u.StrUtil", result);
 	}
 
 	@Test
