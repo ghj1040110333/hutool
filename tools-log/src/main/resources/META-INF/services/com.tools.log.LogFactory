@@ -1,0 +1,7 @@
+com.tools.log.dialect.slf4j.Slf4jLogFactory
+com.tools.log.dialect.log4j2.Log4j2LogFactory
+com.tools.log.dialect.log4j.Log4jLogFactory
+com.tools.log.dialect.commons.ApacheCommonsLogFactory
+com.tools.log.dialect.tinylog.TinyLogFactory
+com.tools.log.dialect.tinylog.TinyLog2Factory
+com.tools.log.dialect.jboss.JbossLogFactory

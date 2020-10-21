@@ -1,0 +1,9 @@
+com.tools.extra.tokenizer.engine.ansj.AnsjEngine
+com.tools.extra.tokenizer.engine.hanlp.HanLPEngine
+com.tools.extra.tokenizer.engine.ikanalyzer.IKAnalyzerEngine
+com.tools.extra.tokenizer.engine.jcseg.JcsegEngine
+com.tools.extra.tokenizer.engine.jieba.JiebaEngine
+com.tools.extra.tokenizer.engine.mmseg.MmsegEngine
+com.tools.extra.tokenizer.engine.word.WordEngine
+com.tools.extra.tokenizer.engine.analysis.SmartcnEngine
+com.tools.extra.tokenizer.engine.mynlp.MynlpEngine

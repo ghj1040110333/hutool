@@ -6,34 +6,32 @@
 
 	<packaging>pom</packaging>
 
-	<groupId>cn.hutool</groupId>
-	<artifactId>hutool-parent</artifactId>
+	<groupId>com.tools</groupId>
+	<artifactId>tools-parent</artifactId>
 	<version>5.4.5</version>
-	<name>hutool</name>
-	<description>Hutool是一个小而全的Java工具类库，通过静态方法封装，降低相关API的学习成本，提高工作效率，使Java拥有函数式语言般的优雅，让Java语言也可以“甜甜的”。</description>
-	<url>https://github.com/looly/hutool</url>
+	<name>tools</name>
 
 	<modules>
-		<module>hutool-all</module>
-		<module>hutool-bom</module>
-		<module>hutool-aop</module>
-		<module>hutool-bloomFilter</module>
-		<module>hutool-cache</module>
-		<module>hutool-core</module>
-		<module>hutool-cron</module>
-		<module>hutool-crypto</module>
-		<module>hutool-db</module>
-		<module>hutool-dfa</module>
-		<module>hutool-extra</module>
-		<module>hutool-http</module>
-		<module>hutool-log</module>
-		<module>hutool-script</module>
-		<module>hutool-setting</module>
-		<module>hutool-system</module>
-		<module>hutool-json</module>
-		<module>hutool-poi</module>
-		<module>hutool-captcha</module>
-		<module>hutool-socket</module>
+		<module>tools-all</module>
+		<module>tools-bom</module>
+		<module>tools-aop</module>
+		<module>tools-bloomFilter</module>
+		<module>tools-cache</module>
+		<module>tools-core</module>
+		<module>tools-cron</module>
+		<module>tools-crypto</module>
+		<module>tools-db</module>
+		<module>tools-dfa</module>
+		<module>tools-extra</module>
+		<module>tools-http</module>
+		<module>tools-log</module>
+		<module>tools-script</module>
+		<module>tools-setting</module>
+		<module>tools-system</module>
+		<module>tools-json</module>
+		<module>tools-poi</module>
+		<module>tools-captcha</module>
+		<module>tools-socket</module>
 	</modules>
 
 	<properties>
@@ -62,11 +60,6 @@
 		</dependency>
 	</dependencies>
 
-	<issueManagement>
-		<system>Github Issue</system>
-		<url>https://github.com/looly/hutool/issues</url>
-	</issueManagement>
-
 	<licenses>
 		<license>
 			<name>Mulan Permissive Software License，Version 1</name>
@@ -80,12 +73,6 @@
 			<email>loolly@gmail.com</email>
 		</developer>
 	</developers>
-
-	<scm>
-		<connection>scm:git@github.com:looly/hutool.git</connection>
-		<developerConnection>scm:git@github.com:looly/hutool.git</developerConnection>
-		<url>git@github.com:looly/hutool.git</url>
-	</scm>
 
 	<build>
 		<plugins>

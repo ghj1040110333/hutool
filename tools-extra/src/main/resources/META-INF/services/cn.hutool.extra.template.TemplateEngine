@@ -1,0 +1,6 @@
+com.tools.extra.template.engine.beetl.BeetlEngine
+com.tools.extra.template.engine.freemarker.FreemarkerEngine
+com.tools.extra.template.engine.velocity.VelocityEngine
+com.tools.extra.template.engine.rythm.RythmEngine
+com.tools.extra.template.engine.enjoy.EnjoyEngine
+com.tools.extra.template.engine.thymeleaf.ThymeleafEngine
