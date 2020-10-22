@@ -25,7 +25,7 @@ public interface VoidFunc0 {
 	 *
 	 * @since 5.3.6
 	 */
-	default void callWithRuntimeException(){
+    default void callWithRuntimeException(){
 		try {
 			call();
 		} catch (Exception e) {
