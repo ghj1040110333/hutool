@@ -1,5 +1,6 @@
 package com.tools.core.util;
 
+import com.tools.core.lang.Console;
 import com.tools.core.lang.Dict;
 import com.tools.core.util.CharUtil;
 import org.junit.Assert;
@@ -466,4 +467,18 @@ public class StrUtilTest {
 		Assert.assertTrue(StrUtil.startWith(a, b));
 		Assert.assertFalse(StrUtil.startWithIgnoreEquals(a, b));
 	}
+
+	@Test
+    public void testCharSequence(){
+        CharSequence str="你好";
+        String str2="你好";
+        Assert.assertEquals(str,str2);
+    }
+
+    @Test
+    public  void  Console(){
+        Console.log("Method [{}.{}] execute spend [{}]ms return value [{}]",
+               null
+               );
+    }
 }
