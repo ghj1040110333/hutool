@@ -79,4 +79,10 @@ public class NetUtilTest {
 	public void getLocalHostNameTest() {
 		Assert.assertNotNull(NetUtil.getLocalHostName());
 	}
+
+	@Test
+    public  void getPort(){
+	    //实际上是0-65535总共65536个
+	    Assert.assertEquals(NetUtil.PORT_RANGE_MAX,65535);
+    }
 }
