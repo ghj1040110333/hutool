@@ -3,7 +3,7 @@ package com.tools.socket.nio;
 import java.nio.channels.SocketChannel;
 
 /**
- * NIO数据处理接口，通过实现此接口，可以从{@link SocketChannel}中读写数据
+ * NIO数据处理接口，通过实现此接口，可以从{@link SocketChannel}中读写数据 @FunctionalInterfac函数式接口定义
  *
  */
 @FunctionalInterface
