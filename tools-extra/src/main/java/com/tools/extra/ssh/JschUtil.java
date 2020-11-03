@@ -5,7 +5,7 @@ import com.tools.core.io.IoUtil;
 import com.tools.core.lang.Assert;
 import com.tools.core.net.LocalPortGenerater;
 import com.tools.core.util.CharsetUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.jcraft.jsch.*;
 
 import java.io.IOException;
@@ -137,7 +137,7 @@ public class JschUtil {
 		final JSch jsch = new JSch();
 		final Session session = createSession(jsch, sshHost, sshPort, sshUser);
 
-		if (StrUtil.isNotEmpty(sshPass)) {
+		if (StringUtil.isNotEmpty(sshPass)) {
 			session.setPassword(sshPass);
 		}
 
@@ -183,7 +183,7 @@ public class JschUtil {
 		Assert.isTrue(sshPort > 0, "SSH port must be > 0");
 
 		// 默认root用户
-		if (StrUtil.isEmpty(sshUser)) {
+		if (StringUtil.isEmpty(sshUser)) {
 			sshUser = "root";
 		}
 
@@ -425,7 +425,7 @@ public class JschUtil {
 			charset = CharsetUtil.CHARSET_UTF_8;
 		}
 		final ChannelExec channel = (ChannelExec) createChannel(session, ChannelType.EXEC);
-		channel.setCommand(StrUtil.bytes(cmd, charset));
+		channel.setCommand(StringUtil.bytes(cmd, charset));
 		channel.setInputStream(null);
 		channel.setErrStream(errStream);
 		InputStream in = null;
@@ -462,12 +462,12 @@ public class JschUtil {
 		shell.setPty(true);
 		OutputStream out = null;
 		InputStream in = null;
-		final StringBuilder result = StrUtil.builder();
+		final StringBuilder result = StringUtil.builder();
 		try {
 			out = shell.getOutputStream();
 			in = shell.getInputStream();
 
-			out.write(StrUtil.bytes(cmd, charset));
+			out.write(StringUtil.bytes(cmd, charset));
 			out.flush();
 
 			while (in.available() > 0) {

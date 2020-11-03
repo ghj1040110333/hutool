@@ -3,14 +3,13 @@ package com.tools.core.util;
 import com.tools.core.lang.Filter;
 import com.tools.core.text.escape.Html4Escape;
 import com.tools.core.text.escape.Html4Unescape;
-import com.tools.core.util.StrUtil;
 
 /**
  * 转义和反转义工具类Escape / Unescape<br>
  * escape采用ISO Latin字符集对指定的字符串进行编码。<br>
  * 所有的空格符、标点符号、特殊字符以及其他非ASCII字符都将被转化成%xx格式的字符编码(xx等于该字符在字符集表里面的编码的16进制数字)。
  *
- * @author xiaoleilu
+ * @author fruit
  */
 public class EscapeUtil {
 
@@ -22,7 +21,7 @@ public class EscapeUtil {
 			Character.isDigit(c)
 					|| Character.isLowerCase(c)
 					|| Character.isUpperCase(c)
-					|| StrUtil.contains(NOT_ESCAPE_CHARS, c)
+					|| StringUtil.contains(NOT_ESCAPE_CHARS, c)
 	);
 
 	/**
@@ -81,8 +80,8 @@ public class EscapeUtil {
 	 * @return 编码后的字符串
 	 */
 	public static String escape(CharSequence content, Filter<Character> filter) {
-		if (StrUtil.isEmpty(content)) {
-			return StrUtil.str(content);
+		if (StringUtil.isEmpty(content)) {
+			return StringUtil.str(content);
 		}
 
 		final StringBuilder tmp = new StringBuilder(content.length() * 6);
@@ -112,7 +111,7 @@ public class EscapeUtil {
 	 * @return 解码后的字符串
 	 */
 	public static String unescape(String content) {
-		if (StrUtil.isBlank(content)) {
+		if (StringUtil.isBlank(content)) {
 			return content;
 		}
 

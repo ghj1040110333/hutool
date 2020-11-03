@@ -4,7 +4,7 @@ import com.tools.core.io.FileUtil;
 import com.tools.core.io.IORuntimeException;
 import com.tools.core.io.IoUtil;
 import com.tools.core.util.ObjectUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.core.util.URLUtil;
 import com.tools.http.ContentType;
 import com.tools.http.Header;
@@ -268,7 +268,7 @@ public class HttpServerResponse extends HttpServerBase {
 	 */
 	public HttpServerResponse write(String data) {
 		final Charset charset = ObjectUtil.defaultIfNull(this.charset, DEFAULT_CHARSET);
-		return write(StrUtil.bytes(data, charset));
+		return write(StringUtil.bytes(data, charset));
 	}
 
 	/**
@@ -357,7 +357,7 @@ public class HttpServerResponse extends HttpServerBase {
 
 		if(false == contentType.startsWith("text/")){
 			// 非文本类型数据直接走下载
-			setHeader(Header.CONTENT_DISPOSITION, StrUtil.format("attachment;filename={}", URLUtil.encode(fileName, charset)));
+			setHeader(Header.CONTENT_DISPOSITION, StringUtil.format("attachment;filename={}", URLUtil.encode(fileName, charset)));
 		}
 		write(in, contentType);
 	}

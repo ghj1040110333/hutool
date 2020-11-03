@@ -4,8 +4,7 @@ import com.tools.core.collection.CollUtil;
 import com.tools.core.io.FastByteArrayOutputStream;
 import com.tools.core.util.ArrayUtil;
 import com.tools.core.util.ReflectUtil;
-import com.tools.core.util.StrUtil;
-import com.tools.core.util.ReflectUtil;
+import com.tools.core.util.StringUtil;
 
 import java.io.PrintStream;
 import java.lang.reflect.InvocationTargetException;
@@ -31,9 +30,9 @@ public class ExceptionUtil {
 	 */
 	public static String getMessage(Throwable e) {
 		if (null == e) {
-			return StrUtil.NULL;
+			return StringUtil.NULL;
 		}
-		return StrUtil.format("{}: {}", e.getClass().getSimpleName(), e.getMessage());
+		return StringUtil.format("{}: {}", e.getClass().getSimpleName(), e.getMessage());
 	}
 
 	/**
@@ -43,7 +42,7 @@ public class ExceptionUtil {
 	 * @return 消息
 	 */
 	public static String getSimpleMessage(Throwable e) {
-		return (null == e) ? StrUtil.NULL : e.getMessage();
+		return (null == e) ? StringUtil.NULL : e.getMessage();
 	}
 
 	/**
@@ -164,9 +163,9 @@ public class ExceptionUtil {
 	 */
 	public static String stacktraceToOneLineString(Throwable throwable, int limit) {
 		Map<Character, String> replaceCharToStrMap = new HashMap<>();
-		replaceCharToStrMap.put(StrUtil.C_CR, StrUtil.SPACE);
-		replaceCharToStrMap.put(StrUtil.C_LF, StrUtil.SPACE);
-		replaceCharToStrMap.put(StrUtil.C_TAB, StrUtil.SPACE);
+		replaceCharToStrMap.put(StringUtil.C_CR, StringUtil.SPACE);
+		replaceCharToStrMap.put(StringUtil.C_LF, StringUtil.SPACE);
+		replaceCharToStrMap.put(StringUtil.C_TAB, StringUtil.SPACE);
 
 		return stacktraceToString(throwable, limit, replaceCharToStrMap);
 	}
@@ -210,7 +209,7 @@ public class ExceptionUtil {
 		}
 
 		if (CollUtil.isNotEmpty(replaceCharToStrMap)) {
-			final StringBuilder sb = StrUtil.builder();
+			final StringBuilder sb = StringUtil.builder();
 			char c;
 			String value;
 			for (int i = 0; i < length; i++) {
@@ -224,7 +223,7 @@ public class ExceptionUtil {
 			}
 			return sb.toString();
 		} else {
-			return StrUtil.subPre(exceptionStr, limit);
+			return StringUtil.subPre(exceptionStr, limit);
 		}
 	}
 

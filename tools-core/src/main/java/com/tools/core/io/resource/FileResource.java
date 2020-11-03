@@ -4,7 +4,7 @@ import java.io.File;
 import java.nio.file.Path;
 
 import com.tools.core.io.FileUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.core.util.URLUtil;
 
 /**
@@ -43,7 +43,7 @@ public class FileResource extends UrlResource {
 	 * @param fileName 文件名，如果为null获取文件本身的文件名
 	 */
 	public FileResource(File file, String fileName) {
-		super(URLUtil.getURL(file), StrUtil.isBlank(fileName) ? file.getName() : fileName);
+		super(URLUtil.getURL(file), StringUtil.isBlank(fileName) ? file.getName() : fileName);
 	}
 
 	/**

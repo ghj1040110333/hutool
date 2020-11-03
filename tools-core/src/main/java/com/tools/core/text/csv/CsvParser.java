@@ -5,7 +5,7 @@ import com.tools.core.io.IoUtil;
 import com.tools.core.text.StrBuilder;
 import com.tools.core.util.CharUtil;
 import com.tools.core.util.ObjectUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -142,7 +142,7 @@ public final class CsvParser implements Closeable, Serializable {
 		final Map<String, Integer> localHeaderMap = new LinkedHashMap<>(currentFields.size());
 		for (int i = 0; i < currentFields.size(); i++) {
 			final String field = currentFields.get(i);
-			if (StrUtil.isNotEmpty(field) && false ==localHeaderMap.containsKey(field)) {
+			if (StringUtil.isNotEmpty(field) && false ==localHeaderMap.containsKey(field)) {
 				localHeaderMap.put(field, i);
 			}
 		}
@@ -185,7 +185,7 @@ public final class CsvParser implements Closeable, Serializable {
 
 					if (localPreChar == config.fieldSeparator || localCurrentField.hasContent()) {
 						//剩余部分作为一个字段
-						currentFields.add(StrUtil.unWrap(localCurrentField.toStringAndReset(), config.textDelimiter));
+						currentFields.add(StringUtil.unWrap(localCurrentField.toStringAndReset(), config.textDelimiter));
 					}
 					break;
 				}
@@ -214,7 +214,7 @@ public final class CsvParser implements Closeable, Serializable {
 						localCurrentField.append(localBuf, localCopyStart, copyLen);
 						copyLen = 0;
 					}
-					currentFields.add(StrUtil.unWrap(localCurrentField.toStringAndReset(), config.textDelimiter));
+					currentFields.add(StringUtil.unWrap(localCurrentField.toStringAndReset(), config.textDelimiter));
 					localCopyStart = localBufPos;
 				} else if (c == config.textDelimiter) {
 					// 引号开始
@@ -224,7 +224,7 @@ public final class CsvParser implements Closeable, Serializable {
 					if (copyLen > 0) {
 						localCurrentField.append(localBuf, localCopyStart, copyLen);
 					}
-					currentFields.add(StrUtil.unWrap(localCurrentField.toStringAndReset(), config.textDelimiter));
+					currentFields.add(StringUtil.unWrap(localCurrentField.toStringAndReset(), config.textDelimiter));
 					localPreChar = c;
 					localCopyStart = localBufPos;
 					break;
@@ -233,7 +233,7 @@ public final class CsvParser implements Closeable, Serializable {
 						if (copyLen > 0) {
 							localCurrentField.append(localBuf, localCopyStart, copyLen);
 						}
-						currentFields.add(StrUtil.unWrap(localCurrentField.toStringAndReset(), config.textDelimiter));
+						currentFields.add(StringUtil.unWrap(localCurrentField.toStringAndReset(), config.textDelimiter));
 						localPreChar = c;
 						localCopyStart = localBufPos;
 						break;

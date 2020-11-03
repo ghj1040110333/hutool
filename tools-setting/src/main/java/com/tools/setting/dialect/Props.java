@@ -19,7 +19,7 @@ import com.tools.core.io.watch.WatchUtil;
 import com.tools.core.lang.Assert;
 import com.tools.core.util.CharsetUtil;
 import com.tools.core.util.ReflectUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.log.StaticLog;
 import com.tools.setting.SettingRuntimeException;
 
@@ -358,7 +358,7 @@ public final class Props extends Properties implements BasicTypeGetter<String>, 
 	@Override
 	public Character getChar(String key, Character defaultValue) {
 		final String value = getStr(key);
-		if (StrUtil.isBlank(value)) {
+		if (StringUtil.isBlank(value)) {
 			return defaultValue;
 		}
 		return value.charAt(0);
@@ -412,7 +412,7 @@ public final class Props extends Properties implements BasicTypeGetter<String>, 
 	@Override
 	public BigDecimal getBigDecimal(String key, BigDecimal defaultValue) {
 		final String valueStr = getStr(key);
-		if (StrUtil.isBlank(valueStr)) {
+		if (StringUtil.isBlank(valueStr)) {
 			return defaultValue;
 		}
 
@@ -431,7 +431,7 @@ public final class Props extends Properties implements BasicTypeGetter<String>, 
 	@Override
 	public BigInteger getBigInteger(String key, BigInteger defaultValue) {
 		final String valueStr = getStr(key);
-		if (StrUtil.isBlank(valueStr)) {
+		if (StringUtil.isBlank(valueStr)) {
 			return defaultValue;
 		}
 
@@ -548,17 +548,17 @@ public final class Props extends Properties implements BasicTypeGetter<String>, 
 	 * @since 4.6.3
 	 */
 	public <T> T fillBean(T bean, String prefix) {
-		prefix = StrUtil.nullToEmpty(StrUtil.addSuffixIfNot(prefix, StrUtil.DOT));
+		prefix = StringUtil.nullToEmpty(StringUtil.addSuffixIfNot(prefix, StringUtil.DOT));
 
 		String key;
 		for (java.util.Map.Entry<Object, Object> entry : this.entrySet()) {
 			key = (String) entry.getKey();
-			if(false == StrUtil.startWith(key, prefix)) {
+			if(false == StringUtil.startWith(key, prefix)) {
 				// 非指定开头的属性忽略掉
 				continue;
 			}
 			try {
-				BeanUtil.setProperty(bean, StrUtil.subSuf(key, prefix.length()), entry.getValue());
+				BeanUtil.setProperty(bean, StringUtil.subSuf(key, prefix.length()), entry.getValue());
 			} catch (Exception e) {
 				// 忽略注入失败的字段（这些字段可能用于其它配置）
 				StaticLog.debug("Ignore property: [{}]", key);

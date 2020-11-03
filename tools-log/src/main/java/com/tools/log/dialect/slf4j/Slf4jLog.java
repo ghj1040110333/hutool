@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.spi.LocationAwareLogger;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.log.AbstractLog;
 import com.tools.log.level.Level;
 
@@ -53,7 +53,7 @@ public class Slf4jLog extends AbstractLog {
 			if(this.isLocationAwareLogger) {
 				locationAwareLog((LocationAwareLogger)this.logger, fqcn, LocationAwareLogger.TRACE_INT, t, format, arguments);
 			} else {
-				logger.trace(StrUtil.format(format, arguments), t);
+				logger.trace(StringUtil.format(format, arguments), t);
 			}
 		}
 	}
@@ -70,7 +70,7 @@ public class Slf4jLog extends AbstractLog {
 			if(this.isLocationAwareLogger) {
 				locationAwareLog((LocationAwareLogger)this.logger, fqcn, LocationAwareLogger.DEBUG_INT, t, format, arguments);
 			} else {
-				logger.debug(StrUtil.format(format, arguments), t);
+				logger.debug(StringUtil.format(format, arguments), t);
 			}
 		}
 	}
@@ -87,7 +87,7 @@ public class Slf4jLog extends AbstractLog {
 			if(this.isLocationAwareLogger) {
 				locationAwareLog((LocationAwareLogger)this.logger, fqcn, LocationAwareLogger.INFO_INT, t, format, arguments);
 			} else {
-				logger.info(StrUtil.format(format, arguments), t);
+				logger.info(StringUtil.format(format, arguments), t);
 			}
 		}
 	}
@@ -104,7 +104,7 @@ public class Slf4jLog extends AbstractLog {
 			if(this.isLocationAwareLogger) {
 				locationAwareLog((LocationAwareLogger)this.logger, fqcn, LocationAwareLogger.WARN_INT, t, format, arguments);
 			} else {
-				logger.warn(StrUtil.format(format, arguments), t);
+				logger.warn(StringUtil.format(format, arguments), t);
 			}
 		}
 	}
@@ -121,7 +121,7 @@ public class Slf4jLog extends AbstractLog {
 			if(this.isLocationAwareLogger) {
 				locationAwareLog((LocationAwareLogger)this.logger, fqcn, LocationAwareLogger.ERROR_INT, t, format, arguments);
 			} else {
-				logger.error(StrUtil.format(format, arguments), t);
+				logger.error(StringUtil.format(format, arguments), t);
 			}
 		}
 	}
@@ -146,7 +146,7 @@ public class Slf4jLog extends AbstractLog {
 			error(fqcn, t, format, arguments);
 			break;
 		default:
-			throw new Error(StrUtil.format("Can not identify level: {}", level));
+			throw new Error(StringUtil.format("Can not identify level: {}", level));
 		}
 	}
 
@@ -165,7 +165,7 @@ public class Slf4jLog extends AbstractLog {
 	private void locationAwareLog(LocationAwareLogger logger, String fqcn, int level_int, Throwable t, String msgTemplate, Object[] arguments) {
 		// ((LocationAwareLogger)this.logger).log(null, fqcn, level_int, msgTemplate, arguments, t);
 		// 由于slf4j-log4j12中此方法的实现存在bug，故在此拼接参数
-		logger.log(null, fqcn, level_int, StrUtil.format(msgTemplate, arguments), null, t);
+		logger.log(null, fqcn, level_int, StringUtil.format(msgTemplate, arguments), null, t);
 	}
 
 	/**
@@ -175,6 +175,6 @@ public class Slf4jLog extends AbstractLog {
 	 * @return {@link Logger}
 	 */
 	private static Logger getSlf4jLogger(Class<?> clazz) {
-		return (null == clazz) ? LoggerFactory.getLogger(StrUtil.EMPTY) : LoggerFactory.getLogger(clazz);
+		return (null == clazz) ? LoggerFactory.getLogger(StringUtil.EMPTY) : LoggerFactory.getLogger(clazz);
 	}
 }

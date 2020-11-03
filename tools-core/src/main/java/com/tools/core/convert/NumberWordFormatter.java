@@ -1,6 +1,6 @@
 package com.tools.core.convert;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * 将浮点数类型的number转换成英语的表达方式 <br>
@@ -50,7 +50,7 @@ public class NumberWordFormatter {
 			lstr = x;
 		}
 
-		String lstrrev = StrUtil.reverse(lstr); // 对左边的字串取反
+		String lstrrev = StringUtil.reverse(lstr); // 对左边的字串取反
 		String[] a = new String[5]; // 定义5个字串变量来存放解析出来的叁位一组的字串
 
 		switch (lstrrev.length() % 3) {
@@ -63,7 +63,7 @@ public class NumberWordFormatter {
 		}
 		StringBuilder lm = new StringBuilder(); // 用来存放转换后的整数部分
 		for (int i = 0; i < lstrrev.length() / 3; i++) {
-			a[i] = StrUtil.reverse(lstrrev.substring(3 * i, 3 * i + 3)); // 截取第一个三位
+			a[i] = StringUtil.reverse(lstrrev.substring(3 * i, 3 * i + 3)); // 截取第一个三位
 			if (false == "000".equals(a[i])) { // 用来避免这种情况：1000000 = one million
 				// thousand only
 				if (i != 0) {

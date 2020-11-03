@@ -1,7 +1,7 @@
 package com.tools.db;
 
 import com.tools.core.lang.func.VoidFunc1;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.db.dialect.Dialect;
 import com.tools.db.dialect.DialectFactory;
 import com.tools.db.ds.DSFactory;
@@ -238,7 +238,7 @@ public class Session extends AbstractDb implements Closeable {
 	 */
 	public void setTransactionIsolation(int level) throws SQLException {
 		if (getConnection().getMetaData().supportsTransactionIsolationLevel(level) == false) {
-			throw new SQLException(StrUtil.format("Transaction isolation [{}] not support!", level));
+			throw new SQLException(StringUtil.format("Transaction isolation [{}] not support!", level));
 		}
 		getConnection().setTransactionIsolation(level);
 	}

@@ -3,7 +3,7 @@ package com.tools.extra.tokenizer.engine.hanlp;
 import com.hankcs.hanlp.HanLP;
 import com.hankcs.hanlp.seg.Segment;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.extra.tokenizer.TokenizerEngine;
 import com.tools.extra.tokenizer.Result;
 
@@ -37,7 +37,7 @@ public class HanLPEngine implements TokenizerEngine {
 
 	@Override
 	public Result parse(CharSequence text) {
-		return new HanLPResult(this.seg.seg(StrUtil.str(text)));
+		return new HanLPResult(this.seg.seg(StringUtil.str(text)));
 	}
 
 }

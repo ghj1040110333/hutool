@@ -1,7 +1,7 @@
 package com.tools.http.useragent;
 
 import com.tools.core.util.ReUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.util.regex.Pattern;
 
@@ -20,7 +20,7 @@ public class UserAgentParser {
 	 * @return {@link UserAgent}
 	 */
 	public static UserAgent parse(String userAgentString) {
-		if(StrUtil.isBlank(userAgentString)){
+		if(StringUtil.isBlank(userAgentString)){
 			return null;
 		}
 		final UserAgent userAgent = new UserAgent();

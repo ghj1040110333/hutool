@@ -2,7 +2,7 @@ package com.tools.dfa;
 
 import com.tools.core.lang.Filter;
 import com.tools.core.thread.ThreadUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.json.JSONUtil;
 
 import java.util.Collection;
@@ -15,7 +15,7 @@ import java.util.List;
  */
 public final class SensitiveUtil {
 
-	public static final char DEFAULT_SEPARATOR = StrUtil.C_COMMA;
+	public static final char DEFAULT_SEPARATOR = StringUtil.C_COMMA;
 	private static final WordTree sensitiveTree = new WordTree();
 
 	/**
@@ -58,8 +58,8 @@ public final class SensitiveUtil {
 	 * @param separator 分隔符
 	 */
 	public static void init(String sensitiveWords, char separator, boolean isAsync){
-		if(StrUtil.isNotBlank(sensitiveWords)){
-			init(StrUtil.split(sensitiveWords, separator), isAsync);
+		if(StringUtil.isNotBlank(sensitiveWords)){
+			init(StringUtil.split(sensitiveWords, separator), isAsync);
 		}
 	}
 

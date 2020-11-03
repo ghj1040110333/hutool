@@ -2,7 +2,7 @@ package com.tools.setting;
 
 import com.tools.core.io.FileUtil;
 import com.tools.core.io.resource.NoResourceException;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -34,7 +34,7 @@ public class SettingUtil {
 				if (null == setting) {
 					String filePath = name;
 					String extName = FileUtil.extName(filePath);
-					if (StrUtil.isEmpty(extName)) {
+					if (StringUtil.isEmpty(extName)) {
 						filePath = filePath + "." + Setting.EXT_NAME;
 					}
 					setting = new Setting(filePath, true);

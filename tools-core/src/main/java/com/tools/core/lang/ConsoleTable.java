@@ -2,7 +2,7 @@ package com.tools.core.lang;
 
 import com.tools.core.convert.Convert;
 import com.tools.core.util.CharUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -145,7 +145,7 @@ public class ConsoleTable {
 	private void fillBorder(StringBuilder sb) {
 		sb.append(CORNER);
 		for (Integer width : columnCharNumber) {
-			sb.append(Convert.toSBC(StrUtil.fillAfter("", ROW_LINE, width + 2)));
+			sb.append(Convert.toSBC(StringUtil.fillAfter("", ROW_LINE, width + 2)));
 			sb.append(CORNER);
 		}
 		sb.append(LF);

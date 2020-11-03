@@ -1,11 +1,10 @@
 package com.tools.core.codec;
 
-import com.tools.core.codec.Base64;
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.tools.core.util.CharsetUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * Base64单元测试
@@ -48,7 +47,7 @@ public class Base64Test {
 	@Test
 	public void urlSafeEncodeAndDecodeTest() {
 		String a = "广州伦家需要安全感55";
-		String encode = StrUtil.utf8Str(Base64.encodeUrlSafe(StrUtil.utf8Bytes(a), false));
+		String encode = StringUtil.utf8Str(Base64.encodeUrlSafe(StringUtil.utf8Bytes(a), false));
 		Assert.assertEquals("5bm_5bee5Lym5a626ZyA6KaB5a6J5YWo5oSfNTU", encode);
 
 		String decodeStr = Base64.decodeStr(encode);

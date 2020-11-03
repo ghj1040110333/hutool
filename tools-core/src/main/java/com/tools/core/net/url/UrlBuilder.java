@@ -2,7 +2,7 @@ package com.tools.core.net.url;
 
 import com.tools.core.lang.Assert;
 import com.tools.core.util.CharsetUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.core.util.URLUtil;
 
 import java.io.Serializable;
@@ -206,7 +206,7 @@ public final class UrlBuilder implements Serializable {
 	 * @return 协议，例如http
 	 */
 	public String getSchemeWithDefault() {
-		return StrUtil.emptyToDefault(this.scheme, DEFAULT_SCHEME);
+		return StringUtil.emptyToDefault(this.scheme, DEFAULT_SCHEME);
 	}
 
 	/**
@@ -284,7 +284,7 @@ public final class UrlBuilder implements Serializable {
 	 * @return 路径，例如/aa/bb/cc
 	 */
 	public String getPathStr() {
-		return null == this.path ? StrUtil.SLASH : this.path.build(charset);
+		return null == this.path ? StringUtil.SLASH : this.path.build(charset);
 	}
 
 	/**
@@ -305,7 +305,7 @@ public final class UrlBuilder implements Serializable {
 	 * @return this
 	 */
 	public UrlBuilder addPath(String segment) {
-		if (StrUtil.isBlank(segment)) {
+		if (StringUtil.isBlank(segment)) {
 			return this;
 		}
 		if (null == this.path) {
@@ -322,7 +322,7 @@ public final class UrlBuilder implements Serializable {
 	 * @return this
 	 */
 	public UrlBuilder appendPath(CharSequence segment) {
-		if (StrUtil.isEmpty(segment)) {
+		if (StringUtil.isEmpty(segment)) {
 			return this;
 		}
 
@@ -370,7 +370,7 @@ public final class UrlBuilder implements Serializable {
 	 * @return this
 	 */
 	public UrlBuilder addQuery(String key, String value) {
-		if (StrUtil.isEmpty(key)) {
+		if (StringUtil.isEmpty(key)) {
 			return this;
 		}
 
@@ -406,10 +406,10 @@ public final class UrlBuilder implements Serializable {
 	 * @return this
 	 */
 	public UrlBuilder setFragment(String fragment) {
-		if (StrUtil.isEmpty(fragment)) {
+		if (StringUtil.isEmpty(fragment)) {
 			this.fragment = null;
 		}
-		this.fragment = StrUtil.removePrefix(fragment, "#");
+		this.fragment = StringUtil.removePrefix(fragment, "#");
 		return this;
 	}
 
@@ -461,16 +461,16 @@ public final class UrlBuilder implements Serializable {
 		final StringBuilder fileBuilder = new StringBuilder();
 
 		// path
-		fileBuilder.append(StrUtil.blankToDefault(getPathStr(), StrUtil.SLASH));
+		fileBuilder.append(StringUtil.blankToDefault(getPathStr(), StringUtil.SLASH));
 
 		// query
 		final String query = getQueryStr();
-		if (StrUtil.isNotBlank(query)) {
+		if (StringUtil.isNotBlank(query)) {
 			fileBuilder.append('?').append(query);
 		}
 
 		// fragment
-		if (StrUtil.isNotBlank(this.fragment)) {
+		if (StringUtil.isNotBlank(this.fragment)) {
 			fileBuilder.append('#').append(getFragmentEncoded());
 		}
 

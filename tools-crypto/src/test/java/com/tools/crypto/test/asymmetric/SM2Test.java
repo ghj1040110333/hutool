@@ -4,7 +4,7 @@ import com.tools.core.codec.Base64;
 import com.tools.core.lang.Console;
 import com.tools.core.util.CharsetUtil;
 import com.tools.core.util.HexUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.crypto.ECKeyUtil;
 import com.tools.crypto.KeyUtil;
 import com.tools.crypto.SecureUtil;
@@ -54,9 +54,9 @@ public class SM2Test {
 		sm2.setMode(SM2Engine.Mode.C1C2C3);
 
 		// 公钥加密，私钥解密
-		byte[] encrypt = sm2.encrypt(StrUtil.bytes("我是一段测试aaaa", CharsetUtil.CHARSET_UTF_8), KeyType.PublicKey);
+		byte[] encrypt = sm2.encrypt(StringUtil.bytes("我是一段测试aaaa", CharsetUtil.CHARSET_UTF_8), KeyType.PublicKey);
 		byte[] decrypt = sm2.decrypt(encrypt, KeyType.PrivateKey);
-		Assert.assertEquals("我是一段测试aaaa", StrUtil.str(decrypt, CharsetUtil.CHARSET_UTF_8));
+		Assert.assertEquals("我是一段测试aaaa", StringUtil.str(decrypt, CharsetUtil.CHARSET_UTF_8));
 	}
 
 	@Test
@@ -70,9 +70,9 @@ public class SM2Test {
 		Assert.assertNotNull(sm2.getPrivateKeyBase64());
 
 		// 公钥加密，私钥解密
-		byte[] encrypt = sm2.encrypt(StrUtil.bytes("我是一段测试aaaa", CharsetUtil.CHARSET_UTF_8), KeyType.PublicKey);
+		byte[] encrypt = sm2.encrypt(StringUtil.bytes("我是一段测试aaaa", CharsetUtil.CHARSET_UTF_8), KeyType.PublicKey);
 		byte[] decrypt = sm2.decrypt(encrypt, KeyType.PrivateKey);
-		Assert.assertEquals("我是一段测试aaaa", StrUtil.str(decrypt, CharsetUtil.CHARSET_UTF_8));
+		Assert.assertEquals("我是一段测试aaaa", StringUtil.str(decrypt, CharsetUtil.CHARSET_UTF_8));
 	}
 
 	@Test
@@ -83,7 +83,7 @@ public class SM2Test {
 
 		// 公钥加密，私钥解密
 		String encryptStr = sm2.encryptBcd(text, KeyType.PublicKey);
-		String decryptStr = StrUtil.utf8Str(sm2.decryptFromBcd(encryptStr, KeyType.PrivateKey));
+		String decryptStr = StringUtil.utf8Str(sm2.decryptFromBcd(encryptStr, KeyType.PrivateKey));
 		Assert.assertEquals(text, decryptStr);
 	}
 
@@ -99,7 +99,7 @@ public class SM2Test {
 
 		// 公钥加密，私钥解密
 		String encryptStr = sm2.encryptBase64(text.toString(), KeyType.PublicKey);
-		String decryptStr = StrUtil.utf8Str(sm2.decrypt(encryptStr, KeyType.PrivateKey));
+		String decryptStr = StringUtil.utf8Str(sm2.decrypt(encryptStr, KeyType.PrivateKey));
 		Assert.assertEquals(text.toString(), decryptStr);
 
 		// 测试自定义密钥后是否生效
@@ -109,7 +109,7 @@ public class SM2Test {
 		sm2 = SmUtil.sm2();
 		sm2.setPrivateKey(privateKey);
 		sm2.setPublicKey(publicKey);
-		String decryptStr2 = StrUtil.utf8Str(sm2.decrypt(encryptStr, KeyType.PrivateKey));
+		String decryptStr2 = StringUtil.utf8Str(sm2.decrypt(encryptStr, KeyType.PrivateKey));
 		Assert.assertEquals(text.toString(), decryptStr2);
 	}
 

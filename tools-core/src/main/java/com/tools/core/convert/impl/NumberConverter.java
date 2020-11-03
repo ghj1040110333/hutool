@@ -4,7 +4,7 @@ import com.tools.core.convert.AbstractConverter;
 import com.tools.core.date.DateUtil;
 import com.tools.core.util.BooleanUtil;
 import com.tools.core.util.NumberUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -65,7 +65,7 @@ public class NumberConverter extends AbstractConverter<Number> {
 				return BooleanUtil.toByteObj((Boolean) value);
 			}
 			final String valueStr = convertToStr(value);
-			return StrUtil.isBlank(valueStr) ? null : Byte.valueOf(valueStr);
+			return StringUtil.isBlank(valueStr) ? null : Byte.valueOf(valueStr);
 		} else if (Short.class == targetType) {
 			if (value instanceof Number) {
 				return ((Number) value).shortValue();
@@ -73,7 +73,7 @@ public class NumberConverter extends AbstractConverter<Number> {
 				return BooleanUtil.toShortObj((Boolean) value);
 			}
 			final String valueStr = convertToStr(value);
-			return StrUtil.isBlank(valueStr) ? null : Short.valueOf(valueStr);
+			return StringUtil.isBlank(valueStr) ? null : Short.valueOf(valueStr);
 		} else if (Integer.class == targetType) {
 			if (value instanceof Number) {
 				return ((Number) value).intValue();
@@ -87,7 +87,7 @@ public class NumberConverter extends AbstractConverter<Number> {
 				return (int)DateUtil.toInstant((TemporalAccessor) value).toEpochMilli();
 			}
 			final String valueStr = convertToStr(value);
-			return StrUtil.isBlank(valueStr) ? null : NumberUtil.parseInt(valueStr);
+			return StringUtil.isBlank(valueStr) ? null : NumberUtil.parseInt(valueStr);
 		} else if (AtomicInteger.class == targetType) {
 			final Number number = convertInternal(value, Integer.class);
 			if (null != number) {
@@ -108,7 +108,7 @@ public class NumberConverter extends AbstractConverter<Number> {
 				return DateUtil.toInstant((TemporalAccessor) value).toEpochMilli();
 			}
 			final String valueStr = convertToStr(value);
-			return StrUtil.isBlank(valueStr) ? null : NumberUtil.parseLong(valueStr);
+			return StringUtil.isBlank(valueStr) ? null : NumberUtil.parseLong(valueStr);
 		} else if (AtomicLong.class == targetType) {
 			final Number number = convertInternal(value, Long.class);
 			if (null != number) {
@@ -131,7 +131,7 @@ public class NumberConverter extends AbstractConverter<Number> {
 				return BooleanUtil.toFloatObj((Boolean) value);
 			}
 			final String valueStr = convertToStr(value);
-			return StrUtil.isBlank(valueStr) ? null : Float.valueOf(valueStr);
+			return StringUtil.isBlank(valueStr) ? null : Float.valueOf(valueStr);
 
 		} else if (Double.class == targetType) {
 			if (value instanceof Number) {
@@ -140,7 +140,7 @@ public class NumberConverter extends AbstractConverter<Number> {
 				return BooleanUtil.toDoubleObj((Boolean) value);
 			}
 			final String valueStr = convertToStr(value);
-			return StrUtil.isBlank(valueStr) ? null : Double.valueOf(valueStr);
+			return StringUtil.isBlank(valueStr) ? null : Double.valueOf(valueStr);
 		}else if (DoubleAdder.class == targetType) {
 			//jdk8 新增
 			final Number number = convertInternal(value, Long.class);
@@ -160,10 +160,10 @@ public class NumberConverter extends AbstractConverter<Number> {
 				return BooleanUtil.toInteger((Boolean) value);
 			}
 			final String valueStr = convertToStr(value);
-			return StrUtil.isBlank(valueStr) ? null : NumberUtil.parseNumber(valueStr);
+			return StringUtil.isBlank(valueStr) ? null : NumberUtil.parseNumber(valueStr);
 		}
 
-		throw new UnsupportedOperationException(StrUtil.format("Unsupport Number type: {}", this.targetType.getName()));
+		throw new UnsupportedOperationException(StringUtil.format("Unsupport Number type: {}", this.targetType.getName()));
 	}
 
 	/**
@@ -205,12 +205,12 @@ public class NumberConverter extends AbstractConverter<Number> {
 
 	@Override
 	protected String convertToStr(Object value) {
-		String result = StrUtil.trim(super.convertToStr(value));
-		if(StrUtil.isNotEmpty(result)){
+		String result = StringUtil.trim(super.convertToStr(value));
+		if(StringUtil.isNotEmpty(result)){
 			final char c = Character.toUpperCase(result.charAt(result.length() - 1));
 			if(c == 'D' || c == 'L' || c == 'F'){
 				// 类型标识形式（例如123.6D）
-				return StrUtil.subPre(result, -1);
+				return StringUtil.subPre(result, -1);
 			}
 		}
 

@@ -1,7 +1,7 @@
 package com.tools.core.text;
 
 import com.tools.core.util.NumberUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * 文本相似度计算<br>
@@ -61,7 +61,7 @@ public class TextSimilarity {
 	 */
 	private static String removeSign(String str) {
 		int length = str.length();
-		StringBuilder sb = StrUtil.builder(length);
+		StringBuilder sb = StringUtil.builder(length);
 		// 遍历字符串str,如果是汉字数字或字母，则追加到ab上面
 		char c;
 		for (int i = 0; i < length; i++) {

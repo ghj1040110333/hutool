@@ -4,7 +4,7 @@ import com.tools.core.exceptions.DependencyException;
 import com.tools.core.io.FileUtil;
 import com.tools.core.util.ObjectUtil;
 import com.tools.core.util.ReUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.poi.PoiChecker;
 import com.tools.poi.excel.cell.CellLocation;
 import com.tools.poi.excel.sax.Excel03SaxReader;
@@ -593,7 +593,7 @@ public class ExcelUtil {
 		if (index < 0) {
 			return null;
 		}
-		final StringBuilder colName = StrUtil.builder();
+		final StringBuilder colName = StringUtil.builder();
 		do {
 			if (colName.length() > 0) {
 				index--;

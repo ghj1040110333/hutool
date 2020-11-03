@@ -30,4 +30,14 @@ public class TimeIntervalAspect extends SimpleAspect {
 				returnVal);
 		return true;
 	}
+
+    @Override
+    public boolean afterException(Object target, Method method, Object[] args, Throwable e) {
+        Console.log("Method [{}.{}] execute spend [{}]ms exception [{}]",
+                target.getClass().getName(), //
+                method.getName(), //
+                interval.intervalMs(), //
+                e.getCause());
+	    return true;
+    }
 }

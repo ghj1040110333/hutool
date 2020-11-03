@@ -3,7 +3,7 @@ package com.tools.extra.tokenizer.engine.ansj;
 import org.ansj.splitWord.Analysis;
 import org.ansj.splitWord.analysis.ToAnalysis;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.extra.tokenizer.Result;
 import com.tools.extra.tokenizer.TokenizerEngine;
 
@@ -36,7 +36,7 @@ public class AnsjEngine implements TokenizerEngine {
 
 	@Override
 	public Result parse(CharSequence text) {
-		return new AnsjResult(analysis.parseStr(StrUtil.str(text)));
+		return new AnsjResult(analysis.parseStr(StringUtil.str(text)));
 	}
 
 }

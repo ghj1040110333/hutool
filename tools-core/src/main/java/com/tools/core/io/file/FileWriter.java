@@ -18,7 +18,7 @@ import com.tools.core.io.IORuntimeException;
 import com.tools.core.io.IoUtil;
 import com.tools.core.lang.Assert;
 import com.tools.core.util.CharsetUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * 文件写入器
@@ -241,7 +241,7 @@ public class FileWriter extends FileWrapper{
 		try(PrintWriter writer  = getPrintWriter(isAppend)) {
 			for (Entry<?, ?> entry : map.entrySet()) {
 				if (null != entry) {
-					writer.print(StrUtil.format("{}{}{}", entry.getKey(), kvSeparator, entry.getValue()));
+					writer.print(StringUtil.format("{}{}{}", entry.getKey(), kvSeparator, entry.getValue()));
 					printNewLine(writer, lineSeparator);
 					writer.flush();
 				}

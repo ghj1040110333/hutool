@@ -1,7 +1,7 @@
 package com.tools.db.dialect;
 
 import com.tools.core.util.ClassLoaderUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.db.dialect.impl.AnsiSqlDialect;
 import com.tools.db.dialect.impl.H2Dialect;
 import com.tools.db.dialect.impl.MysqlDialect;
@@ -77,7 +77,7 @@ public class DialectFactory {
 	 * @return 方言
 	 */
 	private static Dialect internalNewDialect(String driverName) {
-		if (StrUtil.isNotBlank(driverName)) {
+		if (StringUtil.isNotBlank(driverName)) {
 			if (DRIVER_MYSQL.equalsIgnoreCase(driverName) || DRIVER_MYSQL_V6.equalsIgnoreCase(driverName)) {
 				return new MysqlDialect();
 			} else if (DRIVER_ORACLE.equalsIgnoreCase(driverName) || DRIVER_ORACLE_OLD.equalsIgnoreCase(driverName)) {
@@ -103,11 +103,11 @@ public class DialectFactory {
 	 * @return 驱动
 	 */
 	public static String identifyDriver(String nameContainsProductInfo) {
-		if (StrUtil.isBlank(nameContainsProductInfo)) {
+		if (StringUtil.isBlank(nameContainsProductInfo)) {
 			return null;
 		}
 		// 全部转为小写，忽略大小写
-		nameContainsProductInfo = StrUtil.cleanBlank(nameContainsProductInfo.toLowerCase());
+		nameContainsProductInfo = StringUtil.cleanBlank(nameContainsProductInfo.toLowerCase());
 
 		String driver = null;
 		if (nameContainsProductInfo.contains("mysql")) {

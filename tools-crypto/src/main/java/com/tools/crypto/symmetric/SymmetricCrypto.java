@@ -147,7 +147,7 @@ public class SymmetricCrypto implements Serializable {
 
 		// 检查是否为ZeroPadding，是则替换为NoPadding，并标记以便单独处理
 		if (algorithm.contains(Padding.ZeroPadding.name())) {
-			algorithm = StrUtil.replace(algorithm, Padding.ZeroPadding.name(), Padding.NoPadding.name());
+			algorithm = StringUtil.replace(algorithm, Padding.ZeroPadding.name(), Padding.NoPadding.name());
 			this.isZeroPadding = true;
 		}
 
@@ -241,7 +241,7 @@ public class SymmetricCrypto implements Serializable {
 	 * @return 加密后的bytes
 	 */
 	public byte[] encrypt(String data, String charset) {
-		return encrypt(StrUtil.bytes(data, charset));
+		return encrypt(StringUtil.bytes(data, charset));
 	}
 
 	/**
@@ -252,7 +252,7 @@ public class SymmetricCrypto implements Serializable {
 	 * @return 加密后的bytes
 	 */
 	public byte[] encrypt(String data, Charset charset) {
-		return encrypt(StrUtil.bytes(data, charset));
+		return encrypt(StringUtil.bytes(data, charset));
 	}
 
 	/**
@@ -309,7 +309,7 @@ public class SymmetricCrypto implements Serializable {
 	 * @return 加密后的bytes
 	 */
 	public byte[] encrypt(String data) {
-		return encrypt(StrUtil.bytes(data, CharsetUtil.CHARSET_UTF_8));
+		return encrypt(StringUtil.bytes(data, CharsetUtil.CHARSET_UTF_8));
 	}
 
 	/**
@@ -401,7 +401,7 @@ public class SymmetricCrypto implements Serializable {
 	 * @return 解密后的String
 	 */
 	public String decryptStr(byte[] bytes, Charset charset) {
-		return StrUtil.str(decrypt(bytes), charset);
+		return StringUtil.str(decrypt(bytes), charset);
 	}
 
 	/**
@@ -432,7 +432,7 @@ public class SymmetricCrypto implements Serializable {
 	 * @return 解密后的String
 	 */
 	public String decryptStr(String data, Charset charset) {
-		return StrUtil.str(decrypt(data), charset);
+		return StringUtil.str(decrypt(data), charset);
 	}
 
 	/**
@@ -464,7 +464,7 @@ public class SymmetricCrypto implements Serializable {
 	 * @return 解密后的String
 	 */
 	public String decryptStr(InputStream data, Charset charset) {
-		return StrUtil.str(decrypt(data), charset);
+		return StringUtil.str(decrypt(data), charset);
 	}
 
 	/**

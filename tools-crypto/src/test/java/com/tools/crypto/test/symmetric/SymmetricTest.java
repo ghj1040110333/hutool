@@ -2,7 +2,7 @@ package com.tools.crypto.test.symmetric;
 
 import com.tools.core.util.CharsetUtil;
 import com.tools.core.util.RandomUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.crypto.KeyUtil;
 import com.tools.crypto.Mode;
 import com.tools.crypto.Padding;
@@ -34,7 +34,7 @@ public class SymmetricTest {
 		// 解密
 		byte[] decrypt = aes.decrypt(encrypt);
 
-		Assert.assertEquals(content, StrUtil.str(decrypt, CharsetUtil.CHARSET_UTF_8));
+		Assert.assertEquals(content, StringUtil.str(decrypt, CharsetUtil.CHARSET_UTF_8));
 
 		// 加密为16进制表示
 		String encryptHex = aes.encryptHex(content);
@@ -59,7 +59,7 @@ public class SymmetricTest {
 		// 解密
 		byte[] decrypt = aes.decrypt(encrypt);
 
-		Assert.assertEquals(content, StrUtil.utf8Str(decrypt));
+		Assert.assertEquals(content, StringUtil.utf8Str(decrypt));
 
 		// 加密为16进制表示
 		String encryptHex = aes.encryptHex(content);
@@ -80,7 +80,7 @@ public class SymmetricTest {
 		// 解密
 		byte[] decrypt = aes.decrypt(encrypt);
 
-		Assert.assertEquals(content, StrUtil.utf8Str(decrypt));
+		Assert.assertEquals(content, StringUtil.utf8Str(decrypt));
 
 		// 加密为16进制表示
 		String encryptHex = aes.encryptHex(content);
@@ -123,7 +123,7 @@ public class SymmetricTest {
 		byte[] encrypt = des.encrypt(content);
 		byte[] decrypt = des.decrypt(encrypt);
 
-		Assert.assertEquals(content, StrUtil.utf8Str(decrypt));
+		Assert.assertEquals(content, StringUtil.utf8Str(decrypt));
 
 		String encryptHex = des.encryptHex(content);
 		String decryptStr = des.decryptStr(encryptHex);
@@ -141,7 +141,7 @@ public class SymmetricTest {
 		byte[] encrypt = des.encrypt(content);
 		byte[] decrypt = des.decrypt(encrypt);
 
-		Assert.assertEquals(content, StrUtil.utf8Str(decrypt));
+		Assert.assertEquals(content, StringUtil.utf8Str(decrypt));
 
 		String encryptHex = des.encryptHex(content);
 		String decryptStr = des.decryptStr(encryptHex);
@@ -158,7 +158,7 @@ public class SymmetricTest {
 		byte[] encrypt = des.encrypt(content);
 		byte[] decrypt = des.decrypt(encrypt);
 
-		Assert.assertEquals(content, StrUtil.utf8Str(decrypt));
+		Assert.assertEquals(content, StringUtil.utf8Str(decrypt));
 
 		String encryptHex = des.encryptHex(content);
 		String decryptStr = des.decryptStr(encryptHex);
@@ -177,7 +177,7 @@ public class SymmetricTest {
 		byte[] encrypt = des.encrypt(content);
 		byte[] decrypt = des.decrypt(encrypt);
 
-		Assert.assertEquals(content, StrUtil.utf8Str(decrypt));
+		Assert.assertEquals(content, StringUtil.utf8Str(decrypt));
 
 		String encryptHex = des.encryptHex(content);
 		String decryptStr = des.decryptStr(encryptHex);
@@ -196,7 +196,7 @@ public class SymmetricTest {
 		byte[] encrypt = des.encrypt(content);
 		byte[] decrypt = des.decrypt(encrypt);
 
-		Assert.assertEquals(content, StrUtil.utf8Str(decrypt));
+		Assert.assertEquals(content, StringUtil.utf8Str(decrypt));
 
 		String encryptHex = des.encryptHex(content);
 		String decryptStr = des.decryptStr(encryptHex);

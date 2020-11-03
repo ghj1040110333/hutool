@@ -3,7 +3,7 @@ package com.tools.core.convert;
 import com.tools.core.util.ArrayUtil;
 import com.tools.core.util.CharUtil;
 import com.tools.core.util.ClassUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -40,7 +40,7 @@ public abstract class AbstractConverter<T> implements Converter<T>, Serializable
 	public T convert(Object value, T defaultValue) {
 		Class<T> targetType = getTargetType();
 		if (null == targetType && null == defaultValue) {
-			throw new NullPointerException(StrUtil.format("[type] and [defaultValue] are both null for Converter [{}], we can not know what type to convert !", this.getClass().getName()));
+			throw new NullPointerException(StringUtil.format("[type] and [defaultValue] are both null for Converter [{}], we can not know what type to convert !", this.getClass().getName()));
 		}
 		if (null == targetType) {
 			// 目标类型不确定时使用默认值的类型
@@ -59,7 +59,7 @@ public abstract class AbstractConverter<T> implements Converter<T>, Serializable
 			return ((null == result) ? defaultValue : result);
 		} else {
 			throw new IllegalArgumentException(
-					StrUtil.format("Default value [{}]({}) is not the instance of [{}]", defaultValue, defaultValue.getClass(), targetType));
+					StringUtil.format("Default value [{}]({}) is not the instance of [{}]", defaultValue, defaultValue.getClass(), targetType));
 		}
 	}
 

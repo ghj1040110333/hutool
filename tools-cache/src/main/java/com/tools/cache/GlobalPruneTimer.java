@@ -1,7 +1,7 @@
 package com.tools.cache;
 
 import com.tools.core.thread.ThreadUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.util.List;
 import java.util.concurrent.ScheduledExecutorService;
@@ -56,7 +56,7 @@ public enum GlobalPruneTimer {
 		if (null != pruneTimer) {
 			shutdownNow();
 		}
-		this.pruneTimer = new ScheduledThreadPoolExecutor(1, r -> ThreadUtil.newThread(r, StrUtil.format("Pure-Timer-{}", cacheTaskNumber.getAndIncrement())));
+		this.pruneTimer = new ScheduledThreadPoolExecutor(1, r -> ThreadUtil.newThread(r, StringUtil.format("Pure-Timer-{}", cacheTaskNumber.getAndIncrement())));
 	}
 
 	/**

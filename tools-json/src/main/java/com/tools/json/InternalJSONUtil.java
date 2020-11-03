@@ -6,7 +6,7 @@ import com.tools.core.date.TemporalAccessorUtil;
 import com.tools.core.util.CharUtil;
 import com.tools.core.util.NumberUtil;
 import com.tools.core.util.ObjectUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -148,7 +148,7 @@ final class InternalJSONUtil {
 
 		// boolean处理
 		if (0 == string.length()) {
-			return StrUtil.EMPTY;
+			return StringUtil.EMPTY;
 		}
 		if ("true".equalsIgnoreCase(string)) {
 			return Boolean.TRUE;
@@ -161,7 +161,7 @@ final class InternalJSONUtil {
 		char b = string.charAt(0);
 		if ((b >= '0' && b <= '9') || b == '-') {
 			try {
-				if (StrUtil.containsAnyIgnoreCase(string, ".", "e")) {
+				if (StringUtil.containsAnyIgnoreCase(string, ".", "e")) {
 					// pr#192@Gitee，Double会出现小数精度丢失问题，此处使用BigDecimal
 					//double d = Double.parseDouble(string);
 					//if (false == Double.isInfinite(d) && false == Double.isNaN(d)) {
@@ -196,7 +196,7 @@ final class InternalJSONUtil {
 	 * @return JSONObject
 	 */
 	protected static JSONObject propertyPut(JSONObject jsonObject, Object key, Object value) {
-		final String[] path = StrUtil.split(Convert.toStr(key), StrUtil.DOT);
+		final String[] path = StringUtil.split(Convert.toStr(key), StringUtil.DOT);
 		int last = path.length - 1;
 		JSONObject target = jsonObject;
 		for (int i = 0; i < last; i += 1) {
@@ -239,7 +239,7 @@ final class InternalJSONUtil {
 	 * @return 日期字符串
 	 */
 	private static String formatDate(Object dateObj, String format) {
-		if (StrUtil.isNotBlank(format)) {
+		if (StringUtil.isNotBlank(format)) {
 			if(dateObj instanceof TemporalAccessor){
 				return TemporalAccessorUtil.format((TemporalAccessor) dateObj, format);
 			}

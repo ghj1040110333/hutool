@@ -93,7 +93,7 @@ public class ClassScanner implements Serializable {
 	 * @return 类集合
 	 */
 	public static Set<Class<?>> scanPackage() {
-		return scanPackage(StrUtil.EMPTY, null);
+		return scanPackage(StringUtil.EMPTY, null);
 	}
 
 	/**
@@ -153,9 +153,9 @@ public class ClassScanner implements Serializable {
 	 * @param charset     编码
 	 */
 	public ClassScanner(String packageName, Filter<Class<?>> classFilter, Charset charset) {
-		packageName = StrUtil.nullToEmpty(packageName);
+		packageName = StringUtil.nullToEmpty(packageName);
 		this.packageName = packageName;
-		this.packageNameWithDot = StrUtil.addSuffixIfNot(packageName, StrUtil.DOT);
+		this.packageNameWithDot = StringUtil.addSuffixIfNot(packageName, StringUtil.DOT);
 		this.packageDirName = packageName.replace(CharUtil.DOT, File.separatorChar);
 		this.packagePath = packageName.replace(CharUtil.DOT, CharUtil.SLASH);
 		this.classFilter = classFilter;
@@ -261,7 +261,7 @@ public class ClassScanner implements Serializable {
 	private void scanJar(JarFile jar) {
 		String name;
 		for (JarEntry entry : new EnumerationIter<>(jar.entries())) {
-			name = StrUtil.removePrefix(entry.getName(), StrUtil.SLASH);
+			name = StringUtil.removePrefix(entry.getName(), StringUtil.SLASH);
 			if (name.startsWith(this.packagePath)) {
 				if (name.endsWith(FileUtil.CLASS_EXT) && false == entry.isDirectory()) {
 					final String className = name//
@@ -306,7 +306,7 @@ public class ClassScanner implements Serializable {
 	 * @param className 类名
 	 */
 	private void addIfAccept(String className) {
-		if (StrUtil.isBlank(className)) {
+		if (StringUtil.isBlank(className)) {
 			return;
 		}
 		int classLen = className.length();
@@ -346,10 +346,10 @@ public class ClassScanner implements Serializable {
 	 */
 	private String subPathBeforePackage(File file) {
 		String filePath = file.getAbsolutePath();
-		if (StrUtil.isNotEmpty(this.packageDirName)) {
-			filePath = StrUtil.subBefore(filePath, this.packageDirName, true);
+		if (StringUtil.isNotEmpty(this.packageDirName)) {
+			filePath = StringUtil.subBefore(filePath, this.packageDirName, true);
 		}
-		return StrUtil.addSuffixIfNot(filePath, File.separator);
+		return StringUtil.addSuffixIfNot(filePath, File.separator);
 	}
 	// --------------------------------------------------------------------------------------------------- Private method end
 }

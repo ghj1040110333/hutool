@@ -1174,7 +1174,7 @@ public class ArrayUtil {
 	 * @since 3.2.2
 	 */
 	public static <T extends CharSequence> T[] removeEmpty(T[] array) {
-		return filter(array, (Filter<T>) t -> false == StrUtil.isEmpty(t));
+		return filter(array, (Filter<T>) t -> false == StringUtil.isEmpty(t));
 	}
 
 	/**
@@ -1186,7 +1186,7 @@ public class ArrayUtil {
 	 * @since 3.2.2
 	 */
 	public static <T extends CharSequence> T[] removeBlank(T[] array) {
-		return filter(array, (Filter<T>) t -> false == StrUtil.isBlank(t));
+		return filter(array, (Filter<T>) t -> false == StringUtil.isBlank(t));
 	}
 
 	/**
@@ -1197,7 +1197,7 @@ public class ArrayUtil {
 	 * @since 3.2.1
 	 */
 	public static String[] nullToEmpty(String[] array) {
-		return filter(array, (Editor<String>) t -> null == t ? StrUtil.EMPTY : t);
+		return filter(array, (Editor<String>) t -> null == t ? StringUtil.EMPTY : t);
 	}
 
 	/**
@@ -1281,7 +1281,7 @@ public class ArrayUtil {
 	public static int indexOfIgnoreCase(CharSequence[] array, CharSequence value) {
 		if (null != array) {
 			for (int i = 0; i < array.length; i++) {
-				if (StrUtil.equalsIgnoreCase(array[i], value)) {
+				if (StringUtil.equalsIgnoreCase(array[i], value)) {
 					return i;
 				}
 			}
@@ -2144,7 +2144,7 @@ public class ArrayUtil {
 				}
 			}
 		}
-		throw new UtilException(StrUtil.format("[{}] is not Array!", obj.getClass()));
+		throw new UtilException(StringUtil.format("[{}] is not Array!", obj.getClass()));
 	}
 
 	/**
@@ -2689,7 +2689,7 @@ public class ArrayUtil {
 			} else if (item instanceof Iterator<?>) {
 				sb.append(IterUtil.join((Iterator<?>) item, conjunction, prefix, suffix));
 			} else {
-				sb.append(StrUtil.wrap(StrUtil.toString(item), prefix, suffix));
+				sb.append(StringUtil.wrap(StringUtil.toString(item), prefix, suffix));
 			}
 		}
 		return sb.toString();
@@ -2722,7 +2722,7 @@ public class ArrayUtil {
 				item = editor.edit(item);
 			}
 			if (null != item) {
-				sb.append(StrUtil.toString(item));
+				sb.append(StringUtil.toString(item));
 			}
 		}
 		return sb.toString();
@@ -2964,7 +2964,7 @@ public class ArrayUtil {
 				return join((Object[]) array, conjunction);
 			}
 		}
-		throw new UtilException(StrUtil.format("[{}] is not a Array!", array.getClass()));
+		throw new UtilException(StringUtil.format("[{}] is not a Array!", array.getClass()));
 	}
 
 	/**

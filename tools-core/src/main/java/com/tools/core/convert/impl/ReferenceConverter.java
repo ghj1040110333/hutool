@@ -2,7 +2,7 @@ package com.tools.core.convert.impl;
 
 import com.tools.core.convert.AbstractConverter;
 import com.tools.core.convert.ConverterRegistry;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.core.util.TypeUtil;
 
 import java.lang.ref.Reference;
@@ -50,7 +50,7 @@ public class ReferenceConverter extends AbstractConverter<Reference> {
 			return new SoftReference(targetValue);
 		}
 
-		throw new UnsupportedOperationException(StrUtil.format("Unsupport Reference type: {}", this.targetType.getName()));
+		throw new UnsupportedOperationException(StringUtil.format("Unsupport Reference type: {}", this.targetType.getName()));
 	}
 
 }

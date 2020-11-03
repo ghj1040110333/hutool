@@ -2,7 +2,7 @@ package com.tools.core.net.url;
 
 import com.tools.core.collection.CollUtil;
 import com.tools.core.util.CharUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.core.util.URLUtil;
 
 import java.nio.charset.Charset;
@@ -98,11 +98,11 @@ public class UrlPath {
 	public UrlPath parse(String path, Charset charset) {
 		UrlPath urlPath = new UrlPath();
 
-		if (StrUtil.isNotEmpty(path)) {
+		if (StringUtil.isNotEmpty(path)) {
 			path = path.trim();
 
 			// 原URL中以/结尾，则这个规则需保留，issue#I1G44J@Gitee
-			if(StrUtil.endWith(path, CharUtil.SLASH)){
+			if(StringUtil.endWith(path, CharUtil.SLASH)){
 				this.withEngTag = true;
 			}
 
@@ -123,14 +123,14 @@ public class UrlPath {
 	 */
 	public String build(Charset charset) {
 		if (CollUtil.isEmpty(this.segments)) {
-			return StrUtil.EMPTY;
+			return StringUtil.EMPTY;
 		}
 
 		final StringBuilder builder = new StringBuilder();
 		for (String segment : segments) {
 			builder.append(CharUtil.SLASH).append(URLUtil.encodeAll(segment, charset));
 		}
-		if (withEngTag || StrUtil.isEmpty(builder)) {
+		if (withEngTag || StringUtil.isEmpty(builder)) {
 			builder.append(CharUtil.SLASH);
 		}
 		return builder.toString();
@@ -171,15 +171,15 @@ public class UrlPath {
 	 * @return 修正后的节点
 	 */
 	private static String fixSegment(CharSequence segment) {
-		if (StrUtil.isEmpty(segment) || "/".contentEquals(segment)) {
+		if (StringUtil.isEmpty(segment) || "/".contentEquals(segment)) {
 			return null;
 		}
 
-		String segmentStr = StrUtil.str(segment);
-		segmentStr = StrUtil.trim(segmentStr);
-		segmentStr = StrUtil.removePrefix(segmentStr, "/");
-		segmentStr = StrUtil.removeSuffix(segmentStr, "/");
-		segmentStr = StrUtil.trim(segmentStr);
+		String segmentStr = StringUtil.str(segment);
+		segmentStr = StringUtil.trim(segmentStr);
+		segmentStr = StringUtil.removePrefix(segmentStr, "/");
+		segmentStr = StringUtil.removeSuffix(segmentStr, "/");
+		segmentStr = StringUtil.trim(segmentStr);
 		return segmentStr;
 	}
 }

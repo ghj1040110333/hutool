@@ -3,7 +3,7 @@ package com.tools.extra.mail;
 import com.tools.core.collection.CollUtil;
 import com.tools.core.io.IoUtil;
 import com.tools.core.map.MapUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.io.File;
 import java.io.InputStream;
@@ -402,15 +402,15 @@ public class MailUtil {
 	 * @return 联系人列表
 	 */
 	private static List<String> splitAddress(String addresses) {
-		if (StrUtil.isBlank(addresses)) {
+		if (StringUtil.isBlank(addresses)) {
 			return null;
 		}
 
 		List<String> result;
-		if (StrUtil.contains(addresses, ',')) {
-			result = StrUtil.splitTrim(addresses, ',');
-		} else if (StrUtil.contains(addresses, ';')) {
-			result = StrUtil.splitTrim(addresses, ';');
+		if (StringUtil.contains(addresses, ',')) {
+			result = StringUtil.splitTrim(addresses, ',');
+		} else if (StringUtil.contains(addresses, ';')) {
+			result = StringUtil.splitTrim(addresses, ';');
 		} else {
 			result = CollUtil.newArrayList(addresses);
 		}

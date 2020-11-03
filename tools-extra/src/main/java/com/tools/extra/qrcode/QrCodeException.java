@@ -1,12 +1,12 @@
 package com.tools.extra.qrcode;
 
 import com.tools.core.exceptions.ExceptionUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * Qrcode异常
  *
- * @author xiaoleilu
+ * @author fruit
  */
 public class QrCodeException extends RuntimeException {
 	private static final long serialVersionUID = 8247610319171014183L;
@@ -20,7 +20,7 @@ public class QrCodeException extends RuntimeException {
 	}
 
 	public QrCodeException(String messageTemplate, Object... params) {
-		super(StrUtil.format(messageTemplate, params));
+		super(StringUtil.format(messageTemplate, params));
 	}
 
 	public QrCodeException(String message, Throwable throwable) {
@@ -28,6 +28,6 @@ public class QrCodeException extends RuntimeException {
 	}
 
 	public QrCodeException(Throwable throwable, String messageTemplate, Object... params) {
-		super(StrUtil.format(messageTemplate, params), throwable);
+		super(StringUtil.format(messageTemplate, params), throwable);
 	}
 }

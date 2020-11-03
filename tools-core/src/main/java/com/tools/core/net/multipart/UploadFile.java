@@ -2,7 +2,7 @@ package com.tools.core.net.multipart;
 
 import com.tools.core.io.FileUtil;
 import com.tools.core.io.IoUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -14,7 +14,7 @@ import java.io.InputStream;
 /**
  * 上传的文件对象
  *
- * @author xiaoleilu
+ * @author fruit
  */
 public class UploadFile {
 
@@ -261,7 +261,7 @@ public class UploadFile {
 	 */
 	private void assertValid() throws IOException {
 		if (false == isUploaded()) {
-			throw new IOException(StrUtil.format("File [{}] upload fail", getFileName()));
+			throw new IOException(StringUtil.format("File [{}] upload fail", getFileName()));
 		}
 	}
 	// ---------------------------------------------------------------------------- Private method end

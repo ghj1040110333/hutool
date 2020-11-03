@@ -1,7 +1,7 @@
 package com.tools.crypto;
 
 import com.tools.core.exceptions.ExceptionUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * 加密异常
@@ -20,7 +20,7 @@ public class CryptoException extends RuntimeException {
 	}
 
 	public CryptoException(String messageTemplate, Object... params) {
-		super(StrUtil.format(messageTemplate, params));
+		super(StringUtil.format(messageTemplate, params));
 	}
 
 	public CryptoException(String message, Throwable throwable) {
@@ -28,6 +28,6 @@ public class CryptoException extends RuntimeException {
 	}
 
 	public CryptoException(Throwable throwable, String messageTemplate, Object... params) {
-		super(StrUtil.format(messageTemplate, params), throwable);
+		super(StringUtil.format(messageTemplate, params), throwable);
 	}
 }

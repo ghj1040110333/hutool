@@ -1,10 +1,10 @@
 package com.tools.cron;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * 定时任务异常
- * @author xiaoleilu
+ * @author fruit
  */
 public class CronException extends RuntimeException{
 	private static final long serialVersionUID = 1L;
@@ -18,10 +18,10 @@ public class CronException extends RuntimeException{
 	}
 
 	public CronException(String messageTemplate, Object... params) {
-		super(StrUtil.format(messageTemplate, params));
+		super(StringUtil.format(messageTemplate, params));
 	}
 
 	public CronException(Throwable throwable, String messageTemplate, Object... params) {
-		super(StrUtil.format(messageTemplate, params), throwable);
+		super(StringUtil.format(messageTemplate, params), throwable);
 	}
 }

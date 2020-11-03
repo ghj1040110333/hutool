@@ -5,7 +5,7 @@ import com.tools.core.date.format.DatePrinter;
 import com.tools.core.date.format.FastDateFormat;
 import com.tools.core.lang.Assert;
 import com.tools.core.util.ObjectUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -23,7 +23,7 @@ import java.util.TimeZone;
 /**
  * 包装java.util.Date
  *
- * @author xiaoleilu
+ * @author fruit
  */
 public class DateTime extends Date {
 	private static final long serialVersionUID = -5395712593979185936L;
@@ -993,7 +993,7 @@ public class DateTime extends Date {
 			} else {
 				pattern = dateFormat.toString();
 			}
-			throw new DateException(StrUtil.format("Parse [{}] with format [{}] error!", dateStr, pattern), e);
+			throw new DateException(StringUtil.format("Parse [{}] with format [{}] error!", dateStr, pattern), e);
 		}
 	}
 

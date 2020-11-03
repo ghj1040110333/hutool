@@ -7,7 +7,7 @@ import com.tools.core.lang.Assert;
 import com.tools.core.util.CharUtil;
 import com.tools.core.util.CharsetUtil;
 import com.tools.core.util.ReUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.log.Log;
 
 import java.io.BufferedReader;
@@ -114,17 +114,17 @@ public class SettingLoader {
 				}
 				line = line.trim();
 				// 跳过注释行和空行
-				if (StrUtil.isBlank(line) || StrUtil.startWith(line, COMMENT_FLAG_PRE)) {
+				if (StringUtil.isBlank(line) || StringUtil.startWith(line, COMMENT_FLAG_PRE)) {
 					continue;
 				}
 
 				// 记录分组名
-				if (StrUtil.isSurround(line, CharUtil.BRACKET_START, CharUtil.BRACKET_END)) {
+				if (StringUtil.isSurround(line, CharUtil.BRACKET_START, CharUtil.BRACKET_END)) {
 					group = line.substring(1, line.length() - 1).trim();
 					continue;
 				}
 
-				final String[] keyValue = StrUtil.splitToArray(line, this.assignFlag, 2);
+				final String[] keyValue = StringUtil.splitToArray(line, this.assignFlag, 2);
 				// 跳过不符合键值规范的行
 				if (keyValue.length < 2) {
 					continue;
@@ -199,9 +199,9 @@ public class SettingLoader {
 	 */
 	synchronized private void store(PrintWriter writer) {
 		for (Entry<String, LinkedHashMap<String, String>> groupEntry : this.groupedMap.entrySet()) {
-			writer.println(StrUtil.format("{}{}{}", CharUtil.BRACKET_START, groupEntry.getKey(), CharUtil.BRACKET_END));
+			writer.println(StringUtil.format("{}{}{}", CharUtil.BRACKET_START, groupEntry.getKey(), CharUtil.BRACKET_END));
 			for (Entry<String, String> entry : groupEntry.getValue().entrySet()) {
-				writer.println(StrUtil.format("{} {} {}", entry.getKey(), this.assignFlag, entry.getValue()));
+				writer.println(StringUtil.format("{} {} {}", entry.getKey(), this.assignFlag, entry.getValue()));
 			}
 		}
 	}
@@ -220,12 +220,12 @@ public class SettingLoader {
 		String key;
 		for (String var : vars) {
 			key = ReUtil.get(varRegex, var, 1);
-			if (StrUtil.isNotBlank(key)) {
+			if (StringUtil.isNotBlank(key)) {
 				// 本分组中查找变量名对应的值
 				String varValue = this.groupedMap.get(group, key);
 				// 跨分组查找
 				if (null == varValue) {
-					final List<String> groupAndKey = StrUtil.split(key, CharUtil.DOT, 2);
+					final List<String> groupAndKey = StringUtil.split(key, CharUtil.DOT, 2);
 					if (groupAndKey.size() > 1) {
 						varValue = this.groupedMap.get(groupAndKey.get(0), groupAndKey.get(1));
 					}

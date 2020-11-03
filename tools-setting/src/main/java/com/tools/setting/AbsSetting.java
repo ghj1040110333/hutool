@@ -10,7 +10,7 @@ import com.tools.core.convert.Convert;
 import com.tools.core.getter.OptNullBasicTypeFromStringGetter;
 import com.tools.core.util.ObjectUtil;
 import com.tools.core.util.ReflectUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.log.Log;
 import com.tools.log.LogFactory;
 
@@ -30,7 +30,7 @@ public abstract class AbsSetting implements OptNullBasicTypeFromStringGetter<Str
 	/**
 	 * 默认分组
 	 */
-	public final static String DEFAULT_GROUP = StrUtil.EMPTY;
+	public final static String DEFAULT_GROUP = StringUtil.EMPTY;
 
 	@Override
 	public String getStr(String key, String defaultValue) {
@@ -153,10 +153,10 @@ public abstract class AbsSetting implements OptNullBasicTypeFromStringGetter<Str
 	 */
 	public String[] getStrings(String key, String group, String delimiter) {
 		final String value = getByGroup(key, group);
-		if (StrUtil.isBlank(value)) {
+		if (StringUtil.isBlank(value)) {
 			return null;
 		}
-		return StrUtil.split(value, delimiter);
+		return StringUtil.split(value, delimiter);
 	}
 
 	// --------------------------------------------------------------- Get int
@@ -245,7 +245,7 @@ public abstract class AbsSetting implements OptNullBasicTypeFromStringGetter<Str
 	 */
 	public Character getChar(String key, String group) {
 		final String value = getByGroup(key, group);
-		if (StrUtil.isBlank(value)) {
+		if (StringUtil.isBlank(value)) {
 			return null;
 		}
 		return value.charAt(0);

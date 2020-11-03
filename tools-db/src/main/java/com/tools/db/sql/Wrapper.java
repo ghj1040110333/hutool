@@ -3,7 +3,7 @@ package com.tools.db.sql;
 import com.tools.core.collection.CollectionUtil;
 import com.tools.core.lang.Editor;
 import com.tools.core.util.ArrayUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.db.Entity;
 
 import java.util.Arrays;
@@ -82,27 +82,27 @@ public class Wrapper {
 	 * @return 包装后的字段名
 	 */
 	public String wrap(String field){
-		if(preWrapQuote == null || sufWrapQuote == null || StrUtil.isBlank(field)) {
+		if(preWrapQuote == null || sufWrapQuote == null || StringUtil.isBlank(field)) {
 			return field;
 		}
 
 		//如果已经包含包装的引号，返回原字符
-		if(StrUtil.isSurround(field, preWrapQuote, sufWrapQuote)){
+		if(StringUtil.isSurround(field, preWrapQuote, sufWrapQuote)){
 			return field;
 		}
 
 		//如果字段中包含通配符或者括号（字段通配符或者函数），不做包装
-		if(StrUtil.containsAnyIgnoreCase(field, "*", "(", " ", " as ")) {
+		if(StringUtil.containsAnyIgnoreCase(field, "*", "(", " ", " as ")) {
 			return field;
 		}
 
 		//对于Oracle这类数据库，表名中包含用户名需要单独拆分包装
-		if(field.contains(StrUtil.DOT)){
-			final Collection<String> target = CollectionUtil.filter(StrUtil.split(field, StrUtil.C_DOT), (Editor<String>) t -> StrUtil.format("{}{}{}", preWrapQuote, t, sufWrapQuote));
-			return CollectionUtil.join(target, StrUtil.DOT);
+		if(field.contains(StringUtil.DOT)){
+			final Collection<String> target = CollectionUtil.filter(StringUtil.split(field, StringUtil.C_DOT), (Editor<String>) t -> StringUtil.format("{}{}{}", preWrapQuote, t, sufWrapQuote));
+			return CollectionUtil.join(target, StringUtil.DOT);
 		}
 
-		return StrUtil.format("{}{}{}", preWrapQuote, field, sufWrapQuote);
+		return StringUtil.format("{}{}{}", preWrapQuote, field, sufWrapQuote);
 	}
 
 	/**

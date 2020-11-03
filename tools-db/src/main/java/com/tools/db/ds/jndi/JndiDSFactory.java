@@ -2,7 +2,7 @@ package com.tools.db.ds.jndi;
 
 import javax.sql.DataSource;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.db.DbRuntimeException;
 import com.tools.db.DbUtil;
 import com.tools.db.ds.AbstractDSFactory;
@@ -35,7 +35,7 @@ public class JndiDSFactory extends AbstractDSFactory {
 	@Override
 	protected DataSource createDataSource(String jdbcUrl, String driver, String user, String pass, Setting poolSetting) {
 		String jndiName = poolSetting.getStr("jndi");
-		if (StrUtil.isEmpty(jndiName)) {
+		if (StringUtil.isEmpty(jndiName)) {
 			throw new DbRuntimeException("No setting name [jndi] for this group.");
 		}
 		return DbUtil.getJndiDs(jndiName);

@@ -13,7 +13,7 @@ import com.tools.core.lang.Dict;
 import com.tools.core.util.ArrayUtil;
 import com.tools.core.util.CharsetUtil;
 import com.tools.core.util.ReflectUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.db.sql.SqlUtil;
 
 /**
@@ -199,8 +199,8 @@ public class Entity extends Dict {
 	 */
 	@Override
 	public <T> Entity parseBean(T bean) {
-		if (StrUtil.isBlank(this.tableName)) {
-			this.setTableName(StrUtil.lowerFirst(bean.getClass().getSimpleName()));
+		if (StringUtil.isBlank(this.tableName)) {
+			this.setTableName(StringUtil.lowerFirst(bean.getClass().getSimpleName()));
 		}
 		return (Entity) super.parseBean(bean);
 	}
@@ -217,9 +217,9 @@ public class Entity extends Dict {
 	 */
 	@Override
 	public <T> Entity parseBean(T bean, boolean isToUnderlineCase, boolean ignoreNullValue) {
-		if (StrUtil.isBlank(this.tableName)) {
+		if (StringUtil.isBlank(this.tableName)) {
 			String simpleName = bean.getClass().getSimpleName();
-			this.setTableName(isToUnderlineCase ? StrUtil.toUnderlineCase(simpleName) : StrUtil.lowerFirst(simpleName));
+			this.setTableName(isToUnderlineCase ? StringUtil.toUnderlineCase(simpleName) : StringUtil.lowerFirst(simpleName));
 		}
 		return (Entity) super.parseBean(bean, isToUnderlineCase, ignoreNullValue);
 	}
@@ -346,7 +346,7 @@ public class Entity extends Dict {
 			return SqlUtil.blobToStr((Blob) obj, charset);
 		} else if (obj instanceof RowId) {
 			final RowId rowId = (RowId) obj;
-			return StrUtil.str(rowId.getBytes(), charset);
+			return StringUtil.str(rowId.getBytes(), charset);
 		}
 		return super.getStr(field);
 	}

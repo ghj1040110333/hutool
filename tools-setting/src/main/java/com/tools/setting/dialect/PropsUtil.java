@@ -2,7 +2,7 @@ package com.tools.setting.dialect;
 
 import com.tools.core.io.FileUtil;
 import com.tools.core.io.resource.NoResourceException;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -37,7 +37,7 @@ public class PropsUtil {
 				if (null == props) {
 					String filePath = name;
 					String extName = FileUtil.extName(filePath);
-					if (StrUtil.isEmpty(extName)) {
+					if (StringUtil.isEmpty(extName)) {
 						filePath = filePath + "." + Props.EXT_NAME;
 					}
 					props = new Props(filePath);

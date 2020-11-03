@@ -7,9 +7,8 @@ import java.nio.charset.Charset;
 
 import com.tools.core.io.FileUtil;
 import com.tools.core.io.IoUtil;
-import com.tools.core.codec.Base62Codec;
 import com.tools.core.util.CharsetUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * Base62工具类，提供Base62的编码和解码方案<br>
@@ -41,7 +40,7 @@ public class Base62 {
 	 * @return 被加密后的字符串
 	 */
 	public static String encode(CharSequence source, Charset charset) {
-		return encode(StrUtil.bytes(source, charset));
+		return encode(StringUtil.bytes(source, charset));
 	}
 
 	/**
@@ -103,7 +102,7 @@ public class Base62 {
 	 * @return 被加密后的字符串
 	 */
 	public static String decodeStr(CharSequence source, Charset charset) {
-		return StrUtil.str(decode(source), charset);
+		return StringUtil.str(decode(source), charset);
 	}
 
 	/**
@@ -135,7 +134,7 @@ public class Base62 {
 	 * @return 被加密后的字符串
 	 */
 	public static byte[] decode(CharSequence base62Str) {
-		return decode(StrUtil.bytes(base62Str, DEFAULT_CHARSET));
+		return decode(StringUtil.bytes(base62Str, DEFAULT_CHARSET));
 	}
 
 	/**

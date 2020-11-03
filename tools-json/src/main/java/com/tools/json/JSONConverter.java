@@ -6,7 +6,7 @@ import com.tools.core.convert.Converter;
 import com.tools.core.convert.ConverterRegistry;
 import com.tools.core.convert.impl.ArrayConverter;
 import com.tools.core.util.ObjectUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.core.util.TypeUtil;
 import com.tools.json.serialize.GlobalSerializeMapping;
 import com.tools.json.serialize.JSONDeserializer;
@@ -82,7 +82,7 @@ public class JSONConverter implements Converter<JSON> {
 				Convert.convert(targetType, value);
 
 		if (null == targetValue && false == ignoreError) {
-			if (StrUtil.isBlankIfStr(value)) {
+			if (StringUtil.isBlankIfStr(value)) {
 				// 对于传入空字符串的情况，如果转换的目标对象是非字符串或非原始类型，转换器会返回false。
 				// 此处特殊处理，认为返回null属于正常情况
 				return null;

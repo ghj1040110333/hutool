@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * 文件类型判断工具类
@@ -106,7 +106,7 @@ public class FileTypeUtil {
 	 */
 	public static String getType(String fileStreamHexHead) {
 		for (Entry<String, String> fileTypeEntry : FILE_TYPE_MAP.entrySet()) {
-			if (StrUtil.startWithIgnoreCase(fileStreamHexHead, fileTypeEntry.getKey())) {
+			if (StringUtil.startWithIgnoreCase(fileStreamHexHead, fileTypeEntry.getKey())) {
 				return fileTypeEntry.getValue();
 			}
 		}

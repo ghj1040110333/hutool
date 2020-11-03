@@ -5,7 +5,7 @@ import com.tools.core.io.IORuntimeException;
 import com.tools.core.io.IoUtil;
 import com.tools.core.util.ArrayUtil;
 import com.tools.core.util.ObjectUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -259,7 +259,7 @@ public class Mail {
 					nameEncoded = InternalMailUtil.encodeText(attachment.getName(), charset);
 					// 普通附件文件名
 					bodyPart.setFileName(nameEncoded);
-					if (StrUtil.startWith(attachment.getContentType(), "image/")) {
+					if (StringUtil.startWith(attachment.getContentType(), "image/")) {
 						// 图片附件，用于正文中引用图片
 						bodyPart.setContentID(nameEncoded);
 					}
@@ -360,7 +360,7 @@ public class Mail {
 			if(e instanceof SendFailedException){
 				// 当地址无效时，显示更加详细的无效地址信息
 				final Address[] invalidAddresses = ((SendFailedException) e).getInvalidAddresses();
-				final String msg = StrUtil.format("Invalid Addresses: {}", ArrayUtil.toString(invalidAddresses));
+				final String msg = StringUtil.format("Invalid Addresses: {}", ArrayUtil.toString(invalidAddresses));
 				throw new MailException(msg, e);
 			}
 			throw new MailException(e);
@@ -392,7 +392,7 @@ public class Mail {
 		final MimeMessage msg = new MimeMessage(getSession(this.useGlobalSession));
 		// 发件人
 		final String from = this.mailAccount.getFrom();
-		if (StrUtil.isEmpty(from)) {
+		if (StringUtil.isEmpty(from)) {
 			// 用户未提供发送方，则从Session中自动获取
 			msg.setFrom();
 		} else {
@@ -432,7 +432,7 @@ public class Mail {
 	private Multipart buildContent(Charset charset) throws MessagingException {
 		// 正文
 		final MimeBodyPart body = new MimeBodyPart();
-		body.setContent(content, StrUtil.format("text/{}; charset={}", isHtml ? "html" : "plain", charset));
+		body.setContent(content, StringUtil.format("text/{}; charset={}", isHtml ? "html" : "plain", charset));
 		this.multipart.addBodyPart(body);
 
 		return this.multipart;

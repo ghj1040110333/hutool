@@ -5,8 +5,6 @@ import com.tools.core.io.FastByteArrayOutputStream;
 import com.tools.core.io.FileUtil;
 import com.tools.core.io.IORuntimeException;
 import com.tools.core.io.IoUtil;
-import com.tools.core.util.CharUtil;
-import com.tools.core.util.CharsetUtil;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
@@ -619,7 +617,7 @@ public class ZipUtil {
 	 * @throws UtilException IO异常
 	 */
 	public static byte[] gzip(String content, String charset) throws UtilException {
-		return gzip(StrUtil.bytes(content, charset));
+		return gzip(StringUtil.bytes(content, charset));
 	}
 
 	/**
@@ -695,7 +693,7 @@ public class ZipUtil {
 	 * @throws UtilException IO异常
 	 */
 	public static String unGzip(byte[] buf, String charset) throws UtilException {
-		return StrUtil.str(unGzip(buf), charset);
+		return StringUtil.str(unGzip(buf), charset);
 	}
 
 	/**
@@ -757,7 +755,7 @@ public class ZipUtil {
 	 * @since 4.1.4
 	 */
 	public static byte[] zlib(String content, String charset, int level) {
-		return zlib(StrUtil.bytes(content, charset), level);
+		return zlib(StringUtil.bytes(content, charset), level);
 	}
 
 	/**
@@ -826,7 +824,7 @@ public class ZipUtil {
 	 * @since 4.1.4
 	 */
 	public static String unZlib(byte[] buf, String charset) {
-		return StrUtil.str(unZlib(buf), charset);
+		return StringUtil.str(unZlib(buf), charset);
 	}
 
 	/**
@@ -874,18 +872,18 @@ public class ZipUtil {
 	 * @since 4.6.6
 	 */
 	public static List<String> listFileNames(ZipFile zipFile, String dir) {
-		if (StrUtil.isNotBlank(dir)) {
+		if (StringUtil.isNotBlank(dir)) {
 			// 目录尾部添加"/"
-			dir = StrUtil.addSuffixIfNot(dir, StrUtil.SLASH);
+			dir = StringUtil.addSuffixIfNot(dir, StringUtil.SLASH);
 		}
 
 		final List<String> fileNames = new ArrayList<>();
 		String name;
 		for (ZipEntry entry : Collections.list(zipFile.entries())) {
 			name = entry.getName();
-			if (StrUtil.isEmpty(dir) || name.startsWith(dir)) {
-				final String nameSuffix = StrUtil.removePrefix(name, dir);
-				if (StrUtil.isNotEmpty(nameSuffix) && false == StrUtil.contains(nameSuffix, CharUtil.SLASH)) {
+			if (StringUtil.isEmpty(dir) || name.startsWith(dir)) {
+				final String nameSuffix = StringUtil.removePrefix(name, dir);
+				if (StringUtil.isNotEmpty(nameSuffix) && false == StringUtil.contains(nameSuffix, CharUtil.SLASH)) {
 					fileNames.add(nameSuffix);
 				}
 			}
@@ -940,7 +938,7 @@ public class ZipUtil {
 		final String subPath = FileUtil.subPath(srcRootDir, file); // 获取文件相对于压缩文件夹根目录的子路径
 		if (file.isDirectory()) {// 如果是目录，则压缩压缩目录中的文件或子目录
 			final File[] files = file.listFiles();
-			if (ArrayUtil.isEmpty(files) && StrUtil.isNotEmpty(subPath)) {
+			if (ArrayUtil.isEmpty(files) && StringUtil.isNotEmpty(subPath)) {
 				// 加入目录，只有空目录时才加入目录，非空时会在创建文件时自动添加父级目录
 				addDir(subPath, out);
 			}
@@ -997,7 +995,7 @@ public class ZipUtil {
 	 * @throws UtilException IO异常
 	 */
 	private static void addDir(String path, ZipOutputStream out) throws UtilException {
-		path = StrUtil.addSuffixIfNot(path, StrUtil.SLASH);
+		path = StringUtil.addSuffixIfNot(path, StringUtil.SLASH);
 		try {
 			out.putNextEntry(new ZipEntry(path));
 		} catch (IOException e) {
@@ -1023,7 +1021,7 @@ public class ZipUtil {
 				continue;
 			}
 			if (false == srcFile.exists()) {
-				throw new UtilException(StrUtil.format("File [{}] not exist!", srcFile.getAbsolutePath()));
+				throw new UtilException(StringUtil.format("File [{}] not exist!", srcFile.getAbsolutePath()));
 			}
 
 			try {
@@ -1125,7 +1123,7 @@ public class ZipUtil {
 				&& fileName.lastIndexOf(CharUtil.SLASH, fileName.length() - 2) > 0) {
 			// 在Linux下多层目录创建存在问题，/会被当成文件名的一部分，此处做处理
 			// 使用/拆分路径（zip中无\），级联创建父目录
-			final List<String> pathParts = StrUtil.split(fileName, '/', false, true);
+			final List<String> pathParts = StringUtil.split(fileName, '/', false, true);
 			final int lastPartIndex = pathParts.size() - 1;//目录个数
 			for (int i = 0; i < lastPartIndex; i++) {
 				//由于路径拆分，slip不检查，在最后一步检查

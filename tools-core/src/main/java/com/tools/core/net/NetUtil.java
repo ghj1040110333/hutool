@@ -6,7 +6,7 @@ import com.tools.core.io.IORuntimeException;
 import com.tools.core.io.IoUtil;
 import com.tools.core.lang.Filter;
 import com.tools.core.util.RandomUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -37,7 +37,7 @@ import java.util.TreeSet;
 /**
  * 网络相关工具
  *
- * @author xiaoleilu
+ * @author fruit
  */
 public class NetUtil {
 
@@ -236,7 +236,7 @@ public class NetUtil {
 	 * @return 隐藏部分后的IP
 	 */
 	public static String hideIpPart(String ip) {
-		return StrUtil.builder(ip.length()).append(ip, 0, ip.lastIndexOf(".") + 1).append("*").toString();
+		return StringUtil.builder(ip.length()).append(ip, 0, ip.lastIndexOf(".") + 1).append("*").toString();
 	}
 
 	/**
@@ -259,7 +259,7 @@ public class NetUtil {
 	 * @return InetSocketAddress
 	 */
 	public static InetSocketAddress buildInetSocketAddress(String host, int defaultPort) {
-		if (StrUtil.isBlank(host)) {
+		if (StringUtil.isBlank(host)) {
 			host = LOCAL_IP;
 		}
 
@@ -542,14 +542,14 @@ public class NetUtil {
 	 * @since 5.4.4
 	 */
 	public static String getLocalHostName() {
-		if (StrUtil.isNotBlank(localhostName)) {
+		if (StringUtil.isNotBlank(localhostName)) {
 			return localhostName;
 		}
 
 		final InetAddress localhost = getLocalhost();
 		if(null != localhost){
 			String name = localhost.getHostName();
-			if(StrUtil.isEmpty(name)){
+			if(StringUtil.isEmpty(name)){
 				name = localhost.getHostAddress();
 			}
 			localhostName = name;
@@ -567,7 +567,7 @@ public class NetUtil {
 	 * @since 3.3.0
 	 */
 	public static InetSocketAddress createAddress(String host, int port) {
-		if (StrUtil.isBlank(host)) {
+		if (StringUtil.isBlank(host)) {
 			return new InetSocketAddress(port);
 		}
 		return new InetSocketAddress(host, port);
@@ -624,7 +624,7 @@ public class NetUtil {
 	 * @since 4.0.6
 	 */
 	public static boolean isInRange(String ip, String cidr) {
-		String[] ips = StrUtil.splitToArray(ip, '.');
+		String[] ips = StringUtil.splitToArray(ip, '.');
 		int ipAddr = (Integer.parseInt(ips[0]) << 24) | (Integer.parseInt(ips[1]) << 16) | (Integer.parseInt(ips[2]) << 8) | Integer.parseInt(ips[3]);
 		int type = Integer.parseInt(cidr.replaceAll(".*/", ""));
 		int mask = 0xFFFFFFFF << (32 - type);
@@ -686,7 +686,7 @@ public class NetUtil {
 	 * @since 5.2.6
 	 */
 	public static boolean isUnknown(String checkString) {
-		return StrUtil.isBlank(checkString) || "unknown".equalsIgnoreCase(checkString);
+		return StringUtil.isBlank(checkString) || "unknown".equalsIgnoreCase(checkString);
 	}
 
 	/**
@@ -722,7 +722,7 @@ public class NetUtil {
 	 * @since 5.2.6
 	 */
 	public static List<HttpCookie> parseCookies(String cookieStr) {
-		if (StrUtil.isBlank(cookieStr)) {
+		if (StringUtil.isBlank(cookieStr)) {
 			return Collections.emptyList();
 		}
 		return HttpCookie.parse(cookieStr);

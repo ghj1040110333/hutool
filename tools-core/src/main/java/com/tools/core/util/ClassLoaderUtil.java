@@ -28,7 +28,7 @@ public class ClassLoaderUtil {
 	/** 内部非原始类型类名前缀: "[L" */
 	private static final String NON_PRIMITIVE_ARRAY_PREFIX = "[L";
 	/** 包名分界符: '.' */
-	private static final char PACKAGE_SEPARATOR = StrUtil.C_DOT;
+	private static final char PACKAGE_SEPARATOR = StringUtil.C_DOT;
 	/** 内部类分界符: '$' */
 	private static final char INNER_CLASS_SEPARATOR = '$';
 
@@ -199,7 +199,7 @@ public class ClassLoaderUtil {
 	 */
 	public static Class<?> loadPrimitiveClass(String name) {
 		Class<?> result = null;
-		if (StrUtil.isNotBlank(name)) {
+		if (StringUtil.isNotBlank(name)) {
 			name = name.trim();
 			if (name.length() <= 8) {
 				result = PRIMITIVE_TYPE_NAME_MAP.get(name);

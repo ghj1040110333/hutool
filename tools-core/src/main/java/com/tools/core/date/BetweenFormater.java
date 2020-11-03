@@ -1,6 +1,6 @@
 package com.tools.core.date;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.io.Serializable;
 
@@ -89,7 +89,7 @@ public class BetweenFormater implements Serializable {
 			}
 		}
 
-		if (StrUtil.isEmpty(sb)) {
+		if (StringUtil.isEmpty(sb)) {
 			sb.append(0).append(this.level.name);
 		}
 

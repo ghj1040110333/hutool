@@ -1,6 +1,6 @@
 package com.tools.db.ds.pooled;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.db.ds.AbstractDSFactory;
 import com.tools.setting.Setting;
 
@@ -43,7 +43,7 @@ public class PooledDSFactory extends AbstractDSFactory {
 		String connValue;
 		for (String key : KEY_CONN_PROPS) {
 			connValue = poolSetting.get(key);
-			if(StrUtil.isNotBlank(connValue)){
+			if(StringUtil.isNotBlank(connValue)){
 				dbConfig.addConnProps(key, connValue);
 			}
 		}

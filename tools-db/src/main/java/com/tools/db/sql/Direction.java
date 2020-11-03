@@ -1,6 +1,6 @@
 package com.tools.db.sql;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * 排序方式（升序或者降序）
@@ -25,7 +25,7 @@ public enum Direction{
 		try {
 			return Direction.valueOf(value.toUpperCase());
 		} catch (Exception e) {
-			throw new IllegalArgumentException(StrUtil.format(
+			throw new IllegalArgumentException(StringUtil.format(
 					"Invalid value [{}] for orders given! Has to be either 'desc' or 'asc' (case insensitive).", value), e);
 		}
 	}

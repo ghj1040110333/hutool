@@ -2,7 +2,7 @@ package com.tools.core.convert.impl;
 
 import com.tools.core.convert.AbstractConverter;
 import com.tools.core.util.BooleanUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * 字符转换器
@@ -19,7 +19,7 @@ public class CharacterConverter extends AbstractConverter<Character> {
 			return BooleanUtil.toCharacter((Boolean) value);
 		} else {
 			final String valueStr = convertToStr(value);
-			if (StrUtil.isNotBlank(valueStr)) {
+			if (StringUtil.isNotBlank(valueStr)) {
 				return valueStr.charAt(0);
 			}
 		}

@@ -3,7 +3,7 @@ package com.tools.core.text;
 import com.tools.core.lang.PatternPool;
 import com.tools.core.util.CharUtil;
 import com.tools.core.util.NumberUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +49,7 @@ public class StrSpliter {
 	 * @since 3.0.8
 	 */
 	public static List<String> splitPath(String str, int limit){
-		return split(str, StrUtil.C_SLASH, limit, true, true);
+		return split(str, StringUtil.C_SLASH, limit, true, true);
 	}
 
 	/**
@@ -148,7 +148,7 @@ public class StrSpliter {
 	 * @since 3.2.1
 	 */
 	public static List<String> split(String str, char separator, int limit, boolean isTrim, boolean ignoreEmpty, boolean ignoreCase){
-		if(StrUtil.isEmpty(str)){
+		if(StringUtil.isEmpty(str)){
 			return new ArrayList<>(0);
 		}
 		if(limit == 1){
@@ -287,14 +287,14 @@ public class StrSpliter {
 	 * @since 3.2.1
 	 */
 	public static List<String> split(String str, String separator, int limit, boolean isTrim, boolean ignoreEmpty, boolean ignoreCase){
-		if(StrUtil.isEmpty(str)){
+		if(StringUtil.isEmpty(str)){
 			return new ArrayList<>(0);
 		}
 		if(limit == 1){
 			return addToList(new ArrayList<>(1), str, isTrim, ignoreEmpty);
 		}
 
-		if(StrUtil.isEmpty(separator)){//分隔符为空时按照空白符切分
+		if(StringUtil.isEmpty(separator)){//分隔符为空时按照空白符切分
 			return split(str, limit);
 		}else if(separator.length() == 1){//分隔符只有一个字符长度时按照单分隔符切分
 			return split(str, separator.charAt(0), limit, isTrim, ignoreEmpty, ignoreCase);
@@ -306,7 +306,7 @@ public class StrSpliter {
 		int start = 0;
 		int i = 0;
 		while(i < len){
-			i = StrUtil.indexOf(str, separator, start, ignoreCase);
+			i = StringUtil.indexOf(str, separator, start, ignoreCase);
 			if(i > -1){
 				addToList(list, str.substring(start, i), isTrim, ignoreEmpty);
 				start = i + separatorLen;
@@ -349,7 +349,7 @@ public class StrSpliter {
 	 * @since 3.0.8
 	 */
 	public static List<String> split(String str, int limit){
-		if(StrUtil.isEmpty(str)){
+		if(StringUtil.isEmpty(str)){
 			return new ArrayList<>(0);
 		}
 		if(limit == 1){
@@ -412,7 +412,7 @@ public class StrSpliter {
 	 * @since 3.0.8
 	 */
 	public static List<String> split(String str, Pattern separatorPattern, int limit, boolean isTrim, boolean ignoreEmpty){
-		if(StrUtil.isEmpty(str)){
+		if(StringUtil.isEmpty(str)){
 			return new ArrayList<>(0);
 		}
 		if(limit == 1){
@@ -493,7 +493,7 @@ public class StrSpliter {
 	 */
 	private static List<String> addToList(List<String> list, String part, boolean isTrim, boolean ignoreEmpty){
 		if(isTrim){
-			part = StrUtil.trim(part);
+			part = StringUtil.trim(part);
 		}
 		if(false == ignoreEmpty || false == part.isEmpty()){
 			list.add(part);

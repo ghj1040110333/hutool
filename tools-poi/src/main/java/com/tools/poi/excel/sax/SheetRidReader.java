@@ -2,7 +2,7 @@ package com.tools.poi.excel.sax;
 
 import com.tools.core.io.IORuntimeException;
 import com.tools.core.io.IoUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.poi.exceptions.POIException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.xssf.eventusermodel.XSSFReader;
@@ -99,10 +99,10 @@ public class SheetRidReader extends DefaultHandler {
 						name = attributes.getValue(i);
 						break;
 				}
-				if (StrUtil.isNotEmpty(sheetId)) {
+				if (StringUtil.isNotEmpty(sheetId)) {
 					ID_RID_MAP.put(sheetId, rid);
 				}
-				if (StrUtil.isNotEmpty(name)) {
+				if (StringUtil.isNotEmpty(name)) {
 					NAME_RID_MAP.put(name, rid);
 				}
 			}

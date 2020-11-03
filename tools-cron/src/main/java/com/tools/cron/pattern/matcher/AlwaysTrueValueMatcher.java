@@ -1,6 +1,6 @@
 package com.tools.cron.pattern.matcher;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * 值匹配，始终返回<code>true</code>
@@ -16,6 +16,6 @@ public class AlwaysTrueValueMatcher implements ValueMatcher{
 
 	@Override
 	public String toString() {
-		return StrUtil.format("[Matcher]: always true.");
+		return StringUtil.format("[Matcher]: always true.");
 	}
 }

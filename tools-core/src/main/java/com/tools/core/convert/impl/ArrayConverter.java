@@ -5,10 +5,7 @@ import com.tools.core.convert.AbstractConverter;
 import com.tools.core.convert.Convert;
 import com.tools.core.util.ArrayUtil;
 import com.tools.core.util.ObjectUtil;
-import com.tools.core.util.StrUtil;
-import com.tools.core.collection.IterUtil;
-import com.tools.core.convert.AbstractConverter;
-import com.tools.core.convert.Convert;
+import com.tools.core.util.StringUtil;
 
 import java.io.Serializable;
 import java.lang.reflect.Array;
@@ -126,7 +123,7 @@ public class ArrayConverter extends AbstractConverter<Object> {
 			}
 
 			// 单纯字符串情况下按照逗号分隔后劈开
-			final String[] strings = StrUtil.split(value.toString(), StrUtil.COMMA);
+			final String[] strings = StringUtil.split(value.toString(), StringUtil.COMMA);
 			return convertArrayToArray(strings);
 		}
 

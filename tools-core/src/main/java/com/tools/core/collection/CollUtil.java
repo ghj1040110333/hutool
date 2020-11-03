@@ -18,16 +18,8 @@ import com.tools.core.util.CharUtil;
 import com.tools.core.util.ClassUtil;
 import com.tools.core.util.ObjectUtil;
 import com.tools.core.util.ReflectUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.core.util.TypeUtil;
-import com.tools.core.comparator.CompareUtil;
-import com.tools.core.comparator.PinyinComparator;
-import com.tools.core.comparator.PropertyComparator;
-import com.tools.core.convert.Convert;
-import com.tools.core.convert.ConverterRegistry;
-import com.tools.core.exceptions.UtilException;
-import com.tools.core.util.CharUtil;
-import com.tools.core.util.ReflectUtil;
 
 import java.lang.reflect.Type;
 import java.util.AbstractCollection;
@@ -68,7 +60,7 @@ import java.util.function.Predicate;
  * <p>
  * 由于{@link Collection} 实现了{@link Iterable}接口，因此部分工具此类不提供，而是在{@link IterUtil} 中提供
  *
- * @author xiaoleilu
+ * @author fruit
  * @see IterUtil
  * @since 3.1.1
  */
@@ -1328,7 +1320,7 @@ public class CollUtil {
 	 * @since 3.2.2
 	 */
 	public static <T extends Collection<E>, E extends CharSequence> T removeEmpty(T collection) {
-		return filter(collection, StrUtil::isNotEmpty);
+		return filter(collection, StringUtil::isNotEmpty);
 	}
 
 	/**
@@ -1341,7 +1333,7 @@ public class CollUtil {
 	 * @since 3.2.2
 	 */
 	public static <T extends Collection<E>, E extends CharSequence> T removeBlank(T collection) {
-		return filter(collection, StrUtil::isNotBlank);
+		return filter(collection, StringUtil::isNotBlank);
 	}
 
 	/**
@@ -1765,7 +1757,7 @@ public class CollUtil {
 	 * @since 3.0.4
 	 */
 	public static Map<String, String> zip(String keys, String values, String delimiter, boolean isOrder) {
-		return ArrayUtil.zip(StrUtil.split(keys, delimiter), StrUtil.split(values, delimiter), isOrder);
+		return ArrayUtil.zip(StringUtil.split(keys, delimiter), StringUtil.split(values, delimiter), isOrder);
 	}
 
 	/**
@@ -2072,8 +2064,8 @@ public class CollUtil {
 			iter = new ArrayIter<>(value);
 		} else if (value instanceof CharSequence) {
 			// String按照逗号分隔的列表对待
-			final String ArrayStr = StrUtil.unWrap((CharSequence) value, '[', ']');
-			iter = StrUtil.splitTrim(ArrayStr, CharUtil.COMMA).iterator();
+			final String ArrayStr = StringUtil.unWrap((CharSequence) value, '[', ']');
+			iter = StringUtil.splitTrim(ArrayStr, CharUtil.COMMA).iterator();
 		} else {
 			// 其它类型按照单一元素处理
 			iter = CollUtil.newArrayList(value).iterator();
@@ -2817,7 +2809,7 @@ public class CollUtil {
 		}
 
 		// 不支持空集合的集合类型
-		throw new IllegalArgumentException(StrUtil.format("[{}] is not support to get empty!", collectionClass));
+		throw new IllegalArgumentException(StringUtil.format("[{}] is not support to get empty!", collectionClass));
 	}
 
 	/**

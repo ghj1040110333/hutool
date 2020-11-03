@@ -2,8 +2,7 @@ package com.tools.socket.nio;
 
 import com.tools.core.io.BufferUtil;
 import com.tools.core.lang.Console;
-import com.tools.core.util.StrUtil;
-import com.tools.socket.nio.NioClient;
+import com.tools.core.util.StringUtil;
 import lombok.SneakyThrows;
 
 import java.nio.ByteBuffer;
@@ -27,7 +26,7 @@ public class NioClientTest {
 				byte[] bytes = new byte[readBuffer.remaining()];
 				//将缓冲区的数据读到bytes数组
 				readBuffer.get(bytes);
-				String body = StrUtil.utf8Str(bytes);
+				String body = StringUtil.utf8Str(bytes);
 				Console.log("[{}]: {}", sc.getRemoteAddress(), body);
 			} else if (readBytes < 0) {
 				sc.close();

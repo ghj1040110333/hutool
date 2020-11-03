@@ -1,7 +1,7 @@
 package com.tools.cron.pattern;
 
 import com.tools.core.date.DateUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.cron.CronException;
 import com.tools.cron.pattern.matcher.AlwaysTrueValueMatcher;
 import com.tools.cron.pattern.matcher.DayOfMonthValueMatcher;
@@ -219,7 +219,7 @@ public class CronPattern {
 	 * @param groupPattern 复合表达式
 	 */
 	private void parseGroupPattern(String groupPattern) {
-		List<String> patternList = StrUtil.split(groupPattern, '|');
+		List<String> patternList = StringUtil.split(groupPattern, '|');
 		for (String pattern : patternList) {
 			parseSinglePattern(pattern);
 		}

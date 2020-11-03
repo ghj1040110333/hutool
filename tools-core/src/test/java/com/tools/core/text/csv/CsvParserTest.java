@@ -1,7 +1,7 @@
 package com.tools.core.text.csv;
 
 import com.tools.core.io.IoUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -11,7 +11,7 @@ public class CsvParserTest {
 
 	@Test
 	public void parseTest1() {
-		StringReader reader = StrUtil.getReader("aaa,b\"bba\",ccc");
+		StringReader reader = StringUtil.getReader("aaa,b\"bba\",ccc");
 		CsvParser parser = new CsvParser(reader, null);
 		CsvRow row = parser.nextRow();
 		//noinspection ConstantConditions
@@ -21,7 +21,7 @@ public class CsvParserTest {
 
 	@Test
 	public void parseTest2() {
-		StringReader reader = StrUtil.getReader("aaa,\"bba\"bbb,ccc");
+		StringReader reader = StringUtil.getReader("aaa,\"bba\"bbb,ccc");
 		CsvParser parser = new CsvParser(reader, null);
 		CsvRow row = parser.nextRow();
 		//noinspection ConstantConditions
@@ -31,7 +31,7 @@ public class CsvParserTest {
 
 	@Test
 	public void parseTest3() {
-		StringReader reader = StrUtil.getReader("aaa,\"bba\",ccc");
+		StringReader reader = StringUtil.getReader("aaa,\"bba\",ccc");
 		CsvParser parser = new CsvParser(reader, null);
 		CsvRow row = parser.nextRow();
 		//noinspection ConstantConditions
@@ -41,7 +41,7 @@ public class CsvParserTest {
 
 	@Test
 	public void parseTest4() {
-		StringReader reader = StrUtil.getReader("aaa,\"\",ccc");
+		StringReader reader = StringUtil.getReader("aaa,\"\",ccc");
 		CsvParser parser = new CsvParser(reader, null);
 		CsvRow row = parser.nextRow();
 		//noinspection ConstantConditions

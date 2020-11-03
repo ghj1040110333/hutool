@@ -15,7 +15,7 @@ import com.tools.core.io.IoUtil;
 import com.tools.core.util.ArrayUtil;
 import com.tools.core.util.CharsetUtil;
 import com.tools.core.util.HexUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.crypto.CryptoException;
 import com.tools.crypto.SecureUtil;
 
@@ -179,7 +179,7 @@ public class Digester implements Serializable {
 	 * @since 4.6.0
 	 */
 	public byte[] digest(String data, Charset charset) {
-		return digest(StrUtil.bytes(data, charset));
+		return digest(StringUtil.bytes(data, charset));
 	}
 
 	/**

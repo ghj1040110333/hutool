@@ -9,8 +9,6 @@ import com.tools.core.lang.Assert;
 import com.tools.core.net.URLDecoder;
 import com.tools.core.net.URLEncoder;
 import com.tools.core.net.url.UrlQuery;
-import com.tools.core.util.CharUtil;
-import com.tools.core.util.CharsetUtil;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -40,7 +38,7 @@ import java.util.jar.JarFile;
  *   protocol :// hostname[:port] / path / [:parameters][?query]#fragment
  * </pre>
  *
- * @author xiaoleilu
+ * @author fruit
  */
 public class URLUtil {
 
@@ -294,7 +292,7 @@ public class URLUtil {
 	 */
 	public static String completeUrl(String baseUrl, String relativePath) {
 		baseUrl = normalize(baseUrl, false);
-		if (StrUtil.isBlank(baseUrl)) {
+		if (StringUtil.isBlank(baseUrl)) {
 			return null;
 		}
 
@@ -375,7 +373,7 @@ public class URLUtil {
 	 * @since 4.4.1
 	 */
 	public static String encode(String url, Charset charset) {
-		if (StrUtil.isEmpty(url)) {
+		if (StringUtil.isEmpty(url)) {
 			return url;
 		}
 		if (null == charset) {
@@ -395,7 +393,7 @@ public class URLUtil {
 	 * @since 4.4.1
 	 */
 	public static String encodeQuery(String url, Charset charset) {
-		if (StrUtil.isEmpty(url)) {
+		if (StringUtil.isEmpty(url)) {
 			return url;
 		}
 		if (null == charset) {
@@ -415,10 +413,10 @@ public class URLUtil {
 	 * @throws UtilException UnsupportedEncodingException
 	 */
 	public static String encode(String url, String charset) throws UtilException {
-		if (StrUtil.isEmpty(url)) {
+		if (StringUtil.isEmpty(url)) {
 			return url;
 		}
-		return encode(url, StrUtil.isBlank(charset) ? CharsetUtil.defaultCharset() : CharsetUtil.charset(charset));
+		return encode(url, StringUtil.isBlank(charset) ? CharsetUtil.defaultCharset() : CharsetUtil.charset(charset));
 	}
 
 	/**
@@ -432,7 +430,7 @@ public class URLUtil {
 	 * @throws UtilException UnsupportedEncodingException
 	 */
 	public static String encodeQuery(String url, String charset) throws UtilException {
-		return encodeQuery(url, StrUtil.isBlank(charset) ? CharsetUtil.defaultCharset() : CharsetUtil.charset(charset));
+		return encodeQuery(url, StringUtil.isBlank(charset) ? CharsetUtil.defaultCharset() : CharsetUtil.charset(charset));
 	}
 
 	/**
@@ -565,7 +563,7 @@ public class URLUtil {
 			location = encode(location);
 		}
 		try {
-			return new URI(StrUtil.trim(location));
+			return new URI(StringUtil.trim(location));
 		} catch (URISyntaxException e) {
 			throw new UtilException(e);
 		}
@@ -683,46 +681,46 @@ public class URLUtil {
 	 * @since 4.4.1
 	 */
 	public static String normalize(String url, boolean isEncodePath) {
-		if (StrUtil.isBlank(url)) {
+		if (StringUtil.isBlank(url)) {
 			return url;
 		}
 		final int sepIndex = url.indexOf("://");
 		String protocol;
 		String body;
 		if (sepIndex > 0) {
-			protocol = StrUtil.subPre(url, sepIndex + 3);
-			body = StrUtil.subSuf(url, sepIndex + 3);
+			protocol = StringUtil.subPre(url, sepIndex + 3);
+			body = StringUtil.subSuf(url, sepIndex + 3);
 		} else {
 			protocol = "http://";
 			body = url;
 		}
 
-		final int paramsSepIndex = StrUtil.indexOf(body, '?');
+		final int paramsSepIndex = StringUtil.indexOf(body, '?');
 		String params = null;
 		if (paramsSepIndex > 0) {
-			params = StrUtil.subSuf(body, paramsSepIndex);
-			body = StrUtil.subPre(body, paramsSepIndex);
+			params = StringUtil.subSuf(body, paramsSepIndex);
+			body = StringUtil.subPre(body, paramsSepIndex);
 		}
 
-		if (StrUtil.isNotEmpty(body)) {
+		if (StringUtil.isNotEmpty(body)) {
 			// 去除开头的\或者/
 			//noinspection ConstantConditions
-			body = body.replaceAll("^[\\\\/]+", StrUtil.EMPTY);
+			body = body.replaceAll("^[\\\\/]+", StringUtil.EMPTY);
 			// 替换多个\或/为单个/
 			body = body.replace("\\", "/").replaceAll("//+", "/");
 		}
 
-		final int pathSepIndex = StrUtil.indexOf(body, '/');
+		final int pathSepIndex = StringUtil.indexOf(body, '/');
 		String domain = body;
 		String path = null;
 		if (pathSepIndex > 0) {
-			domain = StrUtil.subPre(body, pathSepIndex);
-			path = StrUtil.subSuf(body, pathSepIndex);
+			domain = StringUtil.subPre(body, pathSepIndex);
+			path = StringUtil.subSuf(body, pathSepIndex);
 		}
 		if (isEncodePath) {
 			path = encode(path);
 		}
-		return protocol + domain + StrUtil.nullToEmpty(path) + StrUtil.nullToEmpty(params);
+		return protocol + domain + StringUtil.nullToEmpty(path) + StringUtil.nullToEmpty(params);
 	}
 
 	/**
@@ -825,14 +823,14 @@ public class URLUtil {
 	 * @since 5.3.6
 	 */
 	public static String getDataUri(String mimeType, Charset charset, String encoding, String data) {
-		final StringBuilder builder = StrUtil.builder("data:");
-		if (StrUtil.isNotBlank(mimeType)) {
+		final StringBuilder builder = StringUtil.builder("data:");
+		if (StringUtil.isNotBlank(mimeType)) {
 			builder.append(mimeType);
 		}
 		if (null != charset) {
 			builder.append(";charset=").append(charset.name());
 		}
-		if (StrUtil.isNotBlank(encoding)) {
+		if (StringUtil.isNotBlank(encoding)) {
 			builder.append(';').append(encoding);
 		}
 		builder.append(',').append(data);

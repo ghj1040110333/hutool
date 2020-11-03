@@ -6,7 +6,7 @@ import com.tools.core.lang.Assert;
 import com.tools.core.lang.Filter;
 import com.tools.core.util.ArrayUtil;
 import com.tools.core.util.CharsetUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
@@ -242,7 +242,7 @@ public class Ftp extends AbstractFtp {
 	 */
 	@Override
 	public boolean cd(String directory) {
-		if (StrUtil.isBlank(directory)) {
+		if (StringUtil.isBlank(directory)) {
 			return false;
 		}
 
@@ -298,7 +298,7 @@ public class Ftp extends AbstractFtp {
 		String fileName;
 		for (FTPFile ftpFile : ftpFiles) {
 			fileName = ftpFile.getName();
-			if (false == StrUtil.equals(".", fileName) && false == StrUtil.equals("..", fileName)) {
+			if (false == StringUtil.equals(".", fileName) && false == StringUtil.equals("..", fileName)) {
 				if (null == filter || filter.accept(ftpFile)) {
 					result.add(ftpFile);
 				}
@@ -315,7 +315,7 @@ public class Ftp extends AbstractFtp {
 	 */
 	public FTPFile[] lsFiles(String path) {
 		String pwd = null;
-		if (StrUtil.isNotBlank(path)) {
+		if (StringUtil.isNotBlank(path)) {
 			pwd = pwd();
 			cd(path);
 		}
@@ -376,7 +376,7 @@ public class Ftp extends AbstractFtp {
 	public boolean delFile(String path) {
 		final String pwd = pwd();
 		final String fileName = FileUtil.getName(path);
-		final String dir = StrUtil.removeSuffix(path, fileName);
+		final String dir = StringUtil.removeSuffix(path, fileName);
 		cd(dir);
 		boolean isSuccess;
 		try {
@@ -402,7 +402,7 @@ public class Ftp extends AbstractFtp {
 		String childPath;
 		for (FTPFile ftpFile : dirs) {
 			name = ftpFile.getName();
-			childPath = StrUtil.format("{}/{}", dirPath, name);
+			childPath = StringUtil.format("{}/{}", dirPath, name);
 			if (ftpFile.isDirectory()) {
 				// 上级和本级目录除外
 				if (false == ".".equals(name) && false == "..".equals(name)) {
@@ -488,7 +488,7 @@ public class Ftp extends AbstractFtp {
 			pwd = pwd();
 		}
 
-		if (StrUtil.isNotBlank(path)) {
+		if (StringUtil.isNotBlank(path)) {
 			mkDirs(path);
 			boolean isOk = cd(path);
 			if (false == isOk) {
@@ -516,7 +516,7 @@ public class Ftp extends AbstractFtp {
 	@Override
 	public void download(String path, File outFile) {
 		final String fileName = FileUtil.getName(path);
-		final String dir = StrUtil.removeSuffix(path, fileName);
+		final String dir = StringUtil.removeSuffix(path, fileName);
 		download(dir, fileName, outFile);
 	}
 
@@ -533,7 +533,7 @@ public class Ftp extends AbstractFtp {
 		File destFile;
 		for (FTPFile ftpFile : lsFiles(sourcePath, null)) {
 			fileName = ftpFile.getName();
-			srcFile = StrUtil.format("{}/{}", sourcePath, fileName);
+			srcFile = StringUtil.format("{}/{}", sourcePath, fileName);
 			destFile = FileUtil.file(destDir, fileName);
 
 			if (false == ftpFile.isDirectory()) {

@@ -6,7 +6,7 @@ import com.tools.core.date.chinese.GanZhi;
 import com.tools.core.date.chinese.LunarFestival;
 import com.tools.core.date.chinese.LunarInfo;
 import com.tools.core.date.chinese.SolarTerms;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.util.Date;
 
@@ -231,7 +231,7 @@ public class ChineseDate {
 	 * @return 获得农历节日
 	 */
 	public String getFestivals() {
-		return StrUtil.join(",", LunarFestival.getFestivals(this.year, this.month, day));
+		return StringUtil.join(",", LunarFestival.getFestivals(this.year, this.month, day));
 	}
 
 	/**

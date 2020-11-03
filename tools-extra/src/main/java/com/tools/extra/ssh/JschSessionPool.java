@@ -1,7 +1,7 @@
 package com.tools.extra.ssh;
 
 import com.tools.core.lang.SimpleCache;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.jcraft.jsch.Session;
 
 import java.util.HashMap;
@@ -41,7 +41,7 @@ public enum JschSessionPool {
 	 * @return SSH会话
 	 */
 	public Session getSession(String sshHost, int sshPort, String sshUser, String sshPass) {
-		final String key = StrUtil.format("{}@{}:{}", sshUser, sshHost, sshPort);
+		final String key = StringUtil.format("{}@{}:{}", sshUser, sshHost, sshPort);
 		return this.cache.get(key, ()-> JschUtil.openSession(sshHost, sshPort, sshUser, sshPass));
 	}
 
@@ -56,7 +56,7 @@ public enum JschSessionPool {
 	 * @return SSH会话
 	 */
 	public Session getSession(String sshHost, int sshPort, String sshUser, String prvkey, byte[] passphrase) {
-		final String key = StrUtil.format("{}@{}:{}", sshUser, sshHost, sshPort);
+		final String key = StringUtil.format("{}@{}:{}", sshUser, sshHost, sshPort);
 		return this.cache.get(key, ()->JschUtil.openSession(sshHost, sshPort, sshUser, prvkey, passphrase));
 	}
 

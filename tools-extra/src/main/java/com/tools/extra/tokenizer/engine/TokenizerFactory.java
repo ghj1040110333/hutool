@@ -2,7 +2,7 @@ package com.tools.extra.tokenizer.engine;
 
 import com.tools.core.lang.Singleton;
 import com.tools.core.util.ServiceLoaderUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.extra.tokenizer.TokenizerEngine;
 import com.tools.extra.tokenizer.TokenizerException;
 import com.tools.log.StaticLog;
@@ -33,7 +33,7 @@ public class TokenizerFactory {
 	 */
 	public static TokenizerEngine create() {
 		final TokenizerEngine engine = doCreate();
-		StaticLog.debug("Use [{}] Tokenizer Engine As Default.", StrUtil.removeSuffix(engine.getClass().getSimpleName(), "Engine"));
+		StaticLog.debug("Use [{}] Tokenizer Engine As Default.", StringUtil.removeSuffix(engine.getClass().getSimpleName(), "Engine"));
 		return engine;
 	}
 

@@ -4,7 +4,7 @@ import com.tools.core.collection.CollUtil;
 import com.tools.core.io.IoUtil;
 import com.tools.core.map.MapUtil;
 import com.tools.core.util.ObjectUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.core.util.XmlUtil;
 import com.tools.http.HttpBase;
 import com.tools.http.HttpGlobalConfig;
@@ -302,7 +302,7 @@ public class SoapClient extends HttpBase<SoapClient> {
 	public SOAPHeaderElement addSOAPHeader(QName name, String actorURI, String roleUri, Boolean mustUnderstand, Boolean relay) {
 		final SOAPHeaderElement ele = addSOAPHeader(name);
 		try {
-			if (StrUtil.isNotBlank(roleUri)) {
+			if (StringUtil.isNotBlank(roleUri)) {
 				ele.setRole(roleUri);
 			}
 			if (null != relay) {
@@ -312,7 +312,7 @@ public class SoapClient extends HttpBase<SoapClient> {
 			throw new SoapRuntimeException(e);
 		}
 
-		if (StrUtil.isNotBlank(actorURI)) {
+		if (StringUtil.isNotBlank(actorURI)) {
 			ele.setActor(actorURI);
 		}
 		if (null != mustUnderstand) {
@@ -392,7 +392,7 @@ public class SoapClient extends HttpBase<SoapClient> {
 	 * @return this
 	 */
 	public SoapClient setMethod(String methodName, String namespaceURI) {
-		final List<String> methodNameList = StrUtil.split(methodName, ':');
+		final List<String> methodNameList = StringUtil.split(methodName, ':');
 		final QName qName;
 		if (2 == methodNameList.size()) {
 			qName = new QName(namespaceURI, methodNameList.get(1), methodNameList.get(0));
@@ -568,7 +568,7 @@ public class SoapClient extends HttpBase<SoapClient> {
 		final HttpResponse res = sendForResponse();
 		final MimeHeaders headers = new MimeHeaders();
 		for (Entry<String, List<String>> entry : res.headers().entrySet()) {
-			if (StrUtil.isNotEmpty(entry.getKey())) {
+			if (StringUtil.isNotEmpty(entry.getKey())) {
 				headers.setHeader(entry.getKey(), CollUtil.get(entry.getValue(), 0));
 			}
 		}
@@ -641,7 +641,7 @@ public class SoapClient extends HttpBase<SoapClient> {
 	private static SOAPElement setParam(SOAPElement ele, String name, Object value, String prefix) {
 		final SOAPElement childEle;
 		try {
-			if (StrUtil.isNotBlank(prefix)) {
+			if (StringUtil.isNotBlank(prefix)) {
 				childEle = ele.addChildElement(name, prefix);
 			} else {
 				childEle = ele.addChildElement(name);

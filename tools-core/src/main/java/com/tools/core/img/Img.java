@@ -7,7 +7,7 @@ import com.tools.core.io.resource.Resource;
 import com.tools.core.lang.Assert;
 import com.tools.core.util.NumberUtil;
 import com.tools.core.util.ObjectUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageInputStream;
@@ -644,7 +644,7 @@ public class Img implements Serializable {
 	 */
 	public boolean write(File targetFile) throws IORuntimeException {
 		final String formatName = FileUtil.extName(targetFile);
-		if (StrUtil.isNotBlank(formatName)) {
+		if (StringUtil.isNotBlank(formatName)) {
 			this.targetImageType = formatName;
 		}
 

@@ -1,11 +1,11 @@
 package com.tools.core.exceptions;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * 依赖异常
  *
- * @author xiaoleilu
+ * @author fruit
  * @since 4.0.10
  */
 public class DependencyException extends RuntimeException {
@@ -20,7 +20,7 @@ public class DependencyException extends RuntimeException {
 	}
 
 	public DependencyException(String messageTemplate, Object... params) {
-		super(StrUtil.format(messageTemplate, params));
+		super(StringUtil.format(messageTemplate, params));
 	}
 
 	public DependencyException(String message, Throwable throwable) {
@@ -28,6 +28,6 @@ public class DependencyException extends RuntimeException {
 	}
 
 	public DependencyException(Throwable throwable, String messageTemplate, Object... params) {
-		super(StrUtil.format(messageTemplate, params), throwable);
+		super(StringUtil.format(messageTemplate, params), throwable);
 	}
 }

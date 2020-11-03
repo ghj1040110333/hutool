@@ -1,7 +1,7 @@
 package com.tools.crypto.symmetric;
 
 import com.tools.core.util.ArrayUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.crypto.Mode;
 import com.tools.crypto.Padding;
 import com.tools.crypto.SecureUtil;
@@ -160,7 +160,7 @@ public class SM4 extends SymmetricCrypto{
 	 * @param iv      加盐
 	 */
 	public SM4(String mode, String padding, SecretKey key, IvParameterSpec iv) {
-		super(StrUtil.format("SM4/{}/{}", mode, padding), key, iv);
+		super(StringUtil.format("SM4/{}/{}", mode, padding), key, iv);
 	}
 	//------------------------------------------------------------------------- Constrctor end
 }

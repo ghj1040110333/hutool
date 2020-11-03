@@ -4,7 +4,7 @@ import com.tools.core.convert.Convert;
 import com.tools.core.io.IoUtil;
 import com.tools.core.lang.TypeReference;
 import com.tools.core.util.CharsetUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.extra.template.AbstractTemplate;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
@@ -75,6 +75,6 @@ public class VelocityTemplate extends AbstractTemplate implements Serializable {
 	 */
 	private void loadEncoding() {
 		final String charset = (String) Velocity.getProperty(Velocity.INPUT_ENCODING);
-		this.charset = StrUtil.isEmpty(charset) ? CharsetUtil.UTF_8 : charset;
+		this.charset = StringUtil.isEmpty(charset) ? CharsetUtil.UTF_8 : charset;
 	}
 }

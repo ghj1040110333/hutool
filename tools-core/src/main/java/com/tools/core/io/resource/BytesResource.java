@@ -1,7 +1,7 @@
 package com.tools.core.io.resource;
 
 import com.tools.core.io.IORuntimeException;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -66,7 +66,7 @@ public class BytesResource implements Resource, Serializable {
 
 	@Override
 	public String readStr(Charset charset) throws IORuntimeException {
-		return StrUtil.str(this.bytes, charset);
+		return StringUtil.str(this.bytes, charset);
 	}
 
 	@Override

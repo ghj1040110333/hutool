@@ -3,7 +3,7 @@ package com.tools.http;
 import com.tools.core.map.MapUtil;
 import com.tools.core.util.ObjectUtil;
 import com.tools.core.util.ReflectUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.core.util.URLUtil;
 import com.tools.http.ssl.DefaultSSLInfo;
 
@@ -215,7 +215,7 @@ public class HttpConnection {
 			for (Entry<String, List<String>> entry : headerMap.entrySet()) {
 				name = entry.getKey();
 				for (String value : entry.getValue()) {
-					this.header(name, StrUtil.nullToEmpty(value), isOverride);
+					this.header(name, StringUtil.nullToEmpty(value), isOverride);
 				}
 			}
 		}
@@ -496,7 +496,7 @@ public class HttpConnection {
 	public Charset getCharset() {
 		Charset charset = null;
 		final String charsetName = getCharsetName();
-		if (StrUtil.isNotBlank(charsetName)) {
+		if (StringUtil.isNotBlank(charsetName)) {
 			try {
 				charset = Charset.forName(charsetName);
 			} catch (UnsupportedCharsetException e) {
@@ -508,9 +508,9 @@ public class HttpConnection {
 
 	@Override
 	public String toString() {
-		StringBuilder sb = StrUtil.builder();
-		sb.append("Request URL: ").append(this.url).append(StrUtil.CRLF);
-		sb.append("Request Method: ").append(this.getMethod()).append(StrUtil.CRLF);
+		StringBuilder sb = StringUtil.builder();
+		sb.append("Request URL: ").append(this.url).append(StringUtil.CRLF);
+		sb.append("Request Method: ").append(this.getMethod()).append(StringUtil.CRLF);
 		// sb.append("Request Headers: ").append(StrUtil.CRLF);
 		// for (Entry<String, List<String>> entry : this.conn.getHeaderFields().entrySet()) {
 		// sb.append(" ").append(entry).append(StrUtil.CRLF);

@@ -5,7 +5,7 @@ import com.tools.core.collection.CollUtil;
 import com.tools.core.convert.Convert;
 import com.tools.core.lang.Assert;
 import com.tools.core.util.ArrayUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.db.sql.NamedSql;
 import com.tools.db.sql.SqlBuilder;
 import com.tools.db.sql.SqlLog;
@@ -135,7 +135,7 @@ public class StatementUtil {
 
 		SqlLog.INSTANCE.log(sql, ArrayUtil.isEmpty(params) ? null : params);
 		PreparedStatement ps;
-		if (GlobalDbConfig.returnGeneratedKey && StrUtil.startWithIgnoreCase(sql, "insert")) {
+		if (GlobalDbConfig.returnGeneratedKey && StringUtil.startWithIgnoreCase(sql, "insert")) {
 			// 插入默认返回主键
 			ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 		} else {

@@ -1,7 +1,7 @@
 package com.tools.db;
 
 import com.tools.core.collection.CollectionUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.db.ds.DSFactory;
 
 import javax.sql.DataSource;
@@ -66,7 +66,7 @@ public class DaoTemplate {
 	 */
 	public DaoTemplate(String tableName, String primaryKeyField, Db db) {
 		this.tableName = tableName;
-		if(StrUtil.isNotBlank(primaryKeyField)){
+		if(StringUtil.isNotBlank(primaryKeyField)){
 			this.primaryKeyField = primaryKeyField;
 		}
 		this.db = db;
@@ -131,7 +131,7 @@ public class DaoTemplate {
 	 * @throws SQLException SQL执行异常
 	 */
 	public <T> int del(String field, T value) throws SQLException {
-		if (StrUtil.isBlank(field)) {
+		if (StringUtil.isBlank(field)) {
 			return 0;
 		}
 
@@ -182,7 +182,7 @@ public class DaoTemplate {
 		entity = fixEntity(entity);
 		Object pk = entity.get(primaryKeyField);
 		if (null == pk) {
-			throw new SQLException(StrUtil.format("Please determine `{}` for update", primaryKeyField));
+			throw new SQLException(StringUtil.format("Please determine `{}` for update", primaryKeyField));
 		}
 
 		final Entity where = Entity.create(tableName).set(primaryKeyField, pk);
@@ -287,7 +287,7 @@ public class DaoTemplate {
 	 * @throws SQLException SQL执行异常
 	 */
 	public List<Entity> findBySql(String sql, Object... params) throws SQLException {
-		String selectKeyword = StrUtil.subPre(sql.trim(), 6).toLowerCase();
+		String selectKeyword = StringUtil.subPre(sql.trim(), 6).toLowerCase();
 		if(false == "select".equals(selectKeyword)){
 			sql = "SELECT * FROM " + this.tableName + " " + sql;
 		}
@@ -350,7 +350,7 @@ public class DaoTemplate {
 	private Entity fixEntity(Entity entity){
 		if(null == entity){
 			entity = Entity.create(tableName);
-		}else if(StrUtil.isBlank(entity.getTableName())){
+		}else if(StringUtil.isBlank(entity.getTableName())){
 			entity.setTableName(tableName);
 		}
 		return entity;

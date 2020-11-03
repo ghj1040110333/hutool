@@ -1,7 +1,7 @@
 package com.tools.extra.cglib;
 
 import com.tools.core.lang.SimpleCache;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import net.sf.cglib.beans.BeanCopier;
 import net.sf.cglib.core.Converter;
 
@@ -42,7 +42,7 @@ public enum BeanCopierCache {
 	 * @return 属性名和Map映射的key
 	 */
 	private String genKey(Class<?> srcClass, Class<?> targetClass, Converter converter) {
-		String key = StrUtil.format("{}#{}", srcClass.getName(), targetClass.getName());
+		String key = StringUtil.format("{}#{}", srcClass.getName(), targetClass.getName());
 		if(null != converter){
 			key += "#" + converter.getClass().getName();
 		}

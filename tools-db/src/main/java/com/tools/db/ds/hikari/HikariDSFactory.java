@@ -1,6 +1,6 @@
 package com.tools.db.ds.hikari;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.db.ds.AbstractDSFactory;
 import com.tools.setting.Setting;
 import com.tools.setting.dialect.Props;
@@ -35,7 +35,7 @@ public class HikariDSFactory extends AbstractDSFactory {
 		String connValue;
 		for (String key : KEY_CONN_PROPS) {
 			connValue = poolSetting.getAndRemoveStr(key);
-			if(StrUtil.isNotBlank(connValue)){
+			if(StringUtil.isNotBlank(connValue)){
 				connProps.setProperty(key, connValue);
 			}
 		}

@@ -2,7 +2,7 @@ package com.tools.core.text;
 
 import com.tools.core.convert.Convert;
 import com.tools.core.util.ArrayUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -434,7 +434,7 @@ public class StrBuilder implements CharSequence, Appendable, Serializable {
 			}
 			return s;
 		}
-		return StrUtil.EMPTY;
+		return StringUtil.EMPTY;
 	}
 
 	/**
@@ -512,7 +512,7 @@ public class StrBuilder implements CharSequence, Appendable, Serializable {
 			System.arraycopy(this.value, index, this.value, index + length, this.position - index);
 		} else if (index > this.position) {
 			// 插入位置超出范围，则当前位置到index清除为空格
-			Arrays.fill(this.value, this.position, index, StrUtil.C_SPACE);
+			Arrays.fill(this.value, this.position, index, StringUtil.C_SPACE);
 		}
 		// 不位移
 	}

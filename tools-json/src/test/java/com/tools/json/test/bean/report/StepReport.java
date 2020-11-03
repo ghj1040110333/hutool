@@ -1,6 +1,6 @@
 package com.tools.json.test.bean.report;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * 测试步骤报告
@@ -83,7 +83,7 @@ public class StepReport {
 	}
 
 	public void setStepName() {
-		this.stepName = this.actionName + (StrUtil.isBlank(this.elementName) ? "" : " => " + this.elementName);
+		this.stepName = this.actionName + (StringUtil.isBlank(this.elementName) ? "" : " => " + this.elementName);
 	}
 
 	public String getElementName() {

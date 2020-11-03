@@ -1,6 +1,6 @@
 package com.tools.db.ds.c3p0;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.db.DbRuntimeException;
 import com.tools.db.ds.AbstractDSFactory;
 import com.tools.setting.Setting;
@@ -54,7 +54,7 @@ public class C3p0DSFactory extends AbstractDSFactory {
 		String connValue;
 		for (String key : KEY_CONN_PROPS) {
 			connValue = poolSetting.getAndRemoveStr(key);
-			if(StrUtil.isNotBlank(connValue)){
+			if(StringUtil.isNotBlank(connValue)){
 				connProps.setProperty(key, connValue);
 			}
 		}

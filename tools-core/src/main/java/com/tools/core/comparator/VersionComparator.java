@@ -2,8 +2,7 @@ package com.tools.core.comparator;
 
 import com.tools.core.util.CharUtil;
 import com.tools.core.util.ObjectUtil;
-import com.tools.core.util.StrUtil;
-import com.tools.core.util.CharUtil;
+import com.tools.core.util.StringUtil;
 
 import java.io.Serializable;
 import java.util.Comparator;
@@ -62,8 +61,8 @@ public class VersionComparator implements Comparator<String>, Serializable {
 			return 1;
 		}
 
-		final List<String> v1s = StrUtil.split(version1, CharUtil.DOT);
-		final List<String> v2s = StrUtil.split(version2, CharUtil.DOT);
+		final List<String> v1s = StringUtil.split(version1, CharUtil.DOT);
+		final List<String> v2s = StringUtil.split(version2, CharUtil.DOT);
 
 		int diff = 0;
 		int minLength = Math.min(v1s.size(), v2s.size());// 取最小长度值

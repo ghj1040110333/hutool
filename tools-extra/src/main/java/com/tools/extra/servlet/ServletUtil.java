@@ -18,7 +18,7 @@ import com.tools.core.util.ArrayUtil;
 import com.tools.core.util.CharsetUtil;
 import com.tools.core.util.ObjectUtil;
 import com.tools.core.util.ReflectUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.core.util.URLUtil;
 
 import javax.servlet.ServletOutputStream;
@@ -78,7 +78,7 @@ public class ServletUtil {
 	public static Map<String, String> getParamMap(ServletRequest request) {
 		Map<String, String> params = new HashMap<>();
 		for (Map.Entry<String, String[]> entry : getParams(request).entrySet()) {
-			params.put(entry.getKey(), ArrayUtil.join(entry.getValue(), StrUtil.COMMA));
+			params.put(entry.getKey(), ArrayUtil.join(entry.getValue(), StringUtil.COMMA));
 		}
 		return params;
 	}
@@ -128,13 +128,13 @@ public class ServletUtil {
 	 * @since 3.0.4
 	 */
 	public static <T> T fillBean(final ServletRequest request, T bean, CopyOptions copyOptions) {
-		final String beanName = StrUtil.lowerFirst(bean.getClass().getSimpleName());
+		final String beanName = StringUtil.lowerFirst(bean.getClass().getSimpleName());
 		return BeanUtil.fillBean(bean, new ValueProvider<String>() {
 			@Override
 			public Object value(String key, Type valueType) {
 				String[] values = request.getParameterValues(key);
 				if(ArrayUtil.isEmpty(values)){
-					values = request.getParameterValues(beanName + StrUtil.DOT + key);
+					values = request.getParameterValues(beanName + StringUtil.DOT + key);
 					if(ArrayUtil.isEmpty(values)){
 						return null;
 					}
@@ -152,7 +152,7 @@ public class ServletUtil {
 			@Override
 			public boolean containsKey(String key) {
 				// 对于Servlet来说，返回值null意味着无此参数
-				return (null != request.getParameter(key)) || (null != request.getParameter(beanName + StrUtil.DOT + key));
+				return (null != request.getParameter(key)) || (null != request.getParameter(beanName + StringUtil.DOT + key));
 			}
 		}, copyOptions);
 	}
@@ -354,7 +354,7 @@ public class ServletUtil {
 	 */
 	public static boolean isIE(HttpServletRequest request) {
 		String userAgent = getHeaderIgnoreCase(request, "User-Agent");
-		if (StrUtil.isNotBlank(userAgent)) {
+		if (StringUtil.isNotBlank(userAgent)) {
 			//noinspection ConstantConditions
 			userAgent = userAgent.toUpperCase();
 			return userAgent.contains("MSIE") || userAgent.contains("TRIDENT");
@@ -394,7 +394,7 @@ public class ServletUtil {
 		}
 
 		String contentType = request.getContentType();
-		if (StrUtil.isBlank(contentType)) {
+		if (StringUtil.isBlank(contentType)) {
 			return false;
 		}
 		return contentType.toLowerCase().startsWith("multipart/");
@@ -554,7 +554,7 @@ public class ServletUtil {
 	 */
 	public static void write(HttpServletResponse response, InputStream in, String contentType, String fileName) {
 		final String charset = ObjectUtil.defaultIfNull(response.getCharacterEncoding(), CharsetUtil.UTF_8);
-		response.setHeader("Content-Disposition", StrUtil.format("attachment;filename={}", URLUtil.encode(fileName, charset)));
+		response.setHeader("Content-Disposition", StringUtil.format("attachment;filename={}", URLUtil.encode(fileName, charset)));
 		response.setContentType(contentType);
 		write(response, in);
 	}

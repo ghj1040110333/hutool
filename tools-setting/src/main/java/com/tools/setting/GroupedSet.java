@@ -5,7 +5,7 @@ import com.tools.core.collection.ListUtil;
 import com.tools.core.io.IoUtil;
 import com.tools.core.util.ArrayUtil;
 import com.tools.core.util.CharsetUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.core.util.URLUtil;
 
 import java.io.BufferedReader;
@@ -73,12 +73,12 @@ public class GroupedSet extends HashMap<String, LinkedHashSet<String>> {
 	 */
 	public GroupedSet(String pathBaseClassLoader, Charset charset) {
 		if (null == pathBaseClassLoader) {
-			pathBaseClassLoader = StrUtil.EMPTY;
+			pathBaseClassLoader = StringUtil.EMPTY;
 		}
 
 		final URL url = URLUtil.getURL(pathBaseClassLoader);
 		if (url == null) {
-			throw new RuntimeException(StrUtil.format("Can not find GroupSet file: [{}]", pathBaseClassLoader));
+			throw new RuntimeException(StringUtil.format("Can not find GroupSet file: [{}]", pathBaseClassLoader));
 		}
 		this.init(url, charset);
 	}
@@ -107,7 +107,7 @@ public class GroupedSet extends HashMap<String, LinkedHashSet<String>> {
 	public GroupedSet(String path, Class<?> clazz, Charset charset) {
 		final URL url = URLUtil.getURL(path, clazz);
 		if (url == null) {
-			throw new RuntimeException(StrUtil.format("Can not find GroupSet file: [{}]", path));
+			throw new RuntimeException(StringUtil.format("Can not find GroupSet file: [{}]", path));
 		}
 		this.init(url, charset);
 	}
@@ -206,10 +206,10 @@ public class GroupedSet extends HashMap<String, LinkedHashSet<String>> {
 				}
 				line = line.trim();
 				// 跳过注释行和空行
-				if (StrUtil.isBlank(line) || line.startsWith(COMMENT_FLAG_PRE)) {
+				if (StringUtil.isBlank(line) || line.startsWith(COMMENT_FLAG_PRE)) {
 					// 空行和注释忽略
 					continue;
-				} else if (line.startsWith(StrUtil.BACKSLASH + COMMENT_FLAG_PRE)) {
+				} else if (line.startsWith(StringUtil.BACKSLASH + COMMENT_FLAG_PRE)) {
 					// 对于值中出现开头为#的字符串，需要转义处理，在此做反转义
 					line = line.substring(1);
 				}
@@ -230,7 +230,7 @@ public class GroupedSet extends HashMap<String, LinkedHashSet<String>> {
 				if (null == valueSet) {
 					// 当出现无分组值的时候，会导致valueSet为空，此时group为""
 					valueSet = new LinkedHashSet<>();
-					super.put(StrUtil.EMPTY, valueSet);
+					super.put(StringUtil.EMPTY, valueSet);
 				}
 				valueSet.add(line);
 			}
@@ -262,7 +262,7 @@ public class GroupedSet extends HashMap<String, LinkedHashSet<String>> {
 	 */
 	public LinkedHashSet<String> getValues(String group) {
 		if (group == null) {
-			group = StrUtil.EMPTY;
+			group = StringUtil.EMPTY;
 		}
 		return super.get(group);
 	}

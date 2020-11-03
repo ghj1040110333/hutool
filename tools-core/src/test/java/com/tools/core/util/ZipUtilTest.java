@@ -2,7 +2,6 @@ package com.tools.core.util;
 
 import com.tools.core.io.FileUtil;
 import com.tools.core.lang.Console;
-import com.tools.core.util.CharsetUtil;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -63,7 +62,7 @@ public class ZipUtilTest {
 	@Test
 	public void gzipTest() {
 		String data = "我是一个需要压缩的很长很长的字符串";
-		byte[] bytes = StrUtil.utf8Bytes(data);
+		byte[] bytes = StringUtil.utf8Bytes(data);
 		byte[] gzip = ZipUtil.gzip(bytes);
 
 		//保证gzip长度正常
@@ -71,27 +70,27 @@ public class ZipUtilTest {
 
 		byte[] unGzip = ZipUtil.unGzip(gzip);
 		//保证正常还原
-		Assert.assertEquals(data, StrUtil.utf8Str(unGzip));
+		Assert.assertEquals(data, StringUtil.utf8Str(unGzip));
 	}
 
 	@Test
 	public void zlibTest() {
 		String data = "我是一个需要压缩的很长很长的字符串";
-		byte[] bytes = StrUtil.utf8Bytes(data);
+		byte[] bytes = StringUtil.utf8Bytes(data);
 		byte[] gzip = ZipUtil.zlib(bytes, 0);
 
 		//保证zlib长度正常
 		Assert.assertEquals(62, gzip.length);
 		byte[] unGzip = ZipUtil.unZlib(gzip);
 		//保证正常还原
-		Assert.assertEquals(data, StrUtil.utf8Str(unGzip));
+		Assert.assertEquals(data, StringUtil.utf8Str(unGzip));
 
 		gzip = ZipUtil.zlib(bytes, 9);
 		//保证zlib长度正常
 		Assert.assertEquals(56, gzip.length);
 		byte[] unGzip2 = ZipUtil.unZlib(gzip);
 		//保证正常还原
-		Assert.assertEquals(data, StrUtil.utf8Str(unGzip2));
+		Assert.assertEquals(data, StringUtil.utf8Str(unGzip2));
 	}
 
 	@Test

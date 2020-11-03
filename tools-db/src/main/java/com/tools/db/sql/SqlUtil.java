@@ -2,7 +2,7 @@ package com.tools.db.sql;
 
 import com.tools.core.io.IoUtil;
 import com.tools.core.util.CharsetUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.db.DbRuntimeException;
 import com.tools.db.Entity;
 import com.tools.db.sql.Condition.LikeType;
@@ -37,7 +37,7 @@ public class SqlUtil {
 	 */
 	public static String buildEqualsWhere(Entity entity, List<Object> paramValues) {
 		if (null == entity || entity.isEmpty()) {
-			return StrUtil.EMPTY;
+			return StringUtil.EMPTY;
 		}
 
 		final StringBuilder sb = new StringBuilder(" WHERE ");
@@ -108,7 +108,7 @@ public class SqlUtil {
 			return null;
 		}
 
-		StringBuilder likeValue = StrUtil.builder(withLikeKeyword ? "LIKE " : "");
+		StringBuilder likeValue = StringUtil.builder(withLikeKeyword ? "LIKE " : "");
 		switch (likeType) {
 			case StartWith:
 				likeValue.append(value).append('%');
@@ -143,7 +143,7 @@ public class SqlUtil {
 	 * @return RowId字符串
 	 */
 	public static String rowIdToString(RowId rowId) {
-		return StrUtil.str(rowId.getBytes(), CharsetUtil.CHARSET_ISO_8859_1);
+		return StringUtil.str(rowId.getBytes(), CharsetUtil.CHARSET_ISO_8859_1);
 	}
 
 	/**

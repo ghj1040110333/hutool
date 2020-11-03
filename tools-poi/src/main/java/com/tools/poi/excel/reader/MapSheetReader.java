@@ -2,7 +2,7 @@ package com.tools.poi.excel.reader;
 
 import com.tools.core.collection.CollUtil;
 import com.tools.core.collection.IterUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import org.apache.poi.ss.usermodel.Sheet;
 
 import java.util.ArrayList;
@@ -37,9 +37,9 @@ public class MapSheetReader extends AbstractSheetReader<List<Map<String, Object>
 		final int firstRowNum = sheet.getFirstRowNum();
 		final int lastRowNum = sheet.getLastRowNum();
 		if (headerRowIndex < firstRowNum) {
-			throw new IndexOutOfBoundsException(StrUtil.format("Header row index {} is lower than first row index {}.", headerRowIndex, firstRowNum));
+			throw new IndexOutOfBoundsException(StringUtil.format("Header row index {} is lower than first row index {}.", headerRowIndex, firstRowNum));
 		} else if (headerRowIndex > lastRowNum) {
-			throw new IndexOutOfBoundsException(StrUtil.format("Header row index {} is greater than last row index {}.", headerRowIndex, firstRowNum));
+			throw new IndexOutOfBoundsException(StringUtil.format("Header row index {} is greater than last row index {}.", headerRowIndex, firstRowNum));
 		}
 		final int startRowIndex = Math.max(this.startRowIndex, firstRowNum);// 读取起始行（包含）
 		final int endRowIndex = Math.min(this.endRowIndex, lastRowNum);// 读取结束行（包含）

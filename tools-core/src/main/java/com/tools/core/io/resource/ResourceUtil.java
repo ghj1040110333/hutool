@@ -6,7 +6,7 @@ import com.tools.core.io.FileUtil;
 import com.tools.core.io.IORuntimeException;
 import com.tools.core.util.CharsetUtil;
 import com.tools.core.util.ClassLoaderUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.core.util.URLUtil;
 
 import java.io.BufferedReader;
@@ -191,7 +191,7 @@ public class ResourceUtil {
 	 * @since 3.2.1
 	 */
 	public static Resource getResourceObj(String path) {
-		if(StrUtil.isNotBlank(path)) {
+		if(StringUtil.isNotBlank(path)) {
 			if(path.startsWith(URLUtil.FILE_URL_PREFIX) || FileUtil.isAbsolutePath(path)) {
 				return new FileResource(path);
 			}

@@ -3,7 +3,7 @@ package com.tools.db.sql;
 import com.tools.core.map.MapUtil;
 import com.tools.core.text.StrBuilder;
 import com.tools.core.util.ArrayUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -80,8 +80,8 @@ public class NamedSql {
 
 		final int len = namedSql.length();
 
-		final StrBuilder name = StrUtil.strBuilder();
-		final StrBuilder sqlBuilder = StrUtil.strBuilder();
+		final StrBuilder name = StringUtil.strBuilder();
+		final StrBuilder sqlBuilder = StringUtil.strBuilder();
 		char c;
 		Character nameStartChar = null;
 		for (int i = 0; i < len; i++) {

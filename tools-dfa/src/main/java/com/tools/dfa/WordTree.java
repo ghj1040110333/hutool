@@ -3,7 +3,7 @@ package com.tools.dfa;
 import com.tools.core.collection.CollectionUtil;
 import com.tools.core.lang.Filter;
 import com.tools.core.text.StrBuilder;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -195,7 +195,7 @@ public class WordTree extends HashMap<Character, WordTree> {
 		int length = text.length();
 		final Filter<Character> charFilter = this.charFilter;
 		//存放查找到的字符缓存。完整出现一个词时加到findedWords中，否则清空
-		final StrBuilder wordBuffer = StrUtil.strBuilder();
+		final StrBuilder wordBuffer = StringUtil.strBuilder();
 		char currentChar;
 		for (int i = 0; i < length; i++) {
 			wordBuffer.reset();

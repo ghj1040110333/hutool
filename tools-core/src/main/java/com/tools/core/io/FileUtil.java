@@ -17,7 +17,7 @@ import com.tools.core.util.ArrayUtil;
 import com.tools.core.util.CharUtil;
 import com.tools.core.util.CharsetUtil;
 import com.tools.core.util.ClassUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.core.util.URLUtil;
 import com.tools.core.util.ZipUtil;
 
@@ -104,7 +104,7 @@ public class FileUtil extends PathUtil {
 		if (file.isDirectory()) {
 			return file.listFiles();
 		}
-		throw new IORuntimeException(StrUtil.format("Path [{}] is not directory!", path));
+		throw new IORuntimeException(StringUtil.format("Path [{}] is not directory!", path));
 	}
 
 	/**
@@ -260,9 +260,9 @@ public class FileUtil extends PathUtil {
 		try {
 			jarFile = new JarFile(path.substring(0, index));
 			// 防止出现jar!/cn/tools/这类路径导致文件找不到
-			return ZipUtil.listFileNames(jarFile, StrUtil.removePrefix(path.substring(index + 1), "/"));
+			return ZipUtil.listFileNames(jarFile, StringUtil.removePrefix(path.substring(index + 1), "/"));
 		} catch (IOException e) {
-			throw new IORuntimeException(StrUtil.format("Can not read file path of [{}]", path), e);
+			throw new IORuntimeException(StringUtil.format("Can not read file path of [{}]", path), e);
 		} finally {
 			IoUtil.close(jarFile);
 		}
@@ -313,7 +313,7 @@ public class FileUtil extends PathUtil {
 	 * @return File
 	 */
 	public static File file(File parent, String path) {
-		if (StrUtil.isBlank(path)) {
+		if (StringUtil.isBlank(path)) {
 			throw new NullPointerException("File path is blank!");
 		}
 		return checkSlip(parent, new File(parent, path));
@@ -979,7 +979,7 @@ public class FileUtil extends PathUtil {
 
 		// 来源为文件夹，目标为文件
 		if (src.isDirectory() && dest.isFile()) {
-			throw new IORuntimeException(StrUtil.format("Can not move directory [{}] to file [{}]", src, dest));
+			throw new IORuntimeException(StringUtil.format("Can not move directory [{}] to file [{}]", src, dest));
 		}
 
 		if (isOverride && dest.isFile()) {// 只有目标为文件的情况下覆盖之
@@ -997,7 +997,7 @@ public class FileUtil extends PathUtil {
 			try {
 				copy(src, dest, isOverride);
 			} catch (Exception e) {
-				throw new IORuntimeException(StrUtil.format("Move [{}] to [{}] failed!", src, dest), e);
+				throw new IORuntimeException(StringUtil.format("Move [{}] to [{}] failed!", src, dest), e);
 			}
 			// 复制后删除源
 			del(src);
@@ -1047,7 +1047,7 @@ public class FileUtil extends PathUtil {
 	public static File rename(File file, String newName, boolean isRetainExt, boolean isOverride) {
 		if (isRetainExt) {
 			final String extName = FileUtil.extName(file);
-			if (StrUtil.isNotBlank(extName)) {
+			if (StringUtil.isNotBlank(extName)) {
 				newName = newName.concat(".").concat(extName);
 			}
 		}
@@ -1083,7 +1083,7 @@ public class FileUtil extends PathUtil {
 	public static String getAbsolutePath(String path, Class<?> baseClass) {
 		String normalPath;
 		if (path == null) {
-			normalPath = StrUtil.EMPTY;
+			normalPath = StringUtil.EMPTY;
 		} else {
 			normalPath = normalize(path);
 			if (isAbsolutePath(normalPath)) {
@@ -1149,12 +1149,12 @@ public class FileUtil extends PathUtil {
 	 * @return 是否已经是绝对路径
 	 */
 	public static boolean isAbsolutePath(String path) {
-		if (StrUtil.isEmpty(path)) {
+		if (StringUtil.isEmpty(path)) {
 			return false;
 		}
 
 		// 给定的路径已经是绝对路径了
-		return StrUtil.C_SLASH == path.charAt(0) || path.matches("^[a-zA-Z]:([/\\\\].*)?");
+		return StringUtil.C_SLASH == path.charAt(0) || path.matches("^[a-zA-Z]:([/\\\\].*)?");
 	}
 
 	/**
@@ -1328,22 +1328,22 @@ public class FileUtil extends PathUtil {
 		if (isWindows()) {
 			// Windows环境
 			try {
-				if (StrUtil.equalsIgnoreCase(file1.getCanonicalPath(), file2.getCanonicalPath())) {
+				if (StringUtil.equalsIgnoreCase(file1.getCanonicalPath(), file2.getCanonicalPath())) {
 					return true;
 				}
 			} catch (Exception e) {
-				if (StrUtil.equalsIgnoreCase(file1.getAbsolutePath(), file2.getAbsolutePath())) {
+				if (StringUtil.equalsIgnoreCase(file1.getAbsolutePath(), file2.getAbsolutePath())) {
 					return true;
 				}
 			}
 		} else {
 			// 类Unix环境
 			try {
-				if (StrUtil.equals(file1.getCanonicalPath(), file2.getCanonicalPath())) {
+				if (StringUtil.equals(file1.getCanonicalPath(), file2.getCanonicalPath())) {
 					return true;
 				}
 			} catch (Exception e) {
-				if (StrUtil.equals(file1.getAbsolutePath(), file2.getAbsolutePath())) {
+				if (StringUtil.equals(file1.getAbsolutePath(), file2.getAbsolutePath())) {
 					return true;
 				}
 			}
@@ -1358,7 +1358,7 @@ public class FileUtil extends PathUtil {
 	 * @return 最后一个文件路径分隔符的位置
 	 */
 	public static int lastIndexOfSeparator(String filePath) {
-		if (StrUtil.isNotEmpty(filePath)) {
+		if (StringUtil.isNotEmpty(filePath)) {
 			int i = filePath.length();
 			char c;
 			while (--i >= 0) {
@@ -1426,9 +1426,9 @@ public class FileUtil extends PathUtil {
 
 
 		// 兼容Spring风格的ClassPath路径，去除前缀，不区分大小写
-		String pathToUse = StrUtil.removePrefixIgnoreCase(path, URLUtil.CLASSPATH_URL_PREFIX);
+		String pathToUse = StringUtil.removePrefixIgnoreCase(path, URLUtil.CLASSPATH_URL_PREFIX);
 		// 去除file:前缀
-		pathToUse = StrUtil.removePrefixIgnoreCase(pathToUse, URLUtil.FILE_URL_PREFIX);
+		pathToUse = StringUtil.removePrefixIgnoreCase(pathToUse, URLUtil.FILE_URL_PREFIX);
 
 		// 识别home目录形式，并转换为绝对路径
 		if (pathToUse.startsWith("~")) {
@@ -1436,34 +1436,34 @@ public class FileUtil extends PathUtil {
 		}
 
 		// 统一使用斜杠
-		pathToUse = pathToUse.replaceAll("[/\\\\]+", StrUtil.SLASH).trim();
+		pathToUse = pathToUse.replaceAll("[/\\\\]+", StringUtil.SLASH).trim();
 		//兼容Windows下的共享目录路径（原始路径如果以\\开头，则保留这种路径）
 		if (path.startsWith("\\\\")) {
 			pathToUse = "\\" + pathToUse;
 		}
 
 		String prefix = "";
-		int prefixIndex = pathToUse.indexOf(StrUtil.COLON);
+		int prefixIndex = pathToUse.indexOf(StringUtil.COLON);
 		if (prefixIndex > -1) {
 			// 可能Windows风格路径
 			prefix = pathToUse.substring(0, prefixIndex + 1);
-			if (StrUtil.startWith(prefix, StrUtil.C_SLASH)) {
+			if (StringUtil.startWith(prefix, StringUtil.C_SLASH)) {
 				// 去除类似于/C:这类路径开头的斜杠
 				prefix = prefix.substring(1);
 			}
-			if (false == prefix.contains(StrUtil.SLASH)) {
+			if (false == prefix.contains(StringUtil.SLASH)) {
 				pathToUse = pathToUse.substring(prefixIndex + 1);
 			} else {
 				// 如果前缀中包含/,说明非Windows风格path
-				prefix = StrUtil.EMPTY;
+				prefix = StringUtil.EMPTY;
 			}
 		}
-		if (pathToUse.startsWith(StrUtil.SLASH)) {
-			prefix += StrUtil.SLASH;
+		if (pathToUse.startsWith(StringUtil.SLASH)) {
+			prefix += StringUtil.SLASH;
 			pathToUse = pathToUse.substring(1);
 		}
 
-		List<String> pathList = StrUtil.split(pathToUse, StrUtil.C_SLASH);
+		List<String> pathList = StringUtil.split(pathToUse, StringUtil.C_SLASH);
 		List<String> pathElements = new LinkedList<>();
 		int tops = 0;
 
@@ -1471,8 +1471,8 @@ public class FileUtil extends PathUtil {
 		for (int i = pathList.size() - 1; i >= 0; i--) {
 			element = pathList.get(i);
 			// 只处理非.的目录，即只处理非当前目录
-			if (false == StrUtil.DOT.equals(element)) {
-				if (StrUtil.DOUBLE_DOT.equals(element)) {
+			if (false == StringUtil.DOT.equals(element)) {
+				if (StringUtil.DOUBLE_DOT.equals(element)) {
 					tops++;
 				} else {
 					if (tops > 0) {
@@ -1486,7 +1486,7 @@ public class FileUtil extends PathUtil {
 			}
 		}
 
-		return prefix + CollUtil.join(pathElements, StrUtil.SLASH);
+		return prefix + CollUtil.join(pathElements, StringUtil.SLASH);
 	}
 
 	/**
@@ -1527,13 +1527,13 @@ public class FileUtil extends PathUtil {
 	 * @return 相对子路径
 	 */
 	public static String subPath(String dirPath, String filePath) {
-		if (StrUtil.isNotEmpty(dirPath) && StrUtil.isNotEmpty(filePath)) {
+		if (StringUtil.isNotEmpty(dirPath) && StringUtil.isNotEmpty(filePath)) {
 
-			dirPath = StrUtil.removeSuffix(normalize(dirPath), "/");
+			dirPath = StringUtil.removeSuffix(normalize(dirPath), "/");
 			filePath = normalize(filePath);
 
-			final String result = StrUtil.removePrefixIgnoreCase(filePath, dirPath);
-			return StrUtil.removePrefix(result, "/");
+			final String result = StringUtil.removePrefixIgnoreCase(filePath, dirPath);
+			return StringUtil.removePrefix(result, "/");
 		}
 		return filePath;
 	}
@@ -3091,7 +3091,7 @@ public class FileUtil extends PathUtil {
 	 */
 	public static File getWebRoot() {
 		final String classPath = ClassUtil.getClassPath();
-		if (StrUtil.isNotBlank(classPath)) {
+		if (StringUtil.isNotBlank(classPath)) {
 			return getParent(file(classPath), 2);
 		}
 		return null;

@@ -3,7 +3,7 @@ package com.tools.core.map;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * 驼峰Key风格的Map<br>
@@ -75,7 +75,7 @@ public class CamelCaseMap<K, V> extends CustomKeyMap<K, V> {
 	@Override
 	protected Object customKey(Object key) {
 		if (key instanceof CharSequence) {
-			key = StrUtil.toCamelCase(key.toString());
+			key = StringUtil.toCamelCase(key.toString());
 		}
 		return key;
 	}

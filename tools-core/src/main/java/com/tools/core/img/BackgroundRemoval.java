@@ -2,7 +2,7 @@ package com.tools.core.img;
 
 import com.tools.core.io.FileTypeUtil;
 import com.tools.core.util.ArrayUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -314,7 +314,7 @@ public class BackgroundRemoval {
 		for (Map.Entry<String, Integer> entry : map.entrySet()) {
 			String key = entry.getKey();
 			Integer temp = entry.getValue();
-			if (StrUtil.isBlank(max) || temp > num) {
+			if (StringUtil.isBlank(max) || temp > num) {
 				max = key;
 				num = temp;
 			}
@@ -347,7 +347,7 @@ public class BackgroundRemoval {
 		String type = FileTypeUtil.getType(input);
 		// 类型对比
 		if (!ArrayUtil.contains(imagesType, type)) {
-			throw new IllegalArgumentException(StrUtil.format("文件类型{}不支持", type));
+			throw new IllegalArgumentException(StringUtil.format("文件类型{}不支持", type));
 		}
 		return false;
 	}

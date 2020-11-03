@@ -1,11 +1,11 @@
 package com.tools.db;
 
 import com.tools.core.exceptions.ExceptionUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * 数据库异常
- * @author xiaoleilu
+ * @author fruit
  */
 public class DbRuntimeException extends RuntimeException{
 	private static final long serialVersionUID = 3624487785708765623L;
@@ -19,7 +19,7 @@ public class DbRuntimeException extends RuntimeException{
 	}
 
 	public DbRuntimeException(String messageTemplate, Object... params) {
-		super(StrUtil.format(messageTemplate, params));
+		super(StringUtil.format(messageTemplate, params));
 	}
 
 	public DbRuntimeException(String message, Throwable throwable) {
@@ -27,6 +27,6 @@ public class DbRuntimeException extends RuntimeException{
 	}
 
 	public DbRuntimeException(Throwable throwable, String messageTemplate, Object... params) {
-		super(StrUtil.format(messageTemplate, params), throwable);
+		super(StringUtil.format(messageTemplate, params), throwable);
 	}
 }

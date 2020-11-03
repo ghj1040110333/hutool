@@ -4,7 +4,7 @@ import com.tools.core.exceptions.UtilException;
 import com.tools.core.util.ClassLoaderUtil;
 import com.tools.core.util.ClassUtil;
 import com.tools.core.util.ReflectUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.cron.CronException;
 
 import java.lang.reflect.Method;
@@ -37,7 +37,7 @@ public class InvokeTask implements Task{
 
 		//类
 		final String className = classNameWithMethodName.substring(0, splitIndex);
-		if(StrUtil.isBlank(className)) {
+		if(StringUtil.isBlank(className)) {
 			throw new IllegalArgumentException("Class name is blank !");
 		}
 		final Class<?> clazz = ClassLoaderUtil.loadClass(className);
@@ -48,7 +48,7 @@ public class InvokeTask implements Task{
 
 		//方法
 		final String methodName = classNameWithMethodName.substring(splitIndex + 1);
-		if(StrUtil.isBlank(methodName)) {
+		if(StringUtil.isBlank(methodName)) {
 			throw new IllegalArgumentException("Method name is blank !");
 		}
 		this.method = ClassUtil.getPublicMethod(clazz, methodName);

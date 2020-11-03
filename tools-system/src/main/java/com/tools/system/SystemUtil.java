@@ -17,7 +17,7 @@ import java.util.Properties;
 import com.tools.core.convert.Convert;
 import com.tools.core.lang.Console;
 import com.tools.core.lang.Singleton;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * Java的System类封装工具类。<br>
@@ -161,7 +161,7 @@ public class SystemUtil {
 	 * @see System#getenv(String)
 	 */
 	public static String get(String name, String defaultValue) {
-		return StrUtil.nullToDefault(get(name, false), defaultValue);
+		return StringUtil.nullToDefault(get(name, false), defaultValue);
 	}
 
 	/**
@@ -529,6 +529,6 @@ public class SystemUtil {
 	 * @param value   值
 	 */
 	protected static void append(StringBuilder builder, String caption, Object value) {
-		builder.append(caption).append(StrUtil.nullToDefault(Convert.toStr(value), "[n/a]")).append("\n");
+		builder.append(caption).append(StringUtil.nullToDefault(Convert.toStr(value), "[n/a]")).append("\n");
 	}
 }

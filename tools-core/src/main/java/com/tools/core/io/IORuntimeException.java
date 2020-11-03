@@ -1,12 +1,12 @@
 package com.tools.core.io;
 
 import com.tools.core.exceptions.ExceptionUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * IO运行时异常，常用于对IOException的包装
  *
- * @author xiaoleilu
+ * @author fruit
  */
 public class IORuntimeException extends RuntimeException {
 	private static final long serialVersionUID = 8247610319171014183L;
@@ -20,7 +20,7 @@ public class IORuntimeException extends RuntimeException {
 	}
 
 	public IORuntimeException(String messageTemplate, Object... params) {
-		super(StrUtil.format(messageTemplate, params));
+		super(StringUtil.format(messageTemplate, params));
 	}
 
 	public IORuntimeException(String message, Throwable throwable) {
@@ -28,7 +28,7 @@ public class IORuntimeException extends RuntimeException {
 	}
 
 	public IORuntimeException(Throwable throwable, String messageTemplate, Object... params) {
-		super(StrUtil.format(messageTemplate, params), throwable);
+		super(StringUtil.format(messageTemplate, params), throwable);
 	}
 
 	/**

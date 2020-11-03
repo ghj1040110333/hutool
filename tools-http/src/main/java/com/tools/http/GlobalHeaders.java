@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import com.tools.core.collection.CollectionUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * 全局头部信息<br>
@@ -77,7 +77,7 @@ public enum GlobalHeaders {
 	 * @since 3.1.1
 	 */
 	public List<String> headerList(String name) {
-		if (StrUtil.isBlank(name)) {
+		if (StringUtil.isBlank(name)) {
 			return null;
 		}
 
@@ -173,7 +173,7 @@ public enum GlobalHeaders {
 		for (Entry<String, List<String>> entry : headers.entrySet()) {
 			name = entry.getKey();
 			for (String value : entry.getValue()) {
-				this.header(name, StrUtil.nullToEmpty(value), false);
+				this.header(name, StringUtil.nullToEmpty(value), false);
 			}
 		}
 		return this;

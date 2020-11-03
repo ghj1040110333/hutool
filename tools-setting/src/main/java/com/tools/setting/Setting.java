@@ -15,7 +15,7 @@ import com.tools.core.io.watch.WatchUtil;
 import com.tools.core.lang.Assert;
 import com.tools.core.util.CharUtil;
 import com.tools.core.util.CharsetUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.log.StaticLog;
 import com.tools.setting.dialect.Props;
 
@@ -415,7 +415,7 @@ public class Setting extends AbsSetting implements Map<String, String> {
 		for (Entry<String, LinkedHashMap<String, String>> groupEntry : this.groupedMap.entrySet()) {
 			group = groupEntry.getKey();
 			for (Entry<String, String> entry : groupEntry.getValue().entrySet()) {
-				properties.setProperty(StrUtil.isEmpty(group) ? entry.getKey() : group + CharUtil.DOT + entry.getKey(), entry.getValue());
+				properties.setProperty(StringUtil.isEmpty(group) ? entry.getKey() : group + CharUtil.DOT + entry.getKey(), entry.getValue());
 			}
 		}
 		return properties;

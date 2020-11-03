@@ -5,7 +5,7 @@ import com.tools.core.convert.Convert;
 import com.tools.core.text.StrSpliter;
 import com.tools.core.util.ArrayUtil;
 import com.tools.core.util.CharUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -321,12 +321,12 @@ public class Condition extends CloneSupport<Condition> {
 	 * @return 条件字符串
 	 */
 	public String toString(List<Object> paramValues) {
-		final StringBuilder conditionStrBuilder = StrUtil.builder();
+		final StringBuilder conditionStrBuilder = StringUtil.builder();
 		// 判空值
 		checkValueNull();
 
 		// 固定前置，例如："name ="、"name IN"、"name BETWEEN"、"name LIKE"
-		conditionStrBuilder.append(this.field).append(StrUtil.SPACE).append(this.operator);
+		conditionStrBuilder.append(this.field).append(StringUtil.SPACE).append(this.operator);
 
 		if (isOperatorBetween()) {
 			buildValuePartForBETWEEN(conditionStrBuilder, paramValues);
@@ -372,7 +372,7 @@ public class Condition extends CloneSupport<Condition> {
 		}
 
 		// 处理 AND y
-		conditionStrBuilder.append(StrUtil.SPACE).append(LogicalOperator.AND.toString());
+		conditionStrBuilder.append(StringUtil.SPACE).append(LogicalOperator.AND.toString());
 		if (isPlaceHolder()) {
 			// 使用条件表达式占位符
 			conditionStrBuilder.append(" ?");
@@ -399,16 +399,16 @@ public class Condition extends CloneSupport<Condition> {
 			List<?> valuesForIn;
 			// 占位符对应值列表
 			if (value instanceof CharSequence) {
-				valuesForIn = StrUtil.split((CharSequence) value, ',');
+				valuesForIn = StringUtil.split((CharSequence) value, ',');
 			} else {
 				valuesForIn = Arrays.asList(Convert.convert(String[].class, value));
 			}
-			conditionStrBuilder.append(StrUtil.repeatAndJoin("?", valuesForIn.size(), ","));
+			conditionStrBuilder.append(StringUtil.repeatAndJoin("?", valuesForIn.size(), ","));
 			if (null != paramValues) {
 				paramValues.addAll(valuesForIn);
 			}
 		} else {
-			conditionStrBuilder.append(StrUtil.join(",", value));
+			conditionStrBuilder.append(StringUtil.join(",", value));
 		}
 		conditionStrBuilder.append(')');
 	}
@@ -439,7 +439,7 @@ public class Condition extends CloneSupport<Condition> {
 		}
 
 		String valueStr = ((String) value);
-		if (StrUtil.isBlank(valueStr)) {
+		if (StringUtil.isBlank(valueStr)) {
 			// 空字段不做处理
 			return;
 		}
@@ -447,14 +447,14 @@ public class Condition extends CloneSupport<Condition> {
 		valueStr = valueStr.trim();
 
 		// 处理null
-		if (StrUtil.endWithIgnoreCase(valueStr, "null")) {
-			if (StrUtil.equalsIgnoreCase("= null", valueStr) || StrUtil.equalsIgnoreCase("is null", valueStr)) {
+		if (StringUtil.endWithIgnoreCase(valueStr, "null")) {
+			if (StringUtil.equalsIgnoreCase("= null", valueStr) || StringUtil.equalsIgnoreCase("is null", valueStr)) {
 				// 处理"= null"和"is null"转换为"IS NULL"
 				this.operator = OPERATOR_IS;
 				this.value = VALUE_NULL;
 				this.isPlaceHolder = false;
 				return;
-			} else if (StrUtil.equalsIgnoreCase("!= null", valueStr) || StrUtil.equalsIgnoreCase("is not null", valueStr)) {
+			} else if (StringUtil.equalsIgnoreCase("!= null", valueStr) || StringUtil.equalsIgnoreCase("is not null", valueStr)) {
 				// 处理"!= null"和"is not null"转换为"IS NOT NULL"
 				this.operator = OPERATOR_IS_NOT;
 				this.value = VALUE_NULL;
@@ -463,7 +463,7 @@ public class Condition extends CloneSupport<Condition> {
 			}
 		}
 
-		List<String> strs = StrUtil.split(valueStr, StrUtil.C_SPACE, 2);
+		List<String> strs = StringUtil.split(valueStr, StringUtil.C_SPACE, 2);
 		if (strs.size() < 2) {
 			return;
 		}

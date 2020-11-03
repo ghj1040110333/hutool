@@ -8,7 +8,7 @@ import com.tools.core.bean.copier.provider.DynaBeanValueProvider;
 import com.tools.core.bean.copier.provider.MapValueProvider;
 import com.tools.core.collection.CollUtil;
 import com.tools.core.lang.copier.Copier;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.core.util.TypeUtil;
 
 import java.io.Serializable;
@@ -211,7 +211,7 @@ public class BeanCopier<T> implements Copier<T>, Serializable {
 		if (null != copyOptions.editable) {
 			// 检查限制类是否为target的父类或接口
 			if (false == copyOptions.editable.isInstance(bean)) {
-				throw new IllegalArgumentException(StrUtil.format("Target class [{}] not assignable to Editable class [{}]", bean.getClass().getName(), copyOptions.editable.getName()));
+				throw new IllegalArgumentException(StringUtil.format("Target class [{}] not assignable to Editable class [{}]", bean.getClass().getName(), copyOptions.editable.getName()));
 			}
 			actualEditable = copyOptions.editable;
 		}

@@ -5,7 +5,7 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 import com.tools.core.util.ArrayUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * {@link ParameterizedType} 接口实现，用于重新定义泛型类型
@@ -91,7 +91,7 @@ public class ParameterizedTypeImpl implements ParameterizedType, Serializable {
 				if(type instanceof Class) {
 					typeStr = ((Class<?>)type).getName();
 				}else {
-					typeStr = StrUtil.toString(type);
+					typeStr = StringUtil.toString(type);
 				}
 
 				buf.append(typeStr);

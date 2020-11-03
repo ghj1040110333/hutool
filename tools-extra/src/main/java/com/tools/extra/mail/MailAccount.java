@@ -1,7 +1,7 @@
 package com.tools.extra.mail;
 
 import com.tools.core.util.CharsetUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.setting.Setting;
 
 import java.io.Serializable;
@@ -493,17 +493,17 @@ public class MailAccount implements Serializable {
 		// 去掉发件人的姓名部分
 		final String fromAddress = InternalMailUtil.parseFirstAddress(this.from, this.charset).getAddress();
 
-		if (StrUtil.isBlank(this.host)) {
+		if (StringUtil.isBlank(this.host)) {
 			// 如果SMTP地址为空，默认使用smtp.<发件人邮箱后缀>
-			this.host = StrUtil.format("smtp.{}", StrUtil.subSuf(fromAddress, fromAddress.indexOf('@') + 1));
+			this.host = StringUtil.format("smtp.{}", StringUtil.subSuf(fromAddress, fromAddress.indexOf('@') + 1));
 		}
-		if (StrUtil.isBlank(user)) {
+		if (StringUtil.isBlank(user)) {
 			// 如果用户名为空，默认为发件人邮箱前缀
-			this.user = StrUtil.subPre(fromAddress, fromAddress.indexOf('@'));
+			this.user = StringUtil.subPre(fromAddress, fromAddress.indexOf('@'));
 		}
 		if (null == this.auth) {
 			// 如果密码非空白，则使用认证模式
-			this.auth = (false == StrUtil.isBlank(this.pass));
+			this.auth = (false == StringUtil.isBlank(this.pass));
 		}
 		if (null == this.port) {
 			// 端口在SSL状态下默认与socketFactoryPort一致，非SSL状态下默认为25
@@ -519,7 +519,7 @@ public class MailAccount implements Serializable {
 
 	@Override
 	public String toString() {
-		return "MailAccount [host=" + host + ", port=" + port + ", auth=" + auth + ", user=" + user + ", pass=" + (StrUtil.isEmpty(this.pass) ? "" : "******") + ", from=" + from + ", startttlsEnable="
+		return "MailAccount [host=" + host + ", port=" + port + ", auth=" + auth + ", user=" + user + ", pass=" + (StringUtil.isEmpty(this.pass) ? "" : "******") + ", from=" + from + ", startttlsEnable="
 				+ starttlsEnable + ", socketFactoryClass=" + socketFactoryClass + ", socketFactoryFallback=" + socketFactoryFallback + ", socketFactoryPort=" + socketFactoryPort + "]";
 	}
 }

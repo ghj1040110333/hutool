@@ -1,6 +1,6 @@
 package com.tools.db.ds.dbcp;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.db.ds.AbstractDSFactory;
 import com.tools.setting.Setting;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -39,7 +39,7 @@ public class DbcpDSFactory extends AbstractDSFactory {
 		String connValue;
 		for (String key : KEY_CONN_PROPS) {
 			connValue = poolSetting.getAndRemoveStr(key);
-			if(StrUtil.isNotBlank(connValue)){
+			if(StringUtil.isNotBlank(connValue)){
 				ds.addConnectionProperty(key, connValue);
 			}
 		}

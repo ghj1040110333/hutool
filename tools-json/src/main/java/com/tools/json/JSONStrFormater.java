@@ -1,6 +1,6 @@
 package com.tools.json;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * JSON字符串格式化工具，用于简单格式化JSON字符串<br>
@@ -14,7 +14,7 @@ public class JSONStrFormater {
 	/** 单位缩进字符串。*/
 	private static final String SPACE = "    ";
 	/** 换行符*/
-	private static final char NEW_LINE = StrUtil.C_LF;
+	private static final char NEW_LINE = StringUtil.C_LF;
 
 	/**
 	 * 返回格式化JSON字符串。
@@ -118,6 +118,6 @@ public class JSONStrFormater {
 	 * @return 指定缩进次数的字符串。
 	 */
 	private static String indent(int number) {
-		return StrUtil.repeat(SPACE, number);
+		return StringUtil.repeat(SPACE, number);
 	}
 }

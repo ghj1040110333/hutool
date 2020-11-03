@@ -6,7 +6,7 @@ import com.tools.core.io.FileUtil;
 import com.tools.core.lang.Assert;
 import com.tools.core.util.ClassUtil;
 import com.tools.core.util.ObjectUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.core.util.URLUtil;
 
 /**
@@ -67,7 +67,7 @@ public class ClassPathResource extends UrlResource {
 
 		final String path = normalizePath(pathBaseClassLoader);
 		this.path = path;
-		this.name = StrUtil.isBlank(path) ? null : FileUtil.getName(path);
+		this.name = StringUtil.isBlank(path) ? null : FileUtil.getName(path);
 
 		this.classLoader = ObjectUtil.defaultIfNull(classLoader, ClassUtil.getClassLoader());
 		this.clazz = clazz;
@@ -137,7 +137,7 @@ public class ClassPathResource extends UrlResource {
 	private String normalizePath(String path) {
 		// 标准化路径
 		path = FileUtil.normalize(path);
-		path = StrUtil.removePrefix(path, StrUtil.SLASH);
+		path = StringUtil.removePrefix(path, StringUtil.SLASH);
 
 		Assert.isFalse(FileUtil.isAbsolutePath(path), "Path [{}] must be a relative path !", path);
 		return path;

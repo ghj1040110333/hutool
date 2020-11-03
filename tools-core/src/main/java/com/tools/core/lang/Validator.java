@@ -6,7 +6,7 @@ import com.tools.core.util.CreditCodeUtil;
 import com.tools.core.util.NumberUtil;
 import com.tools.core.util.ObjectUtil;
 import com.tools.core.util.ReUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.core.util.IdcardUtil;
 
 import java.net.MalformedURLException;
@@ -210,7 +210,7 @@ public class Validator {
 	 * @return 是否为空
 	 */
 	public static boolean isEmpty(Object value) {
-		return (null == value || (value instanceof String && StrUtil.isEmpty((String) value)));
+		return (null == value || (value instanceof String && StringUtil.isEmpty((String) value)));
 	}
 
 	/**
@@ -492,7 +492,7 @@ public class Validator {
 	 * @since 3.3.0
 	 */
 	public static boolean isLetter(CharSequence value) {
-		return StrUtil.isAllCharMatch(value, Character::isLetter);
+		return StringUtil.isAllCharMatch(value, Character::isLetter);
 	}
 
 	/**
@@ -520,7 +520,7 @@ public class Validator {
 	 * @since 3.3.0
 	 */
 	public static boolean isUpperCase(CharSequence value) {
-		return StrUtil.isAllCharMatch(value, Character::isUpperCase);
+		return StringUtil.isAllCharMatch(value, Character::isUpperCase);
 	}
 
 	/**
@@ -548,7 +548,7 @@ public class Validator {
 	 * @since 3.3.0
 	 */
 	public static boolean isLowerCase(CharSequence value) {
-		return StrUtil.isAllCharMatch(value, Character::isLowerCase);
+		return StringUtil.isAllCharMatch(value, Character::isLowerCase);
 	}
 
 	/**
@@ -944,7 +944,7 @@ public class Validator {
 	 */
 	public static boolean isUrl(CharSequence value) {
 		try {
-			new java.net.URL(StrUtil.str(value));
+			new java.net.URL(StringUtil.str(value));
 		} catch (MalformedURLException e) {
 			return false;
 		}

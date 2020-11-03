@@ -3,7 +3,7 @@ package com.tools.cron.pattern.matcher;
 import java.util.Collections;
 import java.util.List;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * 将表达式中的数字值列表转换为Boolean数组，匹配时匹配相应数组位
@@ -31,6 +31,6 @@ public class BoolArrayValueMatcher implements ValueMatcher{
 
 	@Override
 	public String toString() {
-		return StrUtil.format("Matcher:{}", (Object)this.bValues);
+		return StringUtil.format("Matcher:{}", (Object)this.bValues);
 	}
 }

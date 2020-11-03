@@ -1,7 +1,7 @@
 package com.tools.log;
 
 import com.tools.core.lang.caller.CallerUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.log.level.Level;
 
 /**
@@ -107,7 +107,7 @@ public final class StaticLog {
 	 * @param arguments 变量对应的参数
 	 */
 	public static void warn(Throwable e, String format, Object... arguments) {
-		warn(LogFactory.get(CallerUtil.getCallerCaller()), e, StrUtil.format(format, arguments));
+		warn(LogFactory.get(CallerUtil.getCallerCaller()), e, StringUtil.format(format, arguments));
 	}
 
 	/**

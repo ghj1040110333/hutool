@@ -1,7 +1,7 @@
 package com.tools.script;
 
 import com.tools.core.lang.SimpleCache;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import javax.script.Bindings;
 import javax.script.Compilable;
@@ -48,7 +48,7 @@ public class ScriptUtil {
 			engine = MANAGER.getEngineByMimeType(nameOrExtOrMime);
 		}
 		if (null == engine) {
-			throw new NullPointerException(StrUtil.format("Script for [{}] not support !", nameOrExtOrMime));
+			throw new NullPointerException(StringUtil.format("Script for [{}] not support !", nameOrExtOrMime));
 		}
 		return engine;
 	}

@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import com.tools.core.date.DateUtil;
 import com.tools.core.util.ClassLoaderUtil;
 import com.tools.core.util.RandomUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * MongoDB ID生成策略实现<br>
@@ -45,7 +45,7 @@ public class ObjectId {
 		if (s == null) {
 			return false;
 		}
-		s = StrUtil.removeAll(s, "-");
+		s = StringUtil.removeAll(s, "-");
 		final int len = s.length();
 		if (len != 24) {
 			return false;

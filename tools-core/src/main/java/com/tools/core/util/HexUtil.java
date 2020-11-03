@@ -1,7 +1,5 @@
 package com.tools.core.util;
 
-import com.tools.core.util.CharsetUtil;
-
 import java.awt.Color;
 import java.math.BigInteger;
 import java.nio.charset.Charset;
@@ -69,7 +67,7 @@ public class HexUtil {
 	 * @return 十六进制char[]
 	 */
 	public static char[] encodeHex(String str, Charset charset) {
-		return encodeHex(StrUtil.bytes(str, charset), true);
+		return encodeHex(StringUtil.bytes(str, charset), true);
 	}
 
 	/**
@@ -101,7 +99,7 @@ public class HexUtil {
 	 * @return 十六进制String
 	 */
 	public static String encodeHexStr(String data, Charset charset) {
-		return encodeHexStr(StrUtil.bytes(data, charset), true);
+		return encodeHexStr(StringUtil.bytes(data, charset), true);
 	}
 
 	/**
@@ -145,7 +143,7 @@ public class HexUtil {
 	 * @return 字符串
 	 */
 	public static String decodeHexStr(String hexStr, Charset charset) {
-		if (StrUtil.isEmpty(hexStr)) {
+		if (StringUtil.isEmpty(hexStr)) {
 			return hexStr;
 		}
 		return decodeHexStr(hexStr.toCharArray(), charset);
@@ -159,7 +157,7 @@ public class HexUtil {
 	 * @return 字符串
 	 */
 	public static String decodeHexStr(char[] hexData, Charset charset) {
-		return StrUtil.str(decodeHex(hexData), charset);
+		return StringUtil.str(decodeHex(hexData), charset);
 	}
 
 	/**
@@ -198,10 +196,10 @@ public class HexUtil {
 	 * @return byte[]
 	 */
 	public static byte[] decodeHex(String hexStr) {
-		if (StrUtil.isEmpty(hexStr)) {
+		if (StringUtil.isEmpty(hexStr)) {
 			return null;
 		}
-		hexStr = StrUtil.removeAll(hexStr, ' ');
+		hexStr = StringUtil.removeAll(hexStr, ' ');
 		return decodeHex(hexStr.toCharArray());
 	}
 

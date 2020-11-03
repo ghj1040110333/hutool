@@ -1,6 +1,6 @@
 package com.tools.core.math;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.io.File;
 import java.io.Serializable;
@@ -832,7 +832,7 @@ public class Money implements Serializable, Comparable<Money> {
 	 * @return 本对象内部变量的字符串表示。
 	 */
 	public String dump() {
-		return StrUtil.builder()
+		return StringUtil.builder()
 				.append("cent = ")
 				.append(this.cent)
 				.append(File.separatorChar)

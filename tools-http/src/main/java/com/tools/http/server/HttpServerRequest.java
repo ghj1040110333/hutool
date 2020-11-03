@@ -10,7 +10,7 @@ import com.tools.core.net.multipart.MultipartFormData;
 import com.tools.core.net.multipart.UploadSetting;
 import com.tools.core.util.ArrayUtil;
 import com.tools.core.util.CharsetUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.http.Header;
 import com.tools.http.HttpUtil;
 import com.tools.http.Method;
@@ -249,7 +249,7 @@ public class HttpServerRequest extends HttpServerBase {
 		}
 
 		final String contentType = getContentType();
-		if (StrUtil.isBlank(contentType)) {
+		if (StringUtil.isBlank(contentType)) {
 			return false;
 		}
 		return contentType.toLowerCase().startsWith("multipart/");
@@ -272,7 +272,7 @@ public class HttpServerRequest extends HttpServerBase {
 	 * @return 请求
 	 */
 	public String getBody(Charset charset) {
-		return StrUtil.str(getBodyBytes(), charset);
+		return StringUtil.str(getBodyBytes(), charset);
 	}
 
 	/**
@@ -303,7 +303,7 @@ public class HttpServerRequest extends HttpServerBase {
 
 			//解析URL中的参数
 			final String query = getQuery();
-			if(StrUtil.isNotBlank(query)){
+			if(StringUtil.isNotBlank(query)){
 				this.paramsCache.putAll(HttpUtil.decodeParams(query, charset));
 			}
 
@@ -313,7 +313,7 @@ public class HttpServerRequest extends HttpServerBase {
 			} else{
 				// 解析body中的参数
 				final String body = getBody();
-				if(StrUtil.isNotBlank(body)){
+				if(StringUtil.isNotBlank(body)){
 					this.paramsCache.putAll(HttpUtil.decodeParams(body, charset));
 				}
 			}

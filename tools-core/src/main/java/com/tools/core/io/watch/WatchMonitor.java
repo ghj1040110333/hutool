@@ -3,7 +3,7 @@ package com.tools.core.io.watch;
 import com.tools.core.io.FileUtil;
 import com.tools.core.io.IORuntimeException;
 import com.tools.core.io.watch.watchers.WatcherChain;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.core.util.URLUtil;
 
 import java.io.File;
@@ -322,7 +322,7 @@ public class WatchMonitor extends WatchServer {
 			if (null != lastPathEle) {
 				final String lastPathEleStr = lastPathEle.toString();
 				//带有点表示有扩展名，按照未创建的文件对待。Linux下.d的为目录，排除之
-				if (StrUtil.contains(lastPathEleStr, StrUtil.C_DOT) && false == StrUtil.endWithIgnoreCase(lastPathEleStr, ".d")) {
+				if (StringUtil.contains(lastPathEleStr, StringUtil.C_DOT) && false == StringUtil.endWithIgnoreCase(lastPathEleStr, ".d")) {
 					this.filePath = this.path;
 					this.path = this.filePath.getParent();
 				}

@@ -2,7 +2,7 @@ package com.tools.poi.excel.cell;
 
 import com.tools.core.date.DateUtil;
 import com.tools.core.util.ObjectUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.poi.excel.ExcelUtil;
 import com.tools.poi.excel.StyleSet;
 import com.tools.poi.excel.editors.TrimEditor;
@@ -123,11 +123,11 @@ public class CellUtil {
 				value = getCellValue(cell, cell.getCachedFormulaResultTypeEnum(), cellEditor);
 				break;
 			case BLANK:
-				value = StrUtil.EMPTY;
+				value = StringUtil.EMPTY;
 				break;
 			case ERROR:
 				final FormulaError error = FormulaError.forInt(cell.getErrorCellValue());
-				value = (null == error) ? StrUtil.EMPTY : error.getString();
+				value = (null == error) ? StringUtil.EMPTY : error.getString();
 				break;
 			default:
 				value = cell.getStringCellValue();
@@ -201,7 +201,7 @@ public class CellUtil {
 		}
 
 		if (null == value) {
-			cell.setCellValue(StrUtil.EMPTY);
+			cell.setCellValue(StringUtil.EMPTY);
 		} else if (value instanceof FormulaCellValue) {
 			// 公式
 			cell.setCellFormula(((FormulaCellValue) value).getValue());
@@ -422,7 +422,7 @@ public class CellUtil {
 
 			final String format = style.getDataFormatString();
 			// 普通数字
-			if (null != format && format.indexOf(StrUtil.C_DOT) < 0) {
+			if (null != format && format.indexOf(StringUtil.C_DOT) < 0) {
 				final long longPart = (long) value;
 				if (((double) longPart) == value) {
 					// 对于无小数部分的数字类型，转为Long

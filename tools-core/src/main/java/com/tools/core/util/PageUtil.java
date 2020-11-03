@@ -3,7 +3,7 @@ package com.tools.core.util;
 /**
  * 分页工具类
  *
- * @author xiaoleilu
+ * @author fruit
  */
 public class PageUtil {
 

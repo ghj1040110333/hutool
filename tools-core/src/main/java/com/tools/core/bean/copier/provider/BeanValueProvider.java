@@ -3,7 +3,7 @@ package com.tools.core.bean.copier.provider;
 import com.tools.core.bean.BeanUtil;
 import com.tools.core.bean.PropDesc;
 import com.tools.core.bean.copier.ValueProvider;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.lang.reflect.Type;
 import java.util.Map;
@@ -62,7 +62,7 @@ public class BeanValueProvider implements ValueProvider<String> {
 		PropDesc sourcePd = sourcePdMap.get(key);
 		if (null == sourcePd && (null == valueType || Boolean.class == valueType || boolean.class == valueType)) {
 			//boolean类型字段字段名支持两种方式
-			sourcePd = sourcePdMap.get(StrUtil.upperFirstAndAddPre(key, "is"));
+			sourcePd = sourcePdMap.get(StringUtil.upperFirstAndAddPre(key, "is"));
 		}
 
 		return sourcePd;

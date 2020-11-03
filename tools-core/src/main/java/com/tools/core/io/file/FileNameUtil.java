@@ -2,7 +2,7 @@ package com.tools.core.io.file;
 
 import com.tools.core.util.CharUtil;
 import com.tools.core.util.ReUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.io.File;
 import java.util.regex.Pattern;
@@ -201,13 +201,13 @@ public class FileNameUtil {
 		if (fileName == null) {
 			return null;
 		}
-		int index = fileName.lastIndexOf(StrUtil.DOT);
+		int index = fileName.lastIndexOf(StringUtil.DOT);
 		if (index == -1) {
-			return StrUtil.EMPTY;
+			return StringUtil.EMPTY;
 		} else {
 			String ext = fileName.substring(index + 1);
 			// 扩展名中不能包含路径相关的符号
-			return StrUtil.containsAny(ext, UNIX_SEPARATOR, WINDOWS_SEPARATOR) ? StrUtil.EMPTY : ext;
+			return StringUtil.containsAny(ext, UNIX_SEPARATOR, WINDOWS_SEPARATOR) ? StringUtil.EMPTY : ext;
 		}
 	}
 
@@ -219,7 +219,7 @@ public class FileNameUtil {
 	 * @since 3.3.1
 	 */
 	public static String cleanInvalid(String fileName) {
-		return StrUtil.isBlank(fileName) ? fileName : ReUtil.delAll(FILE_NAME_INVALID_PATTERN_WIN, fileName);
+		return StringUtil.isBlank(fileName) ? fileName : ReUtil.delAll(FILE_NAME_INVALID_PATTERN_WIN, fileName);
 	}
 
 	/**
@@ -230,7 +230,7 @@ public class FileNameUtil {
 	 * @since 3.3.1
 	 */
 	public static boolean containsInvalid(String fileName) {
-		return (false == StrUtil.isBlank(fileName)) && ReUtil.contains(FILE_NAME_INVALID_PATTERN_WIN, fileName);
+		return (false == StringUtil.isBlank(fileName)) && ReUtil.contains(FILE_NAME_INVALID_PATTERN_WIN, fileName);
 	}
 	// -------------------------------------------------------------------------------------------- name end
 }

@@ -2,7 +2,7 @@ package com.tools.cron.pattern.matcher;
 
 import com.tools.core.collection.CollUtil;
 import com.tools.core.util.NumberUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.cron.CronException;
 import com.tools.cron.pattern.parser.DayOfMonthValueParser;
 import com.tools.cron.pattern.parser.ValueParser;
@@ -62,7 +62,7 @@ public class ValueMatcherBuilder {
 	private static List<Integer> parseArray(String value, ValueParser parser){
 		final List<Integer> values = new ArrayList<>();
 
-		final List<String> parts = StrUtil.split(value, StrUtil.C_COMMA);
+		final List<String> parts = StringUtil.split(value, StringUtil.C_COMMA);
 		for (String part : parts) {
 			CollUtil.addAllIfNotContains(values, parseStep(part, parser));
 		}
@@ -83,7 +83,7 @@ public class ValueMatcherBuilder {
 	 * @return List
 	 */
 	private static List<Integer> parseStep(String value, ValueParser parser) {
-		final List<String> parts = StrUtil.split(value, StrUtil.C_SLASH);
+		final List<String> parts = StringUtil.split(value, StringUtil.C_SLASH);
 		int size = parts.size();
 
 		List<Integer> results;
@@ -148,7 +148,7 @@ public class ValueMatcherBuilder {
 		}
 
 		//Range模式
-		List<String> parts = StrUtil.split(value, '-');
+		List<String> parts = StringUtil.split(value, '-');
 		int size = parts.size();
 		if (size == 1) {// 普通值
 			final int v1 = parser.parse(value);

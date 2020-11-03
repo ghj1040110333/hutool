@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.tools.core.util.NumberUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * 组合，即C(n, m)<br>
@@ -55,7 +55,7 @@ public class Combination implements Serializable {
 	 */
 	public static long countAll(int n) {
 		if (n < 0 || n > 63) {
-			throw new IllegalArgumentException(StrUtil.format("countAll must have n >= 0 and n <= 63, but got n={}", n));
+			throw new IllegalArgumentException(StringUtil.format("countAll must have n >= 0 and n <= 63, but got n={}", n));
 		}
 		return n == 63 ? Long.MAX_VALUE : (1L << n) - 1;
 	}

@@ -10,7 +10,7 @@ import com.tools.core.io.FileUtil;
 import com.tools.core.io.resource.ResourceUtil;
 import com.tools.core.lang.Console;
 import com.tools.core.map.MapUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.json.test.bean.JSONBean;
 import com.tools.json.test.bean.ResultDto;
 import com.tools.json.test.bean.Seq;
@@ -210,7 +210,7 @@ public class JSONObjectTest {
 		// 测试数组
 		Assert.assertEquals("seq1", userA2.getSqs().get(0).getSeq());
 		// 测试带换行符等特殊字符转换是否成功
-		Assert.assertTrue(StrUtil.isNotBlank(userA2.getName()));
+		Assert.assertTrue(StringUtil.isNotBlank(userA2.getName()));
 	}
 
 	@Test

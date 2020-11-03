@@ -1,7 +1,7 @@
 package com.tools.core.net;
 
 import com.tools.core.util.CharUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.Serializable;
@@ -31,7 +31,7 @@ public class URLDecoder implements Serializable {
 	 * @return 解码后的字符串
 	 */
 	public static String decode(String str, Charset charset) {
-		return StrUtil.str(decode(StrUtil.bytes(str, charset)), charset);
+		return StringUtil.str(decode(StringUtil.bytes(str, charset)), charset);
 	}
 
 	/**

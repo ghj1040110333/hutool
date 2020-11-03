@@ -1,6 +1,6 @@
 package com.tools.core.date;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -83,7 +83,7 @@ public class ChineseDateTest {
 	public void getFestivalsTest(){
 		// issue#I1XHSF@Gitee，2023-01-20对应农历腊月29，非除夕
 		ChineseDate chineseDate = new ChineseDate(DateUtil.parseDate("2023-01-20"));
-		Assert.assertTrue(StrUtil.isEmpty(chineseDate.getFestivals()));
+		Assert.assertTrue(StringUtil.isEmpty(chineseDate.getFestivals()));
 	}
 
 	@Test

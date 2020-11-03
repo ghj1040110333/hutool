@@ -1,6 +1,6 @@
 package com.tools.extra.tokenizer.engine.mmseg;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.extra.tokenizer.Result;
 import com.tools.extra.tokenizer.TokenizerEngine;
 import com.chenlb.mmseg4j.ComplexSeg;
@@ -40,7 +40,7 @@ public class MmsegEngine implements TokenizerEngine {
 
 	@Override
 	public Result parse(CharSequence text) {
-		this.mmSeg.reset(StrUtil.getReader(text));
+		this.mmSeg.reset(StringUtil.getReader(text));
 		return new MmsegResult(this.mmSeg);
 	}
 

@@ -2,7 +2,7 @@ package com.tools.core.net;
 
 import com.tools.core.convert.Convert;
 import com.tools.core.lang.Validator;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,8 +102,8 @@ public class Ipv4Util {
 	 * @return 区间地址
 	 */
 	public static List<String> list(String ipFrom, String ipTo) {
-		final int[] ipf = Convert.convert(int[].class, StrUtil.splitToArray(ipFrom, '.'));
-		final int[] ipt = Convert.convert(int[].class, StrUtil.splitToArray(ipTo, '.'));
+		final int[] ipf = Convert.convert(int[].class, StringUtil.splitToArray(ipFrom, '.'));
+		final int[] ipt = Convert.convert(int[].class, StringUtil.splitToArray(ipTo, '.'));
 
 		final List<String> ips = new ArrayList<>();
 		for (int a = ipf[0]; a <= ipt[0]; a++) {
@@ -128,7 +128,7 @@ public class Ipv4Util {
 	 * @return IP V4 地址
 	 */
 	public static String longToIpv4(long longIP) {
-		final StringBuilder sb = StrUtil.builder();
+		final StringBuilder sb = StringUtil.builder();
 		// 直接右移24位
 		sb.append((longIP >>> 24));
 		sb.append(".");
@@ -208,7 +208,7 @@ public class Ipv4Util {
 		String str;
 		int inetmask = 0;
 		int count;
-		for (String s : StrUtil.split(mask, ',')) {
+		for (String s : StringUtil.split(mask, ',')) {
 			sbf = toBin(Integer.parseInt(s));
 			str = sbf.reverse().toString();
 			count = 0;
@@ -267,8 +267,8 @@ public class Ipv4Util {
 		if (fromIpLong > toIpLong) {
 			throw new IllegalArgumentException("to IP must be greater than from IP!");
 		}
-		String[] fromIpSplit = StrUtil.splitToArray(fromIp, '.');
-		String[] toIpSplit = StrUtil.splitToArray(toIp, '.');
+		String[] fromIpSplit = StringUtil.splitToArray(fromIp, '.');
+		String[] toIpSplit = StringUtil.splitToArray(toIp, '.');
 		StringBuilder mask = new StringBuilder();
 		for (int i = 0; i < toIpSplit.length; i++) {
 			mask.append(255 - Integer.parseInt(toIpSplit[i]) + Integer.parseInt(fromIpSplit[i])).append(".");
@@ -290,8 +290,8 @@ public class Ipv4Util {
 			throw new IllegalArgumentException("to IP must be greater than from IP!");
 		}
 		int count = 1;
-		int[] fromIpSplit = StrUtil.split(fromIp, '.').stream().mapToInt(Integer::parseInt).toArray();
-		int[] toIpSplit = StrUtil.split(toIp, '.').stream().mapToInt(Integer::parseInt).toArray();
+		int[] fromIpSplit = StringUtil.split(fromIp, '.').stream().mapToInt(Integer::parseInt).toArray();
+		int[] toIpSplit = StringUtil.split(toIp, '.').stream().mapToInt(Integer::parseInt).toArray();
 		for (int i = fromIpSplit.length - 1; i >= 0; i--) {
 			count += (toIpSplit[i] - fromIpSplit[i]) * Math.pow(256, fromIpSplit.length - i - 1);
 		}

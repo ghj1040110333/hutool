@@ -1,7 +1,7 @@
 package com.tools.poi.excel;
 
 import com.tools.core.collection.ListUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.poi.excel.cell.CellEditor;
 import com.tools.poi.excel.cell.CellUtil;
 import org.apache.poi.ss.usermodel.Cell;
@@ -74,7 +74,7 @@ public class RowUtil {
 		boolean isAllNull = true;
 		for (int i = startCellNumInclude; i < size; i++) {
 			cellValue = CellUtil.getCellValue(row.getCell(i), cellEditor);
-			isAllNull &= StrUtil.isEmptyIfStr(cellValue);
+			isAllNull &= StringUtil.isEmptyIfStr(cellValue);
 			cellValues.add(cellValue);
 		}
 

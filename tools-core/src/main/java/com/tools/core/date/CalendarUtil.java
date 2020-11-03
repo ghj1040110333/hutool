@@ -4,7 +4,7 @@ import com.tools.core.comparator.CompareUtil;
 import com.tools.core.convert.NumberChineseFormatter;
 import com.tools.core.date.format.FastDateParser;
 import com.tools.core.util.ObjectUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.text.ParsePosition;
 import java.time.Instant;
@@ -356,7 +356,7 @@ public class CalendarUtil {
 	 * @return 年和季度，格式类似于20131
 	 */
 	public static String yearAndQuarter(Calendar cal) {
-		return StrUtil.builder().append(cal.get(Calendar.YEAR)).append(cal.get(Calendar.MONTH) / 3 + 1).toString();
+		return StringUtil.builder().append(cal.get(Calendar.YEAR)).append(cal.get(Calendar.MONTH) / 3 + 1).toString();
 	}
 
 	/**
@@ -476,7 +476,7 @@ public class CalendarUtil {
 	 * @since 5.3.9
 	 */
 	public static String formatChineseDate(Calendar calendar, boolean withTime) {
-		final StringBuilder result = StrUtil.builder();
+		final StringBuilder result = StringUtil.builder();
 
 		// 年
 		String year = String.valueOf(calendar.get(Calendar.YEAR));

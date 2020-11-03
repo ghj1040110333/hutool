@@ -1,7 +1,7 @@
 package com.tools.core.date;
 
 import com.tools.core.io.FileUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -74,7 +74,7 @@ public class StopWatch {
 	 * 构造，不启动任何任务
 	 */
 	public StopWatch() {
-		this(StrUtil.EMPTY);
+		this(StringUtil.EMPTY);
 	}
 
 	/**
@@ -131,7 +131,7 @@ public class StopWatch {
 	 * @throws IllegalStateException 前一个任务没有结束
 	 */
 	public void start() throws IllegalStateException {
-		start(StrUtil.EMPTY);
+		start(StringUtil.EMPTY);
 	}
 
 	/**
@@ -300,7 +300,7 @@ public class StopWatch {
 	 * @return 任务信息
 	 */
 	public String shortSummary() {
-		return StrUtil.format("StopWatch '{}': running time = {} ns", this.id, this.totalTimeNanos);
+		return StringUtil.format("StopWatch '{}': running time = {} ns", this.id, this.totalTimeNanos);
 	}
 
 	/**

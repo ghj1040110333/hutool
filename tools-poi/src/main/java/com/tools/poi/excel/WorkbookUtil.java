@@ -4,7 +4,7 @@ package com.tools.poi.excel;
 import com.tools.core.io.FileUtil;
 import com.tools.core.io.IORuntimeException;
 import com.tools.core.io.IoUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.poi.exceptions.POIException;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -69,7 +69,7 @@ public class WorkbookUtil {
 			return createBook(FileUtil.getInputStream(excelFile), true);
 		}
 
-		return createBook(StrUtil.endWithIgnoreCase(excelFile.getName(), ".xlsx"));
+		return createBook(StringUtil.endWithIgnoreCase(excelFile.getName(), ".xlsx"));
 	}
 
 	/**
@@ -282,7 +282,7 @@ public class WorkbookUtil {
 		if (null == book) {
 			return null;
 		}
-		sheetName = StrUtil.isBlank(sheetName) ? "sheet1" : sheetName;
+		sheetName = StringUtil.isBlank(sheetName) ? "sheet1" : sheetName;
 		Sheet sheet = book.getSheet(sheetName);
 		if (null == sheet) {
 			sheet = book.createSheet(sheetName);

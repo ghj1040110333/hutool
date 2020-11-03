@@ -10,7 +10,7 @@ import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.usermodel.Workbook;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * Excel样式工具类
@@ -138,7 +138,7 @@ public class StyleUtil {
 		if(fontSize > 0) {
 			font.setFontHeightInPoints(fontSize);
 		}
-		if(StrUtil.isNotBlank(fontName)) {
+		if(StringUtil.isNotBlank(fontName)) {
 			font.setFontName(fontName);
 		}
 		return font;

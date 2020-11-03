@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.db.DbRuntimeException;
 import com.tools.db.DbUtil;
 import com.tools.db.ds.DataSourceWrapper;
@@ -38,7 +38,7 @@ public class DriverUtil {
 	public static String identifyDriver(DataSource ds) {
 		if(ds instanceof DataSourceWrapper) {
 			final String driver = ((DataSourceWrapper)ds).getDriver();
-			if(StrUtil.isNotBlank(driver)) {
+			if(StringUtil.isNotBlank(driver)) {
 				return driver;
 			}
 		}
@@ -74,7 +74,7 @@ public class DriverUtil {
 		try {
 			meta = conn.getMetaData();
 			driver = identifyDriver(meta.getDatabaseProductName());
-			if (StrUtil.isBlank(driver)) {
+			if (StringUtil.isBlank(driver)) {
 				driver = identifyDriver(meta.getDriverName());
 			}
 		} catch (SQLException e) {

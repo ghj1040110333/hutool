@@ -9,7 +9,7 @@ import com.tools.core.io.StreamProgress;
 import com.tools.core.lang.Assert;
 import com.tools.core.util.CharsetUtil;
 import com.tools.core.util.ReUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.core.util.URLUtil;
 import com.tools.http.cookie.GlobalCookieManager;
 
@@ -320,14 +320,14 @@ public class HttpResponse extends HttpBase<HttpResponse> implements Closeable {
 
 	@Override
 	public String toString() {
-		StringBuilder sb = StrUtil.builder();
-		sb.append("Response Headers: ").append(StrUtil.CRLF);
+		StringBuilder sb = StringUtil.builder();
+		sb.append("Response Headers: ").append(StringUtil.CRLF);
 		for (Entry<String, List<String>> entry : this.headers.entrySet()) {
-			sb.append("    ").append(entry).append(StrUtil.CRLF);
+			sb.append("    ").append(entry).append(StringUtil.CRLF);
 		}
 
-		sb.append("Response Body: ").append(StrUtil.CRLF);
-		sb.append("    ").append(this.body()).append(StrUtil.CRLF);
+		sb.append("Response Body: ").append(StringUtil.CRLF);
+		sb.append("    ").append(this.body()).append(StringUtil.CRLF);
 
 		return sb.toString();
 	}
@@ -347,11 +347,11 @@ public class HttpResponse extends HttpBase<HttpResponse> implements Closeable {
 
 		// 从头信息中获取文件名
 		String fileName = getFileNameFromDisposition();
-		if (StrUtil.isBlank(fileName)) {
+		if (StringUtil.isBlank(fileName)) {
 			final String path = httpConnection.getUrl().getPath();
 			// 从路径中获取文件名
-			fileName = StrUtil.subSuf(path, path.lastIndexOf('/') + 1);
-			if (StrUtil.isBlank(fileName)) {
+			fileName = StringUtil.subSuf(path, path.lastIndexOf('/') + 1);
+			if (StringUtil.isBlank(fileName)) {
 				// 编码后的路径做为文件名
 				fileName = URLUtil.encodeQuery(path, CharsetUtil.CHARSET_UTF_8);
 			}
@@ -451,7 +451,7 @@ public class HttpResponse extends HttpBase<HttpResponse> implements Closeable {
 			IoUtil.copy(in, out);
 		} catch (IORuntimeException e) {
 			//noinspection StatementWithEmptyBody
-			if (e.getCause() instanceof EOFException || StrUtil.containsIgnoreCase(e.getMessage(), "Premature EOF")) {
+			if (e.getCause() instanceof EOFException || StringUtil.containsIgnoreCase(e.getMessage(), "Premature EOF")) {
 				// 忽略读取HTTP流中的EOF错误
 			} else {
 				throw e;
@@ -501,10 +501,10 @@ public class HttpResponse extends HttpBase<HttpResponse> implements Closeable {
 	private String getFileNameFromDisposition() {
 		String fileName = null;
 		final String disposition = header(Header.CONTENT_DISPOSITION);
-		if (StrUtil.isNotBlank(disposition)) {
+		if (StringUtil.isNotBlank(disposition)) {
 			fileName = ReUtil.get("filename=\"(.*?)\"", disposition, 1);
-			if (StrUtil.isBlank(fileName)) {
-				fileName = StrUtil.subAfter(disposition, "filename=", true);
+			if (StringUtil.isBlank(fileName)) {
+				fileName = StringUtil.subAfter(disposition, "filename=", true);
 			}
 		}
 		return fileName;

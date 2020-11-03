@@ -4,7 +4,7 @@ import java.nio.charset.Charset;
 
 import com.tools.core.util.ArrayUtil;
 import com.tools.core.util.CharsetUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * Base64解码实现
@@ -57,7 +57,7 @@ public class Base64Decoder {
 	 * @return 被加密后的字符串
 	 */
 	public static String decodeStr(CharSequence source, Charset charset) {
-		return StrUtil.str(decode(source), charset);
+		return StringUtil.str(decode(source), charset);
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class Base64Decoder {
 	 * @return 被加密后的字符串
 	 */
 	public static byte[] decode(CharSequence source) {
-		return decode(StrUtil.bytes(source, DEFAULT_CHARSET));
+		return decode(StringUtil.bytes(source, DEFAULT_CHARSET));
 	}
 
 	/**

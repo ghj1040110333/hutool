@@ -7,8 +7,7 @@ import java.util.Comparator;
 import com.tools.core.util.ClassUtil;
 import com.tools.core.util.ObjectUtil;
 import com.tools.core.util.ReflectUtil;
-import com.tools.core.util.StrUtil;
-import com.tools.core.util.ReflectUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * Bean字段排序器<br>
@@ -32,7 +31,7 @@ public class FieldComparator<T> implements Comparator<T>, Serializable {
 	public FieldComparator(Class<T> beanClass, String fieldName) {
 		this.field = ClassUtil.getDeclaredField(beanClass, fieldName);
 		if(this.field == null){
-			throw new IllegalArgumentException(StrUtil.format("Field [{}] not found in Class [{}]", fieldName, beanClass.getName()));
+			throw new IllegalArgumentException(StringUtil.format("Field [{}] not found in Class [{}]", fieldName, beanClass.getName()));
 		}
 	}
 

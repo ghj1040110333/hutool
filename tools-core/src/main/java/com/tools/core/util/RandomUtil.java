@@ -26,7 +26,7 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * 随机工具类
  *
- * @author xiaoleilu
+ * @author fruit
  */
 public class RandomUtil {
 
@@ -448,7 +448,7 @@ public class RandomUtil {
 	 */
 	public static String randomStringWithoutStr(int length, String elemData) {
 		String baseStr = BASE_CHAR_NUMBER;
-		baseStr = StrUtil.removeAll(baseStr, elemData.toCharArray());
+		baseStr = StringUtil.removeAll(baseStr, elemData.toCharArray());
 		return randomString(baseStr, length);
 	}
 
@@ -470,8 +470,8 @@ public class RandomUtil {
 	 * @return 随机字符串
 	 */
 	public static String randomString(String baseString, int length) {
-		if (StrUtil.isEmpty(baseString)) {
-			return StrUtil.EMPTY;
+		if (StringUtil.isEmpty(baseString)) {
+			return StringUtil.EMPTY;
 		}
 		final StringBuilder sb = new StringBuilder(length);
 

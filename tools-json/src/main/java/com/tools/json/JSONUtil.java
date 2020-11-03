@@ -7,7 +7,7 @@ import com.tools.core.util.ArrayUtil;
 import com.tools.core.util.ClassUtil;
 import com.tools.core.util.HexUtil;
 import com.tools.core.util.ObjectUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.core.util.TypeUtil;
 import com.tools.json.serialize.GlobalSerializeMapping;
 import com.tools.json.serialize.JSONArraySerializer;
@@ -217,8 +217,8 @@ public final class JSONUtil {
 		if (obj instanceof JSON) {
 			json = (JSON) obj;
 		} else if (obj instanceof CharSequence) {
-			final String jsonStr = StrUtil.trim((CharSequence) obj);
-			json = StrUtil.startWith(jsonStr, '[') ? parseArray(jsonStr) : parseObj(jsonStr);
+			final String jsonStr = StringUtil.trim((CharSequence) obj);
+			json = StringUtil.startWith(jsonStr, '[') ? parseArray(jsonStr) : parseObj(jsonStr);
 		} else if (obj instanceof Iterable || obj instanceof Iterator || ArrayUtil.isArray(obj)) {// 列表
 			json = new JSONArray(obj, config);
 		} else {// 对象
@@ -368,7 +368,7 @@ public final class JSONUtil {
 			return null;
 		}
 		if (obj instanceof CharSequence) {
-			return StrUtil.str((CharSequence) obj);
+			return StringUtil.str((CharSequence) obj);
 		}
 		return toJsonStr(parse(obj));
 	}
@@ -529,7 +529,7 @@ public final class JSONUtil {
 	 * @see JSON#getByPath(String)
 	 */
 	public static Object getByPath(JSON json, String expression) {
-		return (null == json || StrUtil.isBlank(expression)) ? null : json.getByPath(expression);
+		return (null == json || StringUtil.isBlank(expression)) ? null : json.getByPath(expression);
 	}
 
 	/**
@@ -586,7 +586,7 @@ public final class JSONUtil {
 			return quote(string, sw, isWrap).toString();
 		} catch (IOException ignored) {
 			// will never happen - we are writing to a string writer
-			return StrUtil.EMPTY;
+			return StringUtil.EMPTY;
 		}
 	}
 
@@ -617,7 +617,7 @@ public final class JSONUtil {
 	 * @since 3.3.1
 	 */
 	public static Writer quote(String str, Writer writer, boolean isWrap) throws IOException {
-		if (StrUtil.isEmpty(str)) {
+		if (StringUtil.isEmpty(str)) {
 			if (isWrap) {
 				writer.write("\"\"");
 			}
@@ -663,7 +663,7 @@ public final class JSONUtil {
 	 * @return 转义后的字符串
 	 */
 	public static String escape(String str) {
-		if (StrUtil.isEmpty(str)) {
+		if (StringUtil.isEmpty(str)) {
 			return str;
 		}
 
@@ -785,10 +785,10 @@ public final class JSONUtil {
 	 * @since 3.3.0
 	 */
 	public static boolean isJsonObj(String str) {
-		if (StrUtil.isBlank(str)) {
+		if (StringUtil.isBlank(str)) {
 			return false;
 		}
-		return StrUtil.isWrap(str.trim(), '{', '}');
+		return StringUtil.isWrap(str.trim(), '{', '}');
 	}
 
 	/**
@@ -799,10 +799,10 @@ public final class JSONUtil {
 	 * @since 3.3.0
 	 */
 	public static boolean isJsonArray(String str) {
-		if (StrUtil.isBlank(str)) {
+		if (StringUtil.isBlank(str)) {
 			return false;
 		}
-		return StrUtil.isWrap(str.trim(), '[', ']');
+		return StringUtil.isWrap(str.trim(), '[', ']');
 	}
 
 	/**
@@ -891,7 +891,7 @@ public final class JSONUtil {
 			case '\r':
 				return "\\r";
 			default:
-				if (c < StrUtil.C_SPACE || //
+				if (c < StringUtil.C_SPACE || //
 						(c >= '\u0080' && c <= '\u00a0') || //
 						(c >= '\u2000' && c <= '\u2010') || //
 						(c >= '\u2028' && c <= '\u202F') || //

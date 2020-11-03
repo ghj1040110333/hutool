@@ -1,7 +1,7 @@
 package com.tools.extra.pinyin;
 
 import com.tools.core.util.ArrayUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * 拼音引擎接口，具体的拼音实现通过实现此接口，完成具体实现功能
@@ -46,8 +46,8 @@ public interface PinyinEngine {
 	 * @return 汉字返回拼音，非汉字原样返回
 	 */
 	default String getFirstLetter(String str, String separator) {
-		final String splitSeparator = StrUtil.isEmpty(separator) ? "#" : separator;
-		final String[] split = StrUtil.split(getPinyin(str, splitSeparator), splitSeparator);
+		final String splitSeparator = StringUtil.isEmpty(separator) ? "#" : separator;
+		final String[] split = StringUtil.split(getPinyin(str, splitSeparator), splitSeparator);
 		return ArrayUtil.join(split, separator, (s)->String.valueOf(s.length() > 0 ? s.charAt(0) : ""));
 	}
 }

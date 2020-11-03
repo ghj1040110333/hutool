@@ -1,6 +1,6 @@
 package com.tools.json;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.io.Serializable;
 
@@ -41,6 +41,6 @@ public class JSONNull implements Serializable{
 	 */
 	@Override
 	public String toString() {
-		return StrUtil.NULL;
+		return StringUtil.NULL;
 	}
 }

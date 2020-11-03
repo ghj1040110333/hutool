@@ -3,7 +3,7 @@ package com.tools.core.codec;
 import java.nio.charset.Charset;
 
 import com.tools.core.util.CharsetUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * Base64编码
@@ -90,7 +90,7 @@ public class Base64Encoder {
 	 * @return 被加密后的字符串
 	 */
 	public static String encode(CharSequence source, Charset charset) {
-		return encode(StrUtil.bytes(source, charset));
+		return encode(StringUtil.bytes(source, charset));
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class Base64Encoder {
 	 * @since 3.0.6
 	 */
 	public static String encodeUrlSafe(CharSequence source, Charset charset) {
-		return encodeUrlSafe(StrUtil.bytes(source, charset));
+		return encodeUrlSafe(StringUtil.bytes(source, charset));
 	}
 
 	/**
@@ -112,7 +112,7 @@ public class Base64Encoder {
 	 * @return 被加密后的字符串
 	 */
 	public static String encode(byte[] source) {
-		return StrUtil.str(encode(source, false), DEFAULT_CHARSET);
+		return StringUtil.str(encode(source, false), DEFAULT_CHARSET);
 	}
 
 	/**
@@ -123,7 +123,7 @@ public class Base64Encoder {
 	 * @since 3.0.6
 	 */
 	public static String encodeUrlSafe(byte[] source) {
-		return StrUtil.str(encodeUrlSafe(source, false), DEFAULT_CHARSET);
+		return StringUtil.str(encodeUrlSafe(source, false), DEFAULT_CHARSET);
 	}
 
 	/**

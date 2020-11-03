@@ -2,12 +2,12 @@ package com.tools.core.io.resource;
 
 import com.tools.core.exceptions.ExceptionUtil;
 import com.tools.core.io.IORuntimeException;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * 资源文件或资源不存在异常
  *
- * @author xiaoleilu
+ * @author fruit
  * @since 4.0.2
  */
 public class NoResourceException extends IORuntimeException {
@@ -22,7 +22,7 @@ public class NoResourceException extends IORuntimeException {
 	}
 
 	public NoResourceException(String messageTemplate, Object... params) {
-		super(StrUtil.format(messageTemplate, params));
+		super(StringUtil.format(messageTemplate, params));
 	}
 
 	public NoResourceException(String message, Throwable throwable) {
@@ -30,7 +30,7 @@ public class NoResourceException extends IORuntimeException {
 	}
 
 	public NoResourceException(Throwable throwable, String messageTemplate, Object... params) {
-		super(StrUtil.format(messageTemplate, params), throwable);
+		super(StringUtil.format(messageTemplate, params), throwable);
 	}
 
 	/**

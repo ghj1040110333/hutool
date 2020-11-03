@@ -3,7 +3,7 @@ package com.tools.crypto.symmetric;
 import com.tools.core.codec.Base64;
 import com.tools.core.util.CharsetUtil;
 import com.tools.core.util.HexUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.crypto.CryptoException;
 import com.tools.crypto.SecureUtil;
 
@@ -50,7 +50,7 @@ public class RC4 implements Serializable {
 	 * @throws CryptoException key长度小于5或者大于255抛出此异常
 	 */
 	public byte[] encrypt(String message, Charset charset) throws CryptoException {
-		return crypt(StrUtil.bytes(message, charset));
+		return crypt(StringUtil.bytes(message, charset));
 	}
 
 	/**
@@ -142,7 +142,7 @@ public class RC4 implements Serializable {
 	 * @throws CryptoException key长度小于5或者大于255抛出此异常
 	 */
 	public String decrypt(byte[] message, Charset charset) throws CryptoException {
-		return StrUtil.str(crypt(message), charset);
+		return StringUtil.str(crypt(message), charset);
 	}
 
 	/**
@@ -176,7 +176,7 @@ public class RC4 implements Serializable {
 	 * @since 5.4.4
 	 */
 	public String decrypt(String message, Charset charset) {
-		return StrUtil.str(decrypt(message), charset);
+		return StringUtil.str(decrypt(message), charset);
 	}
 
 
@@ -223,7 +223,7 @@ public class RC4 implements Serializable {
 		final WriteLock writeLock = this.lock.writeLock();
 		writeLock.lock();
 		try {
-			this.sbox = initSBox(StrUtil.utf8Bytes(key));
+			this.sbox = initSBox(StringUtil.utf8Bytes(key));
 		} finally {
 			writeLock.unlock();
 		}

@@ -4,7 +4,7 @@ import org.apdplat.word.segmentation.Segmentation;
 import org.apdplat.word.segmentation.SegmentationAlgorithm;
 import org.apdplat.word.segmentation.SegmentationFactory;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.extra.tokenizer.Result;
 import com.tools.extra.tokenizer.TokenizerEngine;
 
@@ -46,7 +46,7 @@ public class WordEngine implements TokenizerEngine {
 
 	@Override
 	public Result parse(CharSequence text) {
-		return new WordResult(this.segmentation.seg(StrUtil.str(text)));
+		return new WordResult(this.segmentation.seg(StringUtil.str(text)));
 	}
 
 }

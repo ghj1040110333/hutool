@@ -61,7 +61,7 @@ public class PhoneUtil {
 	 * @since 5.3.11
 	 */
 	public static CharSequence hideBefore(CharSequence phone) {
-		return StrUtil.hide(phone, 0, 7);
+		return StringUtil.hide(phone, 0, 7);
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class PhoneUtil {
 	 * @since 5.3.11
 	 */
 	public static CharSequence hideBetween(CharSequence phone) {
-		return StrUtil.hide(phone, 3, 7);
+		return StringUtil.hide(phone, 3, 7);
 	}
 
 	/**
@@ -83,7 +83,7 @@ public class PhoneUtil {
 	 * @since 5.3.11
 	 */
 	public static CharSequence hideAfter(CharSequence phone) {
-		return StrUtil.hide(phone, 7, 11);
+		return StringUtil.hide(phone, 7, 11);
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class PhoneUtil {
 	 * @since 5.3.11
 	 */
 	public static CharSequence subBefore(CharSequence phone) {
-		return StrUtil.sub(phone, 0, 3);
+		return StringUtil.sub(phone, 0, 3);
 	}
 
 	/**
@@ -105,7 +105,7 @@ public class PhoneUtil {
 	 * @since 5.3.11
 	 */
 	public static CharSequence subBetween(CharSequence phone) {
-		return StrUtil.sub(phone, 3, 7);
+		return StringUtil.sub(phone, 3, 7);
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class PhoneUtil {
 	 * @since 5.3.11
 	 */
 	public static CharSequence subAfter(CharSequence phone) {
-		return StrUtil.sub(phone, 7, 11);
+		return StringUtil.sub(phone, 7, 11);
 	}
 
 }

@@ -1,7 +1,7 @@
 package com.tools.log;
 
 import com.tools.core.exceptions.ExceptionUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.log.level.Level;
 
 import java.io.Serializable;
@@ -32,7 +32,7 @@ public abstract class AbstractLog implements Log, Serializable{
 			case ERROR:
 				return isErrorEnabled();
 			default:
-				throw new Error(StrUtil.format("Can not identify level: {}", level));
+				throw new Error(StringUtil.format("Can not identify level: {}", level));
 		}
 	}
 

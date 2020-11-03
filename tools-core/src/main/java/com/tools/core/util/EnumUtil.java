@@ -8,7 +8,6 @@ import java.util.Map;
 
 import com.tools.core.lang.Assert;
 import com.tools.core.map.MapUtil;
-import com.tools.core.util.ReflectUtil;
 
 /**
  * 枚举工具类
@@ -103,7 +102,7 @@ public class EnumUtil {
 	 * @since 4.5.18
 	 */
 	public static <E extends Enum<E>> E fromStringQuietly(Class<E> enumClass, String value) {
-		if (null == enumClass || StrUtil.isBlank(value)) {
+		if (null == enumClass || StringUtil.isBlank(value)) {
 			return null;
 		}
 
@@ -280,7 +279,7 @@ public class EnumUtil {
 	 * @return 是非匹配
 	 */
 	public static boolean equalsIgnoreCase(final Enum<?> e, String val) {
-		return StrUtil.equalsIgnoreCase(toString(e), val);
+		return StringUtil.equalsIgnoreCase(toString(e), val);
 	}
 
 	/**
@@ -291,6 +290,6 @@ public class EnumUtil {
 	 * @return 是非匹配
 	 */
 	public static boolean equals(final Enum<?> e, String val) {
-		return StrUtil.equals(toString(e), val);
+		return StringUtil.equals(toString(e), val);
 	}
 }

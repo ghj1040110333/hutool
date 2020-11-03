@@ -1,6 +1,6 @@
 package com.tools.http;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.nio.charset.Charset;
 
@@ -94,7 +94,7 @@ public enum ContentType {
 	 * @return 是否为application/x-www-form-urlencoded
 	 */
 	public static boolean isFormUrlEncode(String contentType) {
-		return StrUtil.startWithIgnoreCase(contentType, FORM_URLENCODED.toString());
+		return StringUtil.startWithIgnoreCase(contentType, FORM_URLENCODED.toString());
 	}
 
 	/**
@@ -110,7 +110,7 @@ public enum ContentType {
 	 */
 	public static ContentType get(String body) {
 		ContentType contentType = null;
-		if (StrUtil.isNotBlank(body)) {
+		if (StringUtil.isNotBlank(body)) {
 			char firstChar = body.charAt(0);
 			switch (firstChar) {
 				case '{':
@@ -139,6 +139,6 @@ public enum ContentType {
 	 * @since 4.5.4
 	 */
 	public static String build(String contentType, Charset charset) {
-		return StrUtil.format("{};charset={}", contentType, charset.name());
+		return StringUtil.format("{};charset={}", contentType, charset.name());
 	}
 }

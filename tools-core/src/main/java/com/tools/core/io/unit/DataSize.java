@@ -1,7 +1,7 @@
 package com.tools.core.io.unit;
 
 import com.tools.core.lang.Assert;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.math.BigDecimal;
 import java.util.regex.Matcher;
@@ -203,7 +203,7 @@ public final class DataSize implements Comparable<DataSize> {
 	 */
 	private static DataUnit determineDataUnit(String suffix, DataUnit defaultUnit) {
 		DataUnit defaultUnitToUse = (defaultUnit != null ? defaultUnit : DataUnit.BYTES);
-		return (StrUtil.isNotEmpty(suffix) ? DataUnit.fromSuffix(suffix) : defaultUnitToUse);
+		return (StringUtil.isNotEmpty(suffix) ? DataUnit.fromSuffix(suffix) : defaultUnitToUse);
 	}
 
 	/**

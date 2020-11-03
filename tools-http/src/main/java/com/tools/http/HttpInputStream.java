@@ -1,6 +1,6 @@
 package com.tools.http;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
@@ -87,7 +87,7 @@ public class HttpInputStream extends InputStream {
 
 		// 在一些情况下，返回的流为null，此时提供状态码说明
 		if (null == this.in) {
-			this.in = new ByteArrayInputStream(StrUtil.format("Error request, response status: {}", response.status).getBytes());
+			this.in = new ByteArrayInputStream(StringUtil.format("Error request, response status: {}", response.status).getBytes());
 			return;
 		}
 

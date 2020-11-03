@@ -78,7 +78,7 @@ public class BooleanUtil {
 	 * @return boolean值
 	 */
 	public static boolean toBoolean(String valueStr) {
-		if (StrUtil.isNotBlank(valueStr)) {
+		if (StringUtil.isNotBlank(valueStr)) {
 			valueStr = valueStr.trim().toLowerCase();
 			return TRUE_SET.contains(valueStr);
 		}

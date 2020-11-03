@@ -10,8 +10,6 @@ import com.tools.core.text.StrBuilder;
 import com.tools.core.text.StrFormatter;
 import com.tools.core.text.StrSpliter;
 import com.tools.core.text.TextSimilarity;
-import com.tools.core.util.CharUtil;
-import com.tools.core.util.CharsetUtil;
 
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -30,9 +28,9 @@ import java.util.regex.Pattern;
 /**
  * 字符串工具类
  *
- * @author xiaoleilu
+ * @author fruit
  */
-public class StrUtil {
+public class StringUtil {
 
 	public static final int INDEX_NOT_FOUND = -1;
 
@@ -323,7 +321,7 @@ public class StrUtil {
 	 *
 	 * @param obj 对象
 	 * @return 如果为字符串是否为空串
-	 * @see StrUtil#isBlank(CharSequence)
+	 * @see StringUtil#isBlank(CharSequence)
 	 * @since 3.3.0
 	 */
 	public static boolean isBlankIfStr(Object obj) {
@@ -357,7 +355,7 @@ public class StrUtil {
 	 *
 	 * @param str 被检测的字符串
 	 * @return 是否为非空
-	 * @see StrUtil#isBlank(CharSequence)
+	 * @see StringUtil#isBlank(CharSequence)
 	 */
 	public static boolean isNotBlank(CharSequence str) {
 		return false == isBlank(str);
@@ -515,7 +513,7 @@ public class StrUtil {
 	 *
 	 * @param str 被检测的字符串
 	 * @return 是否为非空
-	 * @see StrUtil#isEmpty(CharSequence)
+	 * @see StringUtil#isEmpty(CharSequence)
 	 */
 	public static boolean isNotEmpty(CharSequence str) {
 		return false == isEmpty(str);
@@ -710,7 +708,7 @@ public class StrUtil {
 	}
 
 	/**
-	 * 是否存都不为{@code null}或空对象或空白符的对象，通过{@link StrUtil#hasBlank(CharSequence...)} 判断元素
+	 * 是否存都不为{@code null}或空对象或空白符的对象，通过{@link StringUtil#hasBlank(CharSequence...)} 判断元素
 	 *
 	 * @param args 被检查的对象,一个或者多个
 	 * @return 是否都不为空
@@ -2426,7 +2424,7 @@ public class StrUtil {
 	 * @return 是否包围，空串不包围
 	 */
 	public static boolean isSurround(CharSequence str, CharSequence prefix, CharSequence suffix) {
-		if (StrUtil.isBlank(str)) {
+		if (StringUtil.isBlank(str)) {
 			return false;
 		}
 		if (str.length() < (prefix.length() + suffix.length())) {
@@ -2446,7 +2444,7 @@ public class StrUtil {
 	 * @return 是否包围，空串不包围
 	 */
 	public static boolean isSurround(CharSequence str, char prefix, char suffix) {
-		if (StrUtil.isBlank(str)) {
+		if (StringUtil.isBlank(str)) {
 			return false;
 		}
 		if (str.length() < 2) {
@@ -2524,7 +2522,7 @@ public class StrUtil {
 			return null;
 		}
 		if (padLen <= 0) {
-			return StrUtil.EMPTY;
+			return StringUtil.EMPTY;
 		}
 		final int strLen = str.length();
 		if (strLen == padLen) {
@@ -4240,7 +4238,7 @@ public class StrUtil {
 			return str;
 		}
 
-		String filledStr = StrUtil.repeat(filledChar, len - strLen);
+		String filledStr = StringUtil.repeat(filledChar, len - strLen);
 		return isPre ? filledStr.concat(str) : str.concat(filledStr);
 	}
 
@@ -4274,7 +4272,7 @@ public class StrUtil {
 	 * @since 3.2.3
 	 */
 	public static boolean isAllCharMatch(CharSequence value, Matcher<Character> matcher) {
-		if (StrUtil.isBlank(value)) {
+		if (StringUtil.isBlank(value)) {
 			return false;
 		}
 		int len = value.length();
@@ -4778,7 +4776,7 @@ public class StrUtil {
 	 */
 	@SuppressWarnings("unchecked")
 	public <T extends CharSequence> T firstNonEmpty(T... strs) {
-		return ArrayUtil.firstMatch(StrUtil::isNotEmpty, strs);
+		return ArrayUtil.firstMatch(StringUtil::isNotEmpty, strs);
 	}
 
 	/**
@@ -4792,6 +4790,6 @@ public class StrUtil {
 	 */
 	@SuppressWarnings("unchecked")
 	public <T extends CharSequence> T firstNonBlank(T... strs) {
-		return ArrayUtil.firstMatch(StrUtil::isNotBlank, strs);
+		return ArrayUtil.firstMatch(StringUtil::isNotBlank, strs);
 	}
 }

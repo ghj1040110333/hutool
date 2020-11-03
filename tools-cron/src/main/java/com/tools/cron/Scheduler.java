@@ -5,7 +5,7 @@ import com.tools.core.thread.ExecutorBuilder;
 import com.tools.core.thread.ThreadFactoryBuilder;
 import com.tools.core.util.CharUtil;
 import com.tools.core.util.IdUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.cron.listener.TaskListener;
 import com.tools.cron.listener.TaskListenerManager;
 import com.tools.cron.pattern.CronPattern;
@@ -188,7 +188,7 @@ public class Scheduler implements Serializable {
 				group = groupedEntry.getKey();
 				for (Entry<String, String> entry : groupedEntry.getValue().entrySet()) {
 					String jobClass = entry.getKey();
-					if (StrUtil.isNotBlank(group)) {
+					if (StringUtil.isNotBlank(group)) {
 						jobClass = group + CharUtil.DOT + jobClass;
 					}
 					final String pattern = entry.getValue();

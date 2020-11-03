@@ -5,8 +5,7 @@ import java.util.Date;
 
 import com.tools.core.convert.AbstractConverter;
 import com.tools.core.date.DateUtil;
-import com.tools.core.util.StrUtil;
-import com.tools.core.convert.AbstractConverter;
+import com.tools.core.util.StringUtil;
 
 /**
  * 日期转换器
@@ -52,7 +51,7 @@ public class CalendarConverter extends AbstractConverter<Calendar> {
 		}
 
 		final String valueStr = convertToStr(value);
-		return DateUtil.calendar(StrUtil.isBlank(format) ? DateUtil.parse(valueStr) : DateUtil.parse(valueStr, format));
+		return DateUtil.calendar(StringUtil.isBlank(format) ? DateUtil.parse(valueStr) : DateUtil.parse(valueStr, format));
 	}
 
 }

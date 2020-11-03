@@ -2,7 +2,7 @@ package com.tools.db.ds.simple;
 
 import com.tools.core.collection.CollectionUtil;
 import com.tools.core.map.MapUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.db.DbRuntimeException;
 import com.tools.db.dialect.DriverUtil;
 import com.tools.db.ds.DSFactory;
@@ -143,7 +143,7 @@ public class SimpleDataSource extends AbstractDataSource {
 	 * @since 3.1.2
 	 */
 	public void init(String url, String user, String pass, String driver) {
-		this.driver = StrUtil.isNotBlank(driver) ? driver : DriverUtil.identifyDriver(url);
+		this.driver = StringUtil.isNotBlank(driver) ? driver : DriverUtil.identifyDriver(url);
 		try {
 			Class.forName(this.driver);
 		} catch (ClassNotFoundException e) {

@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.extra.tokenizer.Result;
 import com.tools.extra.tokenizer.TokenizerEngine;
 import com.tools.extra.tokenizer.TokenizerException;
@@ -34,7 +34,7 @@ public class AnalysisEngine implements TokenizerEngine {
 	public Result parse(CharSequence text) {
 		TokenStream stream;
 		try {
-			stream = analyzer.tokenStream("text", StrUtil.str(text));
+			stream = analyzer.tokenStream("text", StringUtil.str(text));
 			stream.reset();
 		} catch (IOException e) {
 			throw new TokenizerException(e);

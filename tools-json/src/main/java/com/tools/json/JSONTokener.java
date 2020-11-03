@@ -1,6 +1,6 @@
 package com.tools.json;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -83,7 +83,7 @@ public class JSONTokener {
 	 * @param config JSON配置
 	 */
 	public JSONTokener(CharSequence s, JSONConfig config) {
-		this(new StringReader(StrUtil.str(s)), config);
+		this(new StringReader(StringUtil.str(s)), config);
 	}
 	// ------------------------------------------------------------------------------------ Constructor end
 

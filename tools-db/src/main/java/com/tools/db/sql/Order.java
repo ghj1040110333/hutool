@@ -2,7 +2,7 @@ package com.tools.db.sql;
 
 import java.io.Serializable;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * SQL排序对象
@@ -73,6 +73,6 @@ public class Order implements Serializable{
 
 	@Override
 	public String toString() {
-		return StrUtil.builder().append(this.field).append(StrUtil.SPACE).append(null == direction ? StrUtil.EMPTY : direction).toString();
+		return StringUtil.builder().append(this.field).append(StringUtil.SPACE).append(null == direction ? StringUtil.EMPTY : direction).toString();
 	}
 }

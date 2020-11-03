@@ -1,7 +1,7 @@
 package com.tools.core.io.checksum.crc16;
 
 import com.tools.core.util.HexUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.io.Serializable;
 import java.util.zip.Checksum;
@@ -47,7 +47,7 @@ public abstract class CRC16Checksum implements Checksum, Serializable {
 	public String getHexValue(boolean isPadding){
 		String hex = HexUtil.toHex(getValue());
 		if(isPadding){
-			hex = StrUtil.padAfter(hex, 4, '0');
+			hex = StringUtil.padAfter(hex, 4, '0');
 		}
 
 		return hex;

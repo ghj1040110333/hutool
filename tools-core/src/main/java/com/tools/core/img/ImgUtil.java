@@ -11,7 +11,7 @@ import com.tools.core.util.ArrayUtil;
 import com.tools.core.util.NumberUtil;
 import com.tools.core.util.ObjectUtil;
 import com.tools.core.util.RandomUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.core.util.URLUtil;
 
 import javax.imageio.IIOImage;
@@ -506,7 +506,7 @@ public class ImgUtil {
 
 		final String srcExtName = FileUtil.extName(srcImageFile);
 		final String destExtName = FileUtil.extName(destImageFile);
-		if (StrUtil.equalsIgnoreCase(srcExtName, destExtName)) {
+		if (StringUtil.equalsIgnoreCase(srcExtName, destExtName)) {
 			// 扩展名相同直接复制文件
 			FileUtil.copy(srcImageFile, destImageFile, true);
 		}
@@ -514,7 +514,7 @@ public class ImgUtil {
 		ImageOutputStream imageOutputStream = null;
 		try {
 			imageOutputStream = getImageOutputStream(destImageFile);
-			convert(read(srcImageFile), destExtName, imageOutputStream, StrUtil.equalsIgnoreCase(IMAGE_TYPE_PNG, srcExtName));
+			convert(read(srcImageFile), destExtName, imageOutputStream, StringUtil.equalsIgnoreCase(IMAGE_TYPE_PNG, srcExtName));
 		} finally {
 			IoUtil.close(imageOutputStream);
 		}
@@ -1511,7 +1511,7 @@ public class ImgUtil {
 	 * @since 4.3.2
 	 */
 	public static boolean write(Image image, String imageType, ImageOutputStream destImageStream, float quality) throws IORuntimeException {
-		if (StrUtil.isBlank(imageType)) {
+		if (StringUtil.isBlank(imageType)) {
 			imageType = IMAGE_TYPE_JPG;
 		}
 
@@ -1848,7 +1848,7 @@ public class ImgUtil {
 	 * @since 4.1.14
 	 */
 	public static Color hexToColor(String hex) {
-		return getColor(Integer.parseInt(StrUtil.removePrefix(hex, "#"), 16));
+		return getColor(Integer.parseInt(StringUtil.removePrefix(hex, "#"), 16));
 	}
 
 	/**
@@ -1878,7 +1878,7 @@ public class ImgUtil {
 	 * @since 4.1.14
 	 */
 	public static Color getColor(String colorName) {
-		if (StrUtil.isBlank(colorName)) {
+		if (StringUtil.isBlank(colorName)) {
 			return null;
 		}
 		colorName = colorName.toUpperCase();
@@ -1915,14 +1915,14 @@ public class ImgUtil {
 		} else if ("LIGHTGOLD".equals(colorName)) {
 			// 亮金色
 			return hexToColor("#ac9c85");
-		} else if (StrUtil.startWith(colorName, '#')) {
+		} else if (StringUtil.startWith(colorName, '#')) {
 			return hexToColor(colorName);
-		} else if (StrUtil.startWith(colorName, '$')) {
+		} else if (StringUtil.startWith(colorName, '$')) {
 			// 由于#在URL传输中无法传输，因此用$代替#
 			return hexToColor("#" + colorName.substring(1));
 		} else {
 			// rgb值
-			final List<String> rgb = StrUtil.split(colorName, ',');
+			final List<String> rgb = StringUtil.split(colorName, ',');
 			if (3 == rgb.size()) {
 				final Integer r = Convert.toInt(rgb.get(0));
 				final Integer g = Convert.toInt(rgb.get(1));

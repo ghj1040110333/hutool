@@ -1,6 +1,6 @@
 package com.tools.extra.pinyin;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.extra.pinyin.engine.PinyinFactory;
 
 /**
@@ -38,7 +38,7 @@ public class PinyinUtil {
 	 * @return 汉字返回拼音，非汉字原样返回
 	 */
 	public static String getPinyin(String str) {
-		return getPinyin(str, StrUtil.SPACE);
+		return getPinyin(str, StringUtil.SPACE);
 	}
 
 	/**

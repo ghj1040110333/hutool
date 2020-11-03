@@ -8,7 +8,7 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 import org.thymeleaf.templateresolver.StringTemplateResolver;
 
 import com.tools.core.io.FileUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.extra.template.Template;
 import com.tools.extra.template.TemplateConfig;
 import com.tools.extra.template.TemplateEngine;
@@ -92,21 +92,21 @@ public class ThymeleafEngine implements TemplateEngine {
 			final ClassLoaderTemplateResolver classLoaderResolver = new ClassLoaderTemplateResolver();
 			classLoaderResolver.setCharacterEncoding(config.getCharsetStr());
 			classLoaderResolver.setTemplateMode(TemplateMode.HTML);
-			classLoaderResolver.setPrefix(StrUtil.addSuffixIfNot(config.getPath(), "/"));
+			classLoaderResolver.setPrefix(StringUtil.addSuffixIfNot(config.getPath(), "/"));
 			resolver = classLoaderResolver;
 			break;
 		case FILE:
 			final FileTemplateResolver fileResolver = new FileTemplateResolver();
 			fileResolver.setCharacterEncoding(config.getCharsetStr());
 			fileResolver.setTemplateMode(TemplateMode.HTML);
-			fileResolver.setPrefix(StrUtil.addSuffixIfNot(config.getPath(), "/"));
+			fileResolver.setPrefix(StringUtil.addSuffixIfNot(config.getPath(), "/"));
 			resolver = fileResolver;
 			break;
 		case WEB_ROOT:
 			final FileTemplateResolver webRootResolver = new FileTemplateResolver();
 			webRootResolver.setCharacterEncoding(config.getCharsetStr());
 			webRootResolver.setTemplateMode(TemplateMode.HTML);
-			webRootResolver.setPrefix(StrUtil.addSuffixIfNot(FileUtil.getAbsolutePath(FileUtil.file(FileUtil.getWebRoot(), config.getPath())), "/"));
+			webRootResolver.setPrefix(StringUtil.addSuffixIfNot(FileUtil.getAbsolutePath(FileUtil.file(FileUtil.getWebRoot(), config.getPath())), "/"));
 			resolver = webRootResolver;
 			break;
 		case STRING:

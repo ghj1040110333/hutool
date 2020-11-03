@@ -3,7 +3,7 @@ package com.tools.db.dialect.impl;
 import com.tools.core.collection.ListUtil;
 import com.tools.core.lang.Assert;
 import com.tools.core.util.ArrayUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.db.DbRuntimeException;
 import com.tools.db.Entity;
 import com.tools.db.Page;
@@ -98,7 +98,7 @@ public class AnsiSqlDialect implements Dialect {
 	@Override
 	public PreparedStatement psForPage(Connection conn, Query query) throws SQLException {
 		// 验证
-		if (query == null || StrUtil.hasBlank(query.getTableNames())) {
+		if (query == null || StringUtil.hasBlank(query.getTableNames())) {
 			throw new DbRuntimeException("Table name must not be null !");
 		}
 

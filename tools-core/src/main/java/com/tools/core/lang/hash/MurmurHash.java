@@ -1,7 +1,7 @@
 package com.tools.core.lang.hash;
 
 import com.tools.core.util.CharsetUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.io.Serializable;
 import java.nio.charset.Charset;
@@ -49,7 +49,7 @@ public class MurmurHash implements Serializable{
 	 * @return Hash值
 	 */
 	public static int hash32(CharSequence data) {
-		return hash32(StrUtil.bytes(data, DEFAULT_CHARSET));
+		return hash32(StringUtil.bytes(data, DEFAULT_CHARSET));
 	}
 
 	/**
@@ -126,7 +126,7 @@ public class MurmurHash implements Serializable{
 	 * @return Hash值
 	 */
 	public static long hash64(CharSequence data) {
-		return hash64(StrUtil.bytes(data, DEFAULT_CHARSET));
+		return hash64(StringUtil.bytes(data, DEFAULT_CHARSET));
 	}
 
 	/**
@@ -212,7 +212,7 @@ public class MurmurHash implements Serializable{
 	 * @return Hash值 (2 longs)
 	 */
 	public static long[] hash128(CharSequence data) {
-		return hash128(StrUtil.bytes(data, DEFAULT_CHARSET));
+		return hash128(StringUtil.bytes(data, DEFAULT_CHARSET));
 	}
 
 	/**

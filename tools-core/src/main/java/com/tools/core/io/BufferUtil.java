@@ -4,7 +4,7 @@ import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 
 import com.tools.core.util.CharsetUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * {@link ByteBuffer} 工具类<br>
@@ -87,7 +87,7 @@ public class BufferUtil {
 	 * @since 4.5.0
 	 */
 	public static String readStr(ByteBuffer buffer, Charset charset) {
-		return StrUtil.str(readBytes(buffer), charset);
+		return StringUtil.str(readBytes(buffer), charset);
 	}
 
 	/**
@@ -166,9 +166,9 @@ public class BufferUtil {
 		while (buffer.hasRemaining()) {
 			b = buffer.get();
 			charIndex++;
-			if (b == StrUtil.C_CR) {
+			if (b == StringUtil.C_CR) {
 				canEnd = true;
-			} else if (b == StrUtil.C_LF) {
+			} else if (b == StringUtil.C_LF) {
 				return canEnd ? charIndex - 2 : charIndex - 1;
 			} else {
 				// 只有\r无法确认换行
@@ -178,7 +178,7 @@ public class BufferUtil {
 			if (charIndex - primitivePosition > maxLength) {
 				// 查找到尽头，未找到，还原位置
 				buffer.position(primitivePosition);
-				throw new IndexOutOfBoundsException(StrUtil.format("Position is out of maxLength: {}", maxLength));
+				throw new IndexOutOfBoundsException(StringUtil.format("Position is out of maxLength: {}", maxLength));
 			}
 		}
 
@@ -207,9 +207,9 @@ public class BufferUtil {
 
 		if (endPosition > startPosition) {
 			byte[] bs = readBytes(buffer, startPosition, endPosition);
-			return StrUtil.str(bs, charset);
+			return StringUtil.str(bs, charset);
 		} else if (endPosition == startPosition) {
-			return StrUtil.EMPTY;
+			return StringUtil.EMPTY;
 		}
 
 		return null;
@@ -235,7 +235,7 @@ public class BufferUtil {
 	 * @since 4.5.0
 	 */
 	public static ByteBuffer create(CharSequence data, Charset charset) {
-		return create(StrUtil.bytes(data, charset));
+		return create(StringUtil.bytes(data, charset));
 	}
 
 	/**
@@ -246,6 +246,6 @@ public class BufferUtil {
 	 * @since 4.5.0
 	 */
 	public static ByteBuffer createUtf8(CharSequence data) {
-		return create(StrUtil.utf8Bytes(data));
+		return create(StringUtil.utf8Bytes(data));
 	}
 }

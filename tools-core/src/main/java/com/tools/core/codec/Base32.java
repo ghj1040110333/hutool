@@ -3,7 +3,7 @@ package com.tools.core.codec;
 import java.nio.charset.Charset;
 
 import com.tools.core.util.CharsetUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * Base32 - encodes and decodes RFC3548 Base32 (see http://www.faqs.org/rfcs/rfc3548.html )<br>
@@ -92,7 +92,7 @@ public class Base32 {
 	 * @return 被加密后的字符串
 	 */
 	public static String encode(String source, String charset) {
-		return encode(StrUtil.bytes(source, charset));
+		return encode(StringUtil.bytes(source, charset));
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class Base32 {
 	 * @return 被加密后的字符串
 	 */
 	public static String encode(String source, Charset charset) {
-		return encode(StrUtil.bytes(source, charset));
+		return encode(StringUtil.bytes(source, charset));
 	}
 
 	//----------------------------------------------------------------------------------------- decode
@@ -174,7 +174,7 @@ public class Base32 {
 	 * @return 被加密后的字符串
 	 */
 	public static String decodeStr(String source, String charset) {
-		return StrUtil.str(decode(source), charset);
+		return StringUtil.str(decode(source), charset);
 	}
 
 	/**
@@ -185,6 +185,6 @@ public class Base32 {
 	 * @return 被加密后的字符串
 	 */
 	public static String decodeStr(String source, Charset charset) {
-		return StrUtil.str(decode(source), charset);
+		return StringUtil.str(decode(source), charset);
 	}
 }

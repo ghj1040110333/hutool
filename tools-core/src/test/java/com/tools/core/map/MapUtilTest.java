@@ -3,7 +3,7 @@ package com.tools.core.map;
 import com.tools.core.convert.Convert;
 import com.tools.core.lang.Editor;
 import com.tools.core.lang.Filter;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -93,13 +93,13 @@ public class MapUtilTest {
 				.put("key3", "value3")
 				.put("key2", "value2").build();
 
-		String join1 = MapUtil.sortJoin(build, StrUtil.EMPTY, StrUtil.EMPTY, false);
+		String join1 = MapUtil.sortJoin(build, StringUtil.EMPTY, StringUtil.EMPTY, false);
 		Assert.assertEquals("key1value1key2value2key3value3", join1);
 
-		String join2 = MapUtil.sortJoin(build, StrUtil.EMPTY, StrUtil.EMPTY, false, "123");
+		String join2 = MapUtil.sortJoin(build, StringUtil.EMPTY, StringUtil.EMPTY, false, "123");
 		Assert.assertEquals("key1value1key2value2key3value3123", join2);
 
-		String join3 = MapUtil.sortJoin(build, StrUtil.EMPTY, StrUtil.EMPTY, false, "123", "abc");
+		String join3 = MapUtil.sortJoin(build, StringUtil.EMPTY, StringUtil.EMPTY, false, "123", "abc");
 		Assert.assertEquals("key1value1key2value2key3value3123abc", join3);
 	}
 }

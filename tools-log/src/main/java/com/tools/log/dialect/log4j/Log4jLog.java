@@ -4,7 +4,7 @@ import com.tools.log.AbstractLog;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * <a href="http://logging.apache.org/log4j/1.2/index.html">Apache Log4J</a> log.<br>
@@ -23,7 +23,7 @@ public class Log4jLog extends AbstractLog {
 	}
 
 	public Log4jLog(Class<?> clazz) {
-		this((null == clazz) ? StrUtil.NULL : clazz.getName());
+		this((null == clazz) ? StringUtil.NULL : clazz.getName());
 	}
 
 	public Log4jLog(String name) {
@@ -110,11 +110,11 @@ public class Log4jLog extends AbstractLog {
 				log4jLevel = Level.ERROR;
 				break;
 			default:
-				throw new Error(StrUtil.format("Can not identify level: {}", level));
+				throw new Error(StringUtil.format("Can not identify level: {}", level));
 		}
 
 		if(logger.isEnabledFor(log4jLevel)) {
-			logger.log(fqcn, log4jLevel, StrUtil.format(format, arguments), t);
+			logger.log(fqcn, log4jLevel, StringUtil.format(format, arguments), t);
 		}
 	}
 }

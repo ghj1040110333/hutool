@@ -1,10 +1,10 @@
 package com.tools.setting;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * 设置异常
- * @author xiaoleilu
+ * @author fruit
  */
 public class SettingRuntimeException extends RuntimeException{
 	private static final long serialVersionUID = 7941096116780378387L;
@@ -18,7 +18,7 @@ public class SettingRuntimeException extends RuntimeException{
 	}
 
 	public SettingRuntimeException(String messageTemplate, Object... params) {
-		super(StrUtil.format(messageTemplate, params));
+		super(StringUtil.format(messageTemplate, params));
 	}
 
 	public SettingRuntimeException(String message, Throwable throwable) {
@@ -26,6 +26,6 @@ public class SettingRuntimeException extends RuntimeException{
 	}
 
 	public SettingRuntimeException(Throwable throwable, String messageTemplate, Object... params) {
-		super(StrUtil.format(messageTemplate, params), throwable);
+		super(StringUtil.format(messageTemplate, params), throwable);
 	}
 }

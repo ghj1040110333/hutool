@@ -3,7 +3,7 @@ package com.tools.extra.ftp;
 import com.tools.core.collection.CollUtil;
 import com.tools.core.io.FileUtil;
 import com.tools.core.util.CharsetUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.io.Closeable;
 import java.io.File;
@@ -81,7 +81,7 @@ public abstract class AbstractFtp implements Closeable {
 	 */
 	public boolean exist(String path) {
 		final String fileName = FileUtil.getName(path);
-		final String dir = StrUtil.removeSuffix(path, fileName);
+		final String dir = StringUtil.removeSuffix(path, fileName);
 		final List<String> names = ls(dir);
 		return containsIgnoreCase(names, fileName);
 	}
@@ -116,15 +116,15 @@ public abstract class AbstractFtp implements Closeable {
 	 * @param dir 文件夹路径，绝对路径
 	 */
 	public void mkDirs(String dir) {
-		final String[] dirs = StrUtil.trim(dir).split("[\\\\/]+");
+		final String[] dirs = StringUtil.trim(dir).split("[\\\\/]+");
 
 		final String now = pwd();
-		if (dirs.length > 0 && StrUtil.isEmpty(dirs[0])) {
+		if (dirs.length > 0 && StringUtil.isEmpty(dirs[0])) {
 			//首位为空，表示以/开头
-			this.cd(StrUtil.SLASH);
+			this.cd(StringUtil.SLASH);
 		}
 		for (String s : dirs) {
-			if (StrUtil.isNotEmpty(s)) {
+			if (StringUtil.isNotEmpty(s)) {
 				if (false == cd(s)) {
 					//目录不存在时创建
 					mkdir(s);
@@ -176,7 +176,7 @@ public abstract class AbstractFtp implements Closeable {
 		if (CollUtil.isEmpty(names)) {
 			return false;
 		}
-		if (StrUtil.isEmpty(nameToFind)) {
+		if (StringUtil.isEmpty(nameToFind)) {
 			return false;
 		}
 		for (String name : names) {

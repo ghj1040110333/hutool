@@ -12,7 +12,7 @@ import javax.script.ScriptEngineFactory;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * 全功能引擎类，支持Compilable和Invocable
@@ -48,7 +48,7 @@ public class FullSupportScriptEngine implements ScriptEngine, Compilable, Invoca
 			engine = manager.getEngineByMimeType(nameOrExtOrMime);
 		}
 		if (null == engine) {
-			throw new NullPointerException(StrUtil.format("Script for [{}] not support !", nameOrExtOrMime));
+			throw new NullPointerException(StringUtil.format("Script for [{}] not support !", nameOrExtOrMime));
 		}
 		this.engine = engine;
 	}

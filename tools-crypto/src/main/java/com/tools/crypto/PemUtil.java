@@ -2,7 +2,7 @@ package com.tools.crypto;
 
 import com.tools.core.io.IORuntimeException;
 import com.tools.core.io.IoUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import org.bouncycastle.util.io.pem.PemObject;
 import org.bouncycastle.util.io.pem.PemObjectGenerator;
 import org.bouncycastle.util.io.pem.PemReader;
@@ -62,7 +62,7 @@ public class PemUtil {
 	public static Key readPemKey(InputStream keyStream) {
 		final PemObject object = readPemObject(keyStream);
 		final String type = object.getType();
-		if (StrUtil.isNotBlank(type)) {
+		if (StringUtil.isNotBlank(type)) {
 			if (type.endsWith("PRIVATE KEY")) {
 				return KeyUtil.generateRSAPrivateKey(object.getContent());
 			} else if (type.endsWith("PUBLIC KEY")) {

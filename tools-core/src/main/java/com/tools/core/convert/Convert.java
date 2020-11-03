@@ -9,8 +9,7 @@ import com.tools.core.text.UnicodeUtil;
 import com.tools.core.util.CharsetUtil;
 import com.tools.core.util.ClassUtil;
 import com.tools.core.util.HexUtil;
-import com.tools.core.util.StrUtil;
-import com.tools.core.convert.impl.MapConverter;
+import com.tools.core.util.StringUtil;
 
 import java.lang.reflect.Type;
 import java.math.BigDecimal;
@@ -30,7 +29,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 类型转换器
  *
- * @author xiaoleilu
+ * @author fruit
  *
  */
 public class Convert {
@@ -790,7 +789,7 @@ public class Convert {
 	 * @return 替换后的字符
 	 */
 	public static String toDBC(String text, Set<Character> notConvertSet) {
-		if(StrUtil.isBlank(text)) {
+		if(StringUtil.isBlank(text)) {
 			return text;
 		}
 		final char[] c = text.toCharArray();
@@ -906,7 +905,7 @@ public class Convert {
 	 * @see CharsetUtil#convert(String, String, String)
 	 */
 	public static String convertCharset(String str, String sourceCharset, String destCharset) {
-		if (StrUtil.hasBlank(str, sourceCharset, destCharset)) {
+		if (StringUtil.hasBlank(str, sourceCharset, destCharset)) {
 			return str;
 		}
 

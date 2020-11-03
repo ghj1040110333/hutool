@@ -1,7 +1,7 @@
 package com.tools.db.meta;
 
 import com.tools.core.util.BooleanUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.db.DbRuntimeException;
 
 import java.io.Serializable;
@@ -101,7 +101,7 @@ public class Column implements Serializable, Cloneable {
 		try {
 			init(tableName, columnMetaRs);
 		} catch (SQLException e) {
-			throw new DbRuntimeException(StrUtil.format("Get table [{}] meta info error!", tableName));
+			throw new DbRuntimeException(StringUtil.format("Get table [{}] meta info error!", tableName));
 		}
 	}
 
@@ -116,7 +116,7 @@ public class Column implements Serializable, Cloneable {
 		try {
 			init(table, columnMetaRs);
 		} catch (SQLException e) {
-			throw new DbRuntimeException(StrUtil.format("Get table [{}] meta info error!", tableName));
+			throw new DbRuntimeException(StringUtil.format("Get table [{}] meta info error!", tableName));
 		}
 	}
 	// ----------------------------------------------------- Constructor end

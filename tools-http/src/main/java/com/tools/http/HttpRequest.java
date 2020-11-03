@@ -15,7 +15,7 @@ import com.tools.core.net.url.UrlBuilder;
 import com.tools.core.util.ArrayUtil;
 import com.tools.core.util.CharsetUtil;
 import com.tools.core.util.ObjectUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.http.body.MultipartBody;
 import com.tools.http.cookie.GlobalCookieManager;
 import com.tools.http.ssl.SSLSocketFactoryBuilder;
@@ -464,7 +464,7 @@ public class HttpRequest extends HttpBase<HttpRequest> {
 	 * @since 3.0.7
 	 */
 	public HttpRequest disableCookie() {
-		return cookie(StrUtil.EMPTY);
+		return cookie(StringUtil.EMPTY);
 	}
 
 	/**
@@ -487,7 +487,7 @@ public class HttpRequest extends HttpBase<HttpRequest> {
 	 * @return this
 	 */
 	public HttpRequest form(String name, Object value) {
-		if (StrUtil.isBlank(name) || ObjectUtil.isNull(value)) {
+		if (StringUtil.isBlank(name) || ObjectUtil.isNull(value)) {
 			return this; // 忽略非法的form表单项内容;
 		}
 
@@ -696,7 +696,7 @@ public class HttpRequest extends HttpBase<HttpRequest> {
 	 * @return this
 	 */
 	public HttpRequest body(String body, String contentType) {
-		byte[] bytes = StrUtil.bytes(body, this.charset);
+		byte[] bytes = StringUtil.bytes(body, this.charset);
 		body(bytes);
 		this.form = null; // 当使用body时，停止form的使用
 
@@ -716,7 +716,7 @@ public class HttpRequest extends HttpBase<HttpRequest> {
 		}
 
 		// 判断是否为rest请求
-		if (StrUtil.containsAnyIgnoreCase(contentType, "json", "xml")) {
+		if (StringUtil.containsAnyIgnoreCase(contentType, "json", "xml")) {
 			this.isRest = true;
 			contentLength(bytes.length);
 		}
@@ -1007,8 +1007,8 @@ public class HttpRequest extends HttpBase<HttpRequest> {
 
 	@Override
 	public String toString() {
-		StringBuilder sb = StrUtil.builder();
-		sb.append("Request Url: ").append(this.url).append(StrUtil.CRLF);
+		StringBuilder sb = StringUtil.builder();
+		sb.append("Request Url: ").append(this.url).append(StringUtil.CRLF);
 		sb.append(super.toString());
 		return sb.toString();
 	}
@@ -1059,7 +1059,7 @@ public class HttpRequest extends HttpBase<HttpRequest> {
 		if (Method.GET.equals(method) && false == this.isRest) {
 			// 优先使用body形式的参数，不存在使用form
 			if (ArrayUtil.isNotEmpty(this.bodyBytes)) {
-				this.url.getQuery().parse(StrUtil.str(this.bodyBytes, this.charset), this.charset);
+				this.url.getQuery().parse(StringUtil.str(this.bodyBytes, this.charset), this.charset);
 			} else {
 				this.url.getQuery().addAll(this.form);
 			}
@@ -1134,7 +1134,7 @@ public class HttpRequest extends HttpBase<HttpRequest> {
 	 * @throws IOException IO异常
 	 */
 	private void sendFormUrlEncoded() throws IOException {
-		if (StrUtil.isBlank(this.header(Header.CONTENT_TYPE))) {
+		if (StringUtil.isBlank(this.header(Header.CONTENT_TYPE))) {
 			// 如果未自定义Content-Type，使用默认的application/x-www-form-urlencoded
 			this.httpConnection.header(Header.CONTENT_TYPE, ContentType.FORM_URLENCODED.toString(this.charset), true);
 		}
@@ -1144,7 +1144,7 @@ public class HttpRequest extends HttpBase<HttpRequest> {
 		if(ArrayUtil.isNotEmpty(this.bodyBytes)){
 			content = this.bodyBytes;
 		} else{
-			content = StrUtil.bytes(getFormUrlEncoded(), this.charset);
+			content = StringUtil.bytes(getFormUrlEncoded(), this.charset);
 		}
 		IoUtil.write(this.httpConnection.getOutputStream(), true, content);
 	}
@@ -1210,7 +1210,7 @@ public class HttpRequest extends HttpBase<HttpRequest> {
 		}
 
 		final String contentType = header(Header.CONTENT_TYPE);
-		return StrUtil.isNotEmpty(contentType) &&
+		return StringUtil.isNotEmpty(contentType) &&
 				contentType.startsWith(ContentType.MULTIPART.getValue());
 	}
 

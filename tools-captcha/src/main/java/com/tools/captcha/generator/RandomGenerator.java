@@ -1,7 +1,7 @@
 package com.tools.captcha.generator;
 
 import com.tools.core.util.RandomUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * 随机字符验证码生成器<br>
@@ -39,8 +39,8 @@ public class RandomGenerator extends AbstractGenerator {
 
 	@Override
 	public boolean verify(String code, String userInputCode) {
-		if (StrUtil.isNotBlank(userInputCode)) {
-			return StrUtil.equalsIgnoreCase(code, userInputCode);
+		if (StringUtil.isNotBlank(userInputCode)) {
+			return StringUtil.equalsIgnoreCase(code, userInputCode);
 		}
 		return false;
 	}

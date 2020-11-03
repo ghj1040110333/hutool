@@ -4,7 +4,7 @@ import com.tools.core.builder.Builder;
 import com.tools.core.collection.ListUtil;
 import com.tools.core.util.ArrayUtil;
 import com.tools.core.util.CharUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,7 +83,7 @@ public class ConditionBuilder implements Builder<String> {
 	 */
 	public String build(List<Object> paramValues) {
 		if (ArrayUtil.isEmpty(conditions)) {
-			return StrUtil.EMPTY;
+			return StringUtil.EMPTY;
 		}
 
 		final StringBuilder conditionStrBuilder = new StringBuilder();

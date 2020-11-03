@@ -1,6 +1,6 @@
 package com.tools.db.ds.druid;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.db.ds.AbstractDSFactory;
 import com.tools.setting.Setting;
 import com.tools.setting.dialect.Props;
@@ -49,14 +49,14 @@ public class DruidDSFactory extends AbstractDSFactory {
 		String connValue;
 		for (String key : KEY_CONN_PROPS) {
 			connValue = poolSetting.getAndRemoveStr(key);
-			if(StrUtil.isNotBlank(connValue)){
+			if(StringUtil.isNotBlank(connValue)){
 				ds.addConnectionProperty(key, connValue);
 			}
 		}
 
 		// Druid连接池配置信息，规范化属性名
 		final Props druidProps = new Props();
-		poolSetting.forEach((key, value)-> druidProps.put(StrUtil.addPrefixIfNot(key, "druid."), value));
+		poolSetting.forEach((key, value)-> druidProps.put(StringUtil.addPrefixIfNot(key, "druid."), value));
 		ds.configFromPropety(druidProps);
 
 		// 检查关联配置，在用户未设置某项配置时，

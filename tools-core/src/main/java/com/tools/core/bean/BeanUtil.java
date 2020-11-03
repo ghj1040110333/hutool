@@ -13,7 +13,7 @@ import com.tools.core.util.ArrayUtil;
 import com.tools.core.util.ClassUtil;
 import com.tools.core.util.ModifierUtil;
 import com.tools.core.util.ReflectUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
@@ -602,7 +602,7 @@ public class BeanUtil {
 			return null;
 		}
 
-		return beanToMap(bean, targetMap, ignoreNullValue, key -> isToUnderlineCase ? StrUtil.toUnderlineCase(key) : key);
+		return beanToMap(bean, targetMap, ignoreNullValue, key -> isToUnderlineCase ? StringUtil.toUnderlineCase(key) : key);
 	}
 
 	/**
@@ -701,7 +701,7 @@ public class BeanUtil {
 	 * @since 4.0.6
 	 */
 	public static boolean isMatchName(Object bean, String beanClassName, boolean isSimple) {
-		return ClassUtil.getClassName(bean, isSimple).equals(isSimple ? StrUtil.upperFirst(beanClassName) : beanClassName);
+		return ClassUtil.getClassName(bean, isSimple).equals(isSimple ? StringUtil.upperFirst(beanClassName) : beanClassName);
 	}
 
 	/**
@@ -732,7 +732,7 @@ public class BeanUtil {
 				// 只有String的Field才处理
 				final String val = (String) ReflectUtil.getFieldValue(bean, field);
 				if (null != val) {
-					final String trimVal = StrUtil.trim(val);
+					final String trimVal = StringUtil.trim(val);
 					if (false == val.equals(trimVal)) {
 						// Field Value不为null，且首尾有空格才处理
 						ReflectUtil.setFieldValue(bean, field, trimVal);

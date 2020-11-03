@@ -86,22 +86,22 @@ public class ReUtilTest {
 	@Test
 	public void replaceTest() {
 		String str = "AAABBCCCBBDDDBB";
-		String replace = StrUtil.replace(str, 0, "BB", "22", false);
+		String replace = StringUtil.replace(str, 0, "BB", "22", false);
 		Assert.assertEquals("AAA22CCC22DDD22", replace);
 
-		replace = StrUtil.replace(str, 3, "BB", "22", false);
+		replace = StringUtil.replace(str, 3, "BB", "22", false);
 		Assert.assertEquals("AAA22CCC22DDD22", replace);
 
-		replace = StrUtil.replace(str, 4, "BB", "22", false);
+		replace = StringUtil.replace(str, 4, "BB", "22", false);
 		Assert.assertEquals("AAABBCCC22DDD22", replace);
 
-		replace = StrUtil.replace(str, 4, "bb", "22", true);
+		replace = StringUtil.replace(str, 4, "bb", "22", true);
 		Assert.assertEquals("AAABBCCC22DDD22", replace);
 
-		replace = StrUtil.replace(str, 4, "bb", "", true);
+		replace = StringUtil.replace(str, 4, "bb", "", true);
 		Assert.assertEquals("AAABBCCCDDD", replace);
 
-		replace = StrUtil.replace(str, 4, "bb", null, true);
+		replace = StringUtil.replace(str, 4, "bb", null, true);
 		Assert.assertEquals("AAABBCCCDDD", replace);
 	}
 

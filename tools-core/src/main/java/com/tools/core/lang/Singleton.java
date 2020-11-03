@@ -4,7 +4,7 @@ import com.tools.core.lang.func.Func0;
 import com.tools.core.util.ArrayUtil;
 import com.tools.core.util.ClassUtil;
 import com.tools.core.util.ReflectUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.util.HashMap;
 
@@ -130,7 +130,7 @@ public final class Singleton {
 		if (ArrayUtil.isEmpty(params)) {
 			return className;
 		}
-		return StrUtil.format("{}#{}", className, ArrayUtil.join(params, "_"));
+		return StringUtil.format("{}#{}", className, ArrayUtil.join(params, "_"));
 	}
 	// ------------------------------------------------------------------------------------------- Private method end
 }

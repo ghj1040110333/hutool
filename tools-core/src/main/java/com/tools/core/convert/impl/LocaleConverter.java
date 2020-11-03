@@ -3,8 +3,7 @@ package com.tools.core.convert.impl;
 import java.util.Locale;
 
 import com.tools.core.convert.AbstractConverter;
-import com.tools.core.util.StrUtil;
-import com.tools.core.convert.AbstractConverter;
+import com.tools.core.util.StringUtil;
 
 /**
  *
@@ -21,7 +20,7 @@ public class LocaleConverter extends AbstractConverter<Locale> {
 	protected Locale convertInternal(Object value) {
 		try {
 			String str = convertToStr(value);
-			if (StrUtil.isEmpty(str)) {
+			if (StringUtil.isEmpty(str)) {
 				return null;
 			}
 

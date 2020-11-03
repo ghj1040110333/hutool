@@ -1,11 +1,11 @@
 package com.tools.poi.exceptions;
 
 import com.tools.core.exceptions.ExceptionUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * POI异常
- * @author xiaoleilu
+ * @author fruit
  */
 public class POIException extends RuntimeException{
 	private static final long serialVersionUID = 2711633732613506552L;
@@ -19,7 +19,7 @@ public class POIException extends RuntimeException{
 	}
 
 	public POIException(String messageTemplate, Object... params) {
-		super(StrUtil.format(messageTemplate, params));
+		super(StringUtil.format(messageTemplate, params));
 	}
 
 	public POIException(String message, Throwable throwable) {
@@ -27,6 +27,6 @@ public class POIException extends RuntimeException{
 	}
 
 	public POIException(Throwable throwable, String messageTemplate, Object... params) {
-		super(StrUtil.format(messageTemplate, params), throwable);
+		super(StringUtil.format(messageTemplate, params), throwable);
 	}
 }

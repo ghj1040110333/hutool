@@ -3,7 +3,7 @@ package com.tools.log.dialect.commons;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.log.AbstractLog;
 import com.tools.log.level.Level;
 
@@ -25,7 +25,7 @@ public class ApacheCommonsLog extends AbstractLog {
 	}
 
 	public ApacheCommonsLog(Class<?> clazz) {
-		this(LogFactory.getLog(clazz), null == clazz ? StrUtil.NULL : clazz.getName());
+		this(LogFactory.getLog(clazz), null == clazz ? StringUtil.NULL : clazz.getName());
 	}
 
 	public ApacheCommonsLog(String name) {
@@ -47,7 +47,7 @@ public class ApacheCommonsLog extends AbstractLog {
 	public void trace(String fqcn, Throwable t, String format, Object... arguments) {
 		// fqcn此处无效
 		if(isTraceEnabled()){
-			logger.trace(StrUtil.format(format, arguments), t);
+			logger.trace(StringUtil.format(format, arguments), t);
 		}
 	}
 
@@ -61,7 +61,7 @@ public class ApacheCommonsLog extends AbstractLog {
 	public void debug(String fqcn, Throwable t, String format, Object... arguments) {
 		// fqcn此处无效
 		if(isDebugEnabled()){
-			logger.debug(StrUtil.format(format, arguments), t);
+			logger.debug(StringUtil.format(format, arguments), t);
 		}
 	}
 
@@ -75,7 +75,7 @@ public class ApacheCommonsLog extends AbstractLog {
 	public void info(String fqcn, Throwable t, String format, Object... arguments) {
 		// fqcn此处无效
 		if(isInfoEnabled()){
-			logger.info(StrUtil.format(format, arguments), t);
+			logger.info(StringUtil.format(format, arguments), t);
 		}
 	}
 
@@ -88,7 +88,7 @@ public class ApacheCommonsLog extends AbstractLog {
 	@Override
 	public void warn(String format, Object... arguments) {
 		if(isWarnEnabled()){
-			logger.warn(StrUtil.format(format, arguments));
+			logger.warn(StringUtil.format(format, arguments));
 		}
 	}
 
@@ -100,7 +100,7 @@ public class ApacheCommonsLog extends AbstractLog {
 	public void warn(String fqcn, Throwable t, String format, Object... arguments) {
 		// fqcn此处无效
 		if(isWarnEnabled()){
-			logger.warn(StrUtil.format(format, arguments), t);
+			logger.warn(StringUtil.format(format, arguments), t);
 		}
 	}
 
@@ -114,7 +114,7 @@ public class ApacheCommonsLog extends AbstractLog {
 	public void error(String fqcn, Throwable t, String format, Object... arguments) {
 		// fqcn此处无效
 		if(isErrorEnabled()){
-			logger.warn(StrUtil.format(format, arguments), t);
+			logger.warn(StringUtil.format(format, arguments), t);
 		}
 
 	}
@@ -139,7 +139,7 @@ public class ApacheCommonsLog extends AbstractLog {
 			error(t, format, arguments);
 			break;
 		default:
-			throw new Error(StrUtil.format("Can not identify level: {}", level));
+			throw new Error(StringUtil.format("Can not identify level: {}", level));
 		}
 	}
 	// ------------------------------------------------------------------------- Private method

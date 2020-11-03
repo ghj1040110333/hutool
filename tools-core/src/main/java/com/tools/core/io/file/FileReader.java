@@ -5,7 +5,7 @@ import com.tools.core.io.IORuntimeException;
 import com.tools.core.io.IoUtil;
 import com.tools.core.io.LineHandler;
 import com.tools.core.util.CharsetUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -123,7 +123,7 @@ public class FileReader extends FileWrapper {
 			in = new FileInputStream(file);
 			readLength = in.read(bytes);
 			if(readLength < len){
-				throw new IOException(StrUtil.format("File length is [{}] but read [{}]!", len, readLength));
+				throw new IOException(StringUtil.format("File length is [{}] but read [{}]!", len, readLength));
 			}
 		} catch (Exception e) {
 			throw new IORuntimeException(e);

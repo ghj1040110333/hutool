@@ -5,7 +5,7 @@ import com.tools.core.map.CaseInsensitiveMap;
 import com.tools.core.util.BooleanUtil;
 import com.tools.core.util.ModifierUtil;
 import com.tools.core.util.ReflectUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -253,7 +253,7 @@ public class BeanDesc implements Serializable {
 			methodName = methodName.toLowerCase();
 			fieldName = fieldName.toLowerCase();
 		} else {
-			fieldName = StrUtil.upperFirst(fieldName);
+			fieldName = StringUtil.upperFirst(fieldName);
 		}
 
 		if (false == methodName.startsWith("get") && false == methodName.startsWith("is")) {
@@ -315,7 +315,7 @@ public class BeanDesc implements Serializable {
 		// 针对Boolean类型特殊检查
 		if (isBooleanField && fieldName.startsWith("is")) {
 			// 字段是is开头
-			if (methodName.equals("set" + StrUtil.removePrefix(fieldName, "is"))// isName -》 setName
+			if (methodName.equals("set" + StringUtil.removePrefix(fieldName, "is"))// isName -》 setName
 					|| methodName.equals("set" + fieldName)// isName -》 setIsName
 			) {
 				return true;

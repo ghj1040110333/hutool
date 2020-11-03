@@ -2,7 +2,6 @@ package com.tools.core.util;
 
 import com.tools.core.io.IORuntimeException;
 import com.tools.core.io.IoUtil;
-import com.tools.core.util.CharsetUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -82,10 +81,10 @@ public class RuntimeUtil {
 		// 单条命令的情况
 		if (1 == cmds.length) {
 			final String cmd = cmds[0];
-			if (StrUtil.isBlank(cmd)) {
+			if (StringUtil.isBlank(cmd)) {
 				throw new NullPointerException("Command is empty !");
 			}
-			cmds = StrUtil.splitToArray(cmd, StrUtil.C_SPACE);
+			cmds = StringUtil.splitToArray(cmd, StringUtil.C_SPACE);
 		}
 
 		Process process;
@@ -128,10 +127,10 @@ public class RuntimeUtil {
 		// 单条命令的情况
 		if (1 == cmds.length) {
 			final String cmd = cmds[0];
-			if (StrUtil.isBlank(cmd)) {
+			if (StringUtil.isBlank(cmd)) {
 				throw new NullPointerException("Command is empty !");
 			}
-			cmds = StrUtil.splitToArray(cmd, StrUtil.C_SPACE);
+			cmds = StringUtil.splitToArray(cmd, StringUtil.C_SPACE);
 		}
 		try {
 			return Runtime.getRuntime().exec(cmds, envp, dir);

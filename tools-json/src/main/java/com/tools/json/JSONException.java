@@ -1,7 +1,7 @@
 package com.tools.json;
 
 import com.tools.core.exceptions.ExceptionUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * JSON异常
@@ -21,7 +21,7 @@ public class JSONException extends RuntimeException {
 	}
 
 	public JSONException(String messageTemplate, Object... params) {
-		super(StrUtil.format(messageTemplate, params));
+		super(StringUtil.format(messageTemplate, params));
 	}
 
 	public JSONException(String message, Throwable cause) {
@@ -29,6 +29,6 @@ public class JSONException extends RuntimeException {
 	}
 
 	public JSONException(Throwable throwable, String messageTemplate, Object... params) {
-		super(StrUtil.format(messageTemplate, params), throwable);
+		super(StringUtil.format(messageTemplate, params), throwable);
 	}
 }

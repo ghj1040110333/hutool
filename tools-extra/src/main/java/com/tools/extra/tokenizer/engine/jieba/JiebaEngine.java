@@ -3,7 +3,7 @@ package com.tools.extra.tokenizer.engine.jieba;
 import com.huaban.analysis.jieba.JiebaSegmenter;
 import com.huaban.analysis.jieba.JiebaSegmenter.SegMode;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.extra.tokenizer.TokenizerEngine;
 import com.tools.extra.tokenizer.Result;
 
@@ -38,7 +38,7 @@ public class JiebaEngine implements TokenizerEngine {
 
 	@Override
 	public Result parse(CharSequence text) {
-		return new JiebaResult(jiebaSegmenter.process(StrUtil.str(text), mode));
+		return new JiebaResult(jiebaSegmenter.process(StringUtil.str(text), mode));
 	}
 
 }

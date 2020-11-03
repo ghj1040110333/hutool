@@ -1,7 +1,6 @@
 package com.tools.core.util;
 
 import com.tools.core.io.FileUtil;
-import com.tools.core.util.StrUtil;
 
 import java.io.File;
 import java.nio.charset.Charset;
@@ -11,7 +10,7 @@ import java.nio.charset.UnsupportedCharsetException;
 /**
  * 字符集工具类
  *
- * @author xiaoleilu
+ * @author fruit
  */
 public class CharsetUtil {
 
@@ -60,7 +59,7 @@ public class CharsetUtil {
 	 * @throws UnsupportedCharsetException 编码不支持
 	 */
 	public static Charset charset(String charsetName) throws UnsupportedCharsetException {
-		return StrUtil.isBlank(charsetName) ? Charset.defaultCharset() : Charset.forName(charsetName);
+		return StringUtil.isBlank(charsetName) ? Charset.defaultCharset() : Charset.forName(charsetName);
 	}
 
 	/**
@@ -83,7 +82,7 @@ public class CharsetUtil {
 	 * @since 5.2.6
 	 */
 	public static Charset parse(String charsetName, Charset defaultCharset) {
-		if (StrUtil.isBlank(charsetName)) {
+		if (StringUtil.isBlank(charsetName)) {
 			return defaultCharset;
 		}
 
@@ -133,7 +132,7 @@ public class CharsetUtil {
 			destCharset = StandardCharsets.UTF_8;
 		}
 
-		if (StrUtil.isBlank(source) || srcCharset.equals(destCharset)) {
+		if (StringUtil.isBlank(source) || srcCharset.equals(destCharset)) {
 			return source;
 		}
 		return new String(source.getBytes(srcCharset), destCharset);

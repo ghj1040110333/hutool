@@ -6,7 +6,7 @@ import com.tools.core.io.IORuntimeException;
 import com.tools.core.io.IoUtil;
 import com.tools.core.util.CharsetUtil;
 import com.tools.core.util.HexUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.crypto.SecureUtil;
 
 import java.io.InputStream;
@@ -82,7 +82,7 @@ public abstract class AbstractAsymmetricCrypto<T extends AbstractAsymmetricCrypt
 	 * @return 加密后的bytes
 	 */
 	public byte[] encrypt(String data, String charset, KeyType keyType) {
-		return encrypt(StrUtil.bytes(data, charset), keyType);
+		return encrypt(StringUtil.bytes(data, charset), keyType);
 	}
 
 	/**
@@ -94,7 +94,7 @@ public abstract class AbstractAsymmetricCrypto<T extends AbstractAsymmetricCrypt
 	 * @return 加密后的bytes
 	 */
 	public byte[] encrypt(String data, Charset charset, KeyType keyType) {
-		return encrypt(StrUtil.bytes(data, charset), keyType);
+		return encrypt(StringUtil.bytes(data, charset), keyType);
 	}
 
 	/**
@@ -105,7 +105,7 @@ public abstract class AbstractAsymmetricCrypto<T extends AbstractAsymmetricCrypt
 	 * @return 加密后的bytes
 	 */
 	public byte[] encrypt(String data, KeyType keyType) {
-		return encrypt(StrUtil.bytes(data, CharsetUtil.CHARSET_UTF_8), keyType);
+		return encrypt(StringUtil.bytes(data, CharsetUtil.CHARSET_UTF_8), keyType);
 	}
 
 	/**
@@ -264,7 +264,7 @@ public abstract class AbstractAsymmetricCrypto<T extends AbstractAsymmetricCrypt
 	 * @since 4.5.2
 	 */
 	public String decryptStr(String data, KeyType keyType, Charset charset) {
-		return StrUtil.str(decrypt(data, keyType), charset);
+		return StringUtil.str(decrypt(data, keyType), charset);
 	}
 
 	/**
@@ -301,7 +301,7 @@ public abstract class AbstractAsymmetricCrypto<T extends AbstractAsymmetricCrypt
 	 * @since 4.1.0
 	 */
 	public byte[] decryptFromBcd(String data, KeyType keyType, Charset charset) {
-		final byte[] dataBytes = BCD.ascToBcd(StrUtil.bytes(data, charset));
+		final byte[] dataBytes = BCD.ascToBcd(StringUtil.bytes(data, charset));
 		return decrypt(dataBytes, keyType);
 	}
 
@@ -315,7 +315,7 @@ public abstract class AbstractAsymmetricCrypto<T extends AbstractAsymmetricCrypt
 	 * @since 4.5.2
 	 */
 	public String decryptStrFromBcd(String data, KeyType keyType, Charset charset) {
-		return StrUtil.str(decryptFromBcd(data, keyType, charset), charset);
+		return StringUtil.str(decryptFromBcd(data, keyType, charset), charset);
 	}
 
 	/**

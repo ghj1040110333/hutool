@@ -7,9 +7,7 @@ import com.tools.core.map.MapUtil;
 import com.tools.core.util.ArrayUtil;
 import com.tools.core.util.ObjectUtil;
 import com.tools.core.util.ReflectUtil;
-import com.tools.core.util.StrUtil;
-import com.tools.core.exceptions.UtilException;
-import com.tools.core.util.ReflectUtil;
+import com.tools.core.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -365,7 +363,7 @@ public class IterUtil {
 			} else if (item instanceof Iterator<?>) {
 				sb.append(join((Iterator<?>) item, conjunction, prefix, suffix));
 			} else {
-				sb.append(StrUtil.wrap(String.valueOf(item), prefix, suffix));
+				sb.append(StringUtil.wrap(String.valueOf(item), prefix, suffix));
 			}
 		}
 		return sb.toString();

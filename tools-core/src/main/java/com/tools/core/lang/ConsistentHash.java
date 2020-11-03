@@ -12,7 +12,7 @@ import java.util.TreeMap;
  * 一致性Hash算法
  * 算法详解：http://blog.csdn.net/sparkliang/article/details/5279393
  * 算法实现：https://weblogs.java.net/blog/2007/11/27/consistent-hashing
- * @author xiaoleilu
+ * @author fruit
  *
  * @param <T>	节点类型
  */

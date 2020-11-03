@@ -1,6 +1,6 @@
 package com.tools.crypto.test.asymmetric;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.crypto.asymmetric.AsymmetricCrypto;
 import com.tools.crypto.asymmetric.ECIES;
 import com.tools.crypto.asymmetric.KeyType;
@@ -41,7 +41,7 @@ public class ECIESTest {
 		// 公钥加密，私钥解密
 		String encryptStr = cryptoForEncrypt.encryptBase64(text.toString(), KeyType.PublicKey);
 
-		String decryptStr = StrUtil.utf8Str(cryptoForDecrypt.decrypt(encryptStr, KeyType.PrivateKey));
+		String decryptStr = StringUtil.utf8Str(cryptoForDecrypt.decrypt(encryptStr, KeyType.PrivateKey));
 		Assert.assertEquals(text.toString(), decryptStr);
 	}
 }

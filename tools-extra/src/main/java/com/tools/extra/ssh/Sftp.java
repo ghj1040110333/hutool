@@ -4,7 +4,7 @@ import com.tools.core.collection.CollUtil;
 import com.tools.core.collection.ListUtil;
 import com.tools.core.io.FileUtil;
 import com.tools.core.lang.Filter;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.extra.ftp.AbstractFtp;
 import com.tools.extra.ftp.FtpConfig;
 import com.jcraft.jsch.ChannelSftp;
@@ -171,7 +171,7 @@ public class Sftp extends AbstractFtp {
 
 	@Override
 	public Sftp reconnectIfTimeout() {
-		if (false == this.cd("/") && StrUtil.isNotBlank(this.ftpConfig.getHost())) {
+		if (false == this.cd("/") && StringUtil.isNotBlank(this.ftpConfig.getHost())) {
 			init(this.ftpConfig);
 		}
 		return this;
@@ -292,7 +292,7 @@ public class Sftp extends AbstractFtp {
 		try {
 			channel.ls(path, entry -> {
 				final String fileName = entry.getFilename();
-				if (false == StrUtil.equals(".", fileName) && false == StrUtil.equals("..", fileName)) {
+				if (false == StringUtil.equals(".", fileName) && false == StringUtil.equals("..", fileName)) {
 					if (null == filter || filter.accept(entry)) {
 						entryList.add(entry);
 					}
@@ -300,7 +300,7 @@ public class Sftp extends AbstractFtp {
 				return LsEntrySelector.CONTINUE;
 			});
 		} catch (SftpException e) {
-			if (false == StrUtil.startWithIgnoreCase(e.getMessage(), "No such file")) {
+			if (false == StringUtil.startWithIgnoreCase(e.getMessage(), "No such file")) {
 				throw new JschRuntimeException(e);
 			}
 			// 文件不存在忽略
@@ -326,7 +326,7 @@ public class Sftp extends AbstractFtp {
 	 */
 	@Override
 	public boolean cd(String directory) {
-		if (StrUtil.isBlank(directory)) {
+		if (StringUtil.isBlank(directory)) {
 			// 当前目录
 			return true;
 		}
@@ -464,7 +464,7 @@ public class Sftp extends AbstractFtp {
 		File destFile;
 		for (LsEntry item : lsEntries(sourcePath)) {
 			fileName = item.getFilename();
-			srcFile = StrUtil.format("{}/{}", sourcePath, fileName);
+			srcFile = StringUtil.format("{}/{}", sourcePath, fileName);
 			destFile = FileUtil.file(destDir, fileName);
 
 			if (false == item.getAttrs().isDir()) {

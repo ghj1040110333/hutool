@@ -1,6 +1,6 @@
 package com.tools.core.io.unit;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * 数据单位封装<p>
@@ -70,7 +70,7 @@ public enum DataUnit {
 	public static DataUnit fromSuffix(String suffix) {
 		for (DataUnit candidate : values()) {
 			// 支持类似于 3MB，3M，3m等写法
-			if (StrUtil.startWithIgnoreCase(candidate.suffix, suffix)) {
+			if (StringUtil.startWithIgnoreCase(candidate.suffix, suffix)) {
 				return candidate;
 			}
 		}

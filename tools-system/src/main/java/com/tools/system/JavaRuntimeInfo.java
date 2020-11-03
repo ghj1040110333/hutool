@@ -2,7 +2,7 @@ package com.tools.system;
 
 import java.io.Serializable;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * 代表当前运行的JRE的信息。
@@ -138,7 +138,7 @@ public class JavaRuntimeInfo implements Serializable{
 	 * @since Java 1.1
 	 */
 	public final String[] getClassPathArray() {
-		return StrUtil.split(getClassPath(), SystemUtil.get("path.separator", false));
+		return StringUtil.split(getClassPath(), SystemUtil.get("path.separator", false));
 	}
 
 	/**
@@ -182,7 +182,7 @@ public class JavaRuntimeInfo implements Serializable{
 	 *
 	 */
 	public final String[] getLibraryPathArray() {
-		return StrUtil.split(getLibraryPath(), SystemUtil.get("path.separator", false));
+		return StringUtil.split(getLibraryPath(), SystemUtil.get("path.separator", false));
 	}
 
 	/**

@@ -1,7 +1,7 @@
 package com.tools.log.dialect.tinylog;
 
 import com.tools.core.util.ArrayUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.log.AbstractLog;
 import org.tinylog.Level;
 import org.tinylog.configuration.Configuration;
@@ -32,7 +32,7 @@ public class TinyLog2 extends AbstractLog {
 
 	// ------------------------------------------------------------------------- Constructor
 	public TinyLog2(Class<?> clazz) {
-		this(null == clazz ? StrUtil.NULL : clazz.getName());
+		this(null == clazz ? StringUtil.NULL : clazz.getName());
 	}
 
 	public TinyLog2(String name) {
@@ -123,7 +123,7 @@ public class TinyLog2 extends AbstractLog {
 		if(null == t){
 			t = getLastArgumentIfThrowable(arguments);
 		}
-		provider.log(DEPTH, null, level, t, formatter, StrUtil.toString(format), arguments);
+		provider.log(DEPTH, null, level, t, formatter, StringUtil.toString(format), arguments);
 	}
 
 	/**
@@ -155,7 +155,7 @@ public class TinyLog2 extends AbstractLog {
 			tinyLevel = Level.OFF;
 			break;
 		default:
-			throw new Error(StrUtil.format("Can not identify level: {}", level));
+			throw new Error(StringUtil.format("Can not identify level: {}", level));
 		}
 		return tinyLevel;
 	}

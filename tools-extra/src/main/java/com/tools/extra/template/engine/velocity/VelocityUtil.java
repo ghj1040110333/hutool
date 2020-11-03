@@ -24,7 +24,7 @@ import java.util.Properties;
  * Velocity模板引擎工具类<br>
  * 使用前必须初始化工具类
  *
- * @author xiaoleilu
+ * @author fruit
  * @deprecated 使用TemplateUtil替代
  */
 @Deprecated

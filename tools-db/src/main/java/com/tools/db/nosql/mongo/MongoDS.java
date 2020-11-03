@@ -2,7 +2,7 @@ package com.tools.db.nosql.mongo;
 
 import com.tools.core.exceptions.NotInitedException;
 import com.tools.core.net.NetUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.db.DbRuntimeException;
 import com.tools.log.Log;
 import com.tools.setting.Setting;
@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * MongoDB工具类
  *
- * @author xiaoleilu
+ * @author fruit
  *
  */
 public class MongoDS implements Closeable {
@@ -135,7 +135,7 @@ public class MongoDS implements Closeable {
 			}
 		}
 
-		String group = StrUtil.EMPTY;
+		String group = StringUtil.EMPTY;
 		if (null == this.serverAddress) {
 			//存在唯一分组
 			if (groups != null && groups.length == 1) {
@@ -152,7 +152,7 @@ public class MongoDS implements Closeable {
 				mongo = new MongoClient(serverAddress, credentail, buildMongoClientOptions(group));
 			}
 		} catch (Exception e) {
-			throw new DbRuntimeException(StrUtil.format("Init MongoDB pool with connection to [{}] error!", serverAddress), e);
+			throw new DbRuntimeException(StringUtil.format("Init MongoDB pool with connection to [{}] error!", serverAddress), e);
 		}
 
 		log.info("Init MongoDB pool with connection to [{}]", serverAddress);
@@ -190,12 +190,12 @@ public class MongoDS implements Closeable {
 			addrList.add(createServerAddress(group));
 		}
 
-		final MongoCredential credentail = createCredentail(StrUtil.EMPTY);
+		final MongoCredential credentail = createCredentail(StringUtil.EMPTY);
 		try {
 			if (null == credentail) {
-				mongo = new MongoClient(addrList, buildMongoClientOptions(StrUtil.EMPTY));
+				mongo = new MongoClient(addrList, buildMongoClientOptions(StringUtil.EMPTY));
 			} else {
-				mongo = new MongoClient(addrList, credentail, buildMongoClientOptions(StrUtil.EMPTY));
+				mongo = new MongoClient(addrList, credentail, buildMongoClientOptions(StringUtil.EMPTY));
 			}
 		} catch (Exception e) {
 			log.error(e, "Init MongoDB connection error!");
@@ -258,11 +258,11 @@ public class MongoDS implements Closeable {
 		final Setting setting = checkSetting();
 
 		if (group == null) {
-			group = StrUtil.EMPTY;
+			group = StringUtil.EMPTY;
 		}
 
 		final String tmpHost = setting.getByGroup("host", group);
-		if (StrUtil.isBlank(tmpHost)) {
+		if (StringUtil.isBlank(tmpHost)) {
 			throw new NotInitedException("Host name is empy of group: {}", group);
 		}
 
@@ -310,7 +310,7 @@ public class MongoDS implements Closeable {
 	 * @since 4.1.20
 	 */
 	private MongoCredential createCredentail(String userName, String database, String password) {
-		if (StrUtil.hasEmpty(userName, database, database)) {
+		if (StringUtil.hasEmpty(userName, database, database)) {
 			return null;
 		}
 		return MongoCredential.createCredential(userName, database, password.toCharArray());
@@ -338,14 +338,14 @@ public class MongoDS implements Closeable {
 		}
 
 		if (group == null) {
-			group = StrUtil.EMPTY;
+			group = StringUtil.EMPTY;
 		} else {
-			group = group + StrUtil.DOT;
+			group = group + StringUtil.DOT;
 		}
 
 		// 每个主机答应的连接数（每个主机的连接池大小），当连接池被用光时，会被阻塞住
 		Integer connectionsPerHost = setting.getInt(group + "connectionsPerHost");
-		if (StrUtil.isBlank(group) == false && connectionsPerHost == null) {
+		if (StringUtil.isBlank(group) == false && connectionsPerHost == null) {
 			connectionsPerHost = setting.getInt("connectionsPerHost");
 		}
 		if (connectionsPerHost != null) {
@@ -355,7 +355,7 @@ public class MongoDS implements Closeable {
 
 		// 被阻塞线程从连接池获取连接的最长等待时间（ms） --int
 		Integer connectTimeout = setting.getInt(group + "connectTimeout");
-		if (StrUtil.isBlank(group) == false && connectTimeout == null) {
+		if (StringUtil.isBlank(group) == false && connectTimeout == null) {
 			setting.getInt("connectTimeout");
 		}
 		if (connectTimeout != null) {
@@ -365,7 +365,7 @@ public class MongoDS implements Closeable {
 
 		// 套接字超时时间;该值会被传递给Socket.setSoTimeout(int)。默以为0（无穷） --int
 		Integer socketTimeout = setting.getInt(group + "socketTimeout");
-		if (StrUtil.isBlank(group) == false && socketTimeout == null) {
+		if (StringUtil.isBlank(group) == false && socketTimeout == null) {
 			setting.getInt("socketTimeout");
 		}
 		if (socketTimeout != null) {

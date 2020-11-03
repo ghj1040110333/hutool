@@ -4,7 +4,7 @@ import com.tools.core.bean.BeanUtil;
 import com.tools.core.convert.AbstractConverter;
 import com.tools.core.convert.ConverterRegistry;
 import com.tools.core.map.MapUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.core.util.TypeUtil;
 
 import java.lang.reflect.Type;
@@ -70,7 +70,7 @@ public class MapConverter extends AbstractConverter<Map<?, ?>> {
 			// 二次转换，转换键值类型
 			map = convertInternal(map);
 		} else {
-			throw new UnsupportedOperationException(StrUtil.format("Unsupport toMap value type: {}", value.getClass().getName()));
+			throw new UnsupportedOperationException(StringUtil.format("Unsupport toMap value type: {}", value.getClass().getName()));
 		}
 		return map;
 	}

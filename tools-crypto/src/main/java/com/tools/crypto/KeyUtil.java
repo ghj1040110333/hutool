@@ -7,7 +7,7 @@ import com.tools.core.util.ArrayUtil;
 import com.tools.core.util.CharUtil;
 import com.tools.core.util.CharsetUtil;
 import com.tools.core.util.RandomUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.crypto.asymmetric.AsymmetricAlgorithm;
 import com.tools.crypto.symmetric.SymmetricAlgorithm;
 
@@ -140,7 +140,7 @@ public class KeyUtil {
 		SecretKey secretKey;
 		if (algorithm.startsWith("PBE")) {
 			// PBE密钥
-			secretKey = generatePBEKey(algorithm, (null == key) ? null : StrUtil.str(key, CharsetUtil.CHARSET_UTF_8).toCharArray());
+			secretKey = generatePBEKey(algorithm, (null == key) ? null : StringUtil.str(key, CharsetUtil.CHARSET_UTF_8).toCharArray());
 		} else if (algorithm.startsWith("DES")) {
 			// DES密钥
 			secretKey = generateDESKey(algorithm, key);
@@ -159,7 +159,7 @@ public class KeyUtil {
 	 * @return {@link SecretKey}
 	 */
 	public static SecretKey generateDESKey(String algorithm, byte[] key) {
-		if (StrUtil.isBlank(algorithm) || false == algorithm.startsWith("DES")) {
+		if (StringUtil.isBlank(algorithm) || false == algorithm.startsWith("DES")) {
 			throw new CryptoException("Algorithm [{}] is not a DES algorithm!");
 		}
 
@@ -191,7 +191,7 @@ public class KeyUtil {
 	 * @return {@link SecretKey}
 	 */
 	public static SecretKey generatePBEKey(String algorithm, char[] key) {
-		if (StrUtil.isBlank(algorithm) || false == algorithm.startsWith("PBE")) {
+		if (StringUtil.isBlank(algorithm) || false == algorithm.startsWith("PBE")) {
 			throw new CryptoException("Algorithm [{}] is not a PBE algorithm!");
 		}
 
@@ -619,13 +619,13 @@ public class KeyUtil {
 	public static String getAlgorithmAfterWith(String algorithm) {
 		Assert.notNull(algorithm, "algorithm must be not null !");
 
-		if(StrUtil.startWithIgnoreCase(algorithm, "ECIESWith")){
+		if(StringUtil.startWithIgnoreCase(algorithm, "ECIESWith")){
 			return "EC";
 		}
 
-		int indexOfWith = StrUtil.lastIndexOfIgnoreCase(algorithm, "with");
+		int indexOfWith = StringUtil.lastIndexOfIgnoreCase(algorithm, "with");
 		if (indexOfWith > 0) {
-			algorithm = StrUtil.subSuf(algorithm, indexOfWith + "with".length());
+			algorithm = StringUtil.subSuf(algorithm, indexOfWith + "with".length());
 		}
 		if ("ECDSA".equalsIgnoreCase(algorithm)
 				|| "SM2".equalsIgnoreCase(algorithm)

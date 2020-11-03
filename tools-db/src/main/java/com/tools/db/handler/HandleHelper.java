@@ -6,7 +6,7 @@ import com.tools.core.convert.Convert;
 import com.tools.core.lang.Assert;
 import com.tools.core.util.ArrayUtil;
 import com.tools.core.util.ReflectUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.core.util.TypeUtil;
 import com.tools.db.Entity;
 
@@ -79,7 +79,7 @@ public class HandleHelper {
 		} else if(String.class == beanClass) {
 			//字符串
 			final Object[] objRow = handleRow(columnCount, meta, rs, Object[].class);
-			return (T) StrUtil.join(", ", objRow);
+			return (T) StringUtil.join(", ", objRow);
 		}
 
 		//普通bean
@@ -95,7 +95,7 @@ public class HandleHelper {
 			pd = propMap.get(columnLabel);
 			if(null == pd) {
 				// 尝试驼峰命名风格
-				pd = propMap.get(StrUtil.toCamelCase(columnLabel));
+				pd = propMap.get(StringUtil.toCamelCase(columnLabel));
 			}
 			setter = (null == pd) ? null : pd.getSetter();
 			if(null != setter) {

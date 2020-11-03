@@ -3,11 +3,8 @@ package com.tools.socket.aio;
 import com.tools.core.date.DateUtil;
 import com.tools.core.io.BufferUtil;
 import com.tools.core.lang.Console;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.log.StaticLog;
-import com.tools.socket.aio.AioServer;
-import com.tools.socket.aio.AioSession;
-import com.tools.socket.aio.SimpleIoAction;
 
 import java.nio.ByteBuffer;
 
@@ -30,7 +27,7 @@ public class AioServerTest {
 				Console.log(data);
 
 				if(false == data.hasRemaining()) {
-					StringBuilder response = StrUtil.builder()//
+					StringBuilder response = StringUtil.builder()//
 							.append("HTTP/1.1 200 OK\r\n")//
 							.append("Date: ").append(DateUtil.formatHttpDate(DateUtil.date())).append("\r\n")//
 							.append("Content-Type: text/html; charset=UTF-8\r\n")//

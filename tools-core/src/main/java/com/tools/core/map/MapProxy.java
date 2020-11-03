@@ -5,7 +5,7 @@ import com.tools.core.getter.OptNullBasicTypeFromObjectGetter;
 import com.tools.core.util.ArrayUtil;
 import com.tools.core.util.BooleanUtil;
 import com.tools.core.util.ClassLoaderUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.io.Serializable;
 import java.lang.reflect.InvocationHandler;
@@ -129,20 +129,20 @@ public class MapProxy implements Map<Object, Object>, OptNullBasicTypeFromObject
 				String fieldName = null;
 				if (methodName.startsWith("get")) {
 					// 匹配getXXX
-					fieldName = StrUtil.removePreAndLowerFirst(methodName, 3);
+					fieldName = StringUtil.removePreAndLowerFirst(methodName, 3);
 				} else if (BooleanUtil.isBoolean(returnType) && methodName.startsWith("is")) {
 					// 匹配isXXX
-					fieldName = StrUtil.removePreAndLowerFirst(methodName, 2);
+					fieldName = StringUtil.removePreAndLowerFirst(methodName, 2);
 				}else if ("hashCode".equals(methodName)) {
 					return this.hashCode();
 				} else if ("toString".equals(methodName)) {
 					return this.toString();
 				}
 
-				if (StrUtil.isNotBlank(fieldName)) {
+				if (StringUtil.isNotBlank(fieldName)) {
 					if (false == this.containsKey(fieldName)) {
 						// 驼峰不存在转下划线尝试
-						fieldName = StrUtil.toUnderlineCase(fieldName);
+						fieldName = StringUtil.toUnderlineCase(fieldName);
 					}
 					return Convert.convert(method.getGenericReturnType(), this.get(fieldName));
 				}
@@ -152,8 +152,8 @@ public class MapProxy implements Map<Object, Object>, OptNullBasicTypeFromObject
 			// 匹配Setter
 			final String methodName = method.getName();
 			if (methodName.startsWith("set")) {
-				final String fieldName = StrUtil.removePreAndLowerFirst(methodName, 3);
-				if (StrUtil.isNotBlank(fieldName)) {
+				final String fieldName = StringUtil.removePreAndLowerFirst(methodName, 3);
+				if (StringUtil.isNotBlank(fieldName)) {
 					this.put(fieldName, args[0]);
 				}
 			} else if ("equals".equals(methodName)) {

@@ -5,7 +5,7 @@ import org.pmw.tinylog.LogEntryForwarder;
 import org.pmw.tinylog.Logger;
 
 import com.tools.core.util.ArrayUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.log.AbstractLog;
 
 /**
@@ -25,7 +25,7 @@ public class TinyLog extends AbstractLog {
 
 	// ------------------------------------------------------------------------- Constructor
 	public TinyLog(Class<?> clazz) {
-		this(null == clazz ? StrUtil.NULL : clazz.getName());
+		this(null == clazz ? StringUtil.NULL : clazz.getName());
 	}
 
 	public TinyLog(String name) {
@@ -116,7 +116,7 @@ public class TinyLog extends AbstractLog {
 		if(null == t){
 			t = getLastArgumentIfThrowable(arguments);
 		}
-		LogEntryForwarder.forward(DEPTH, level, t, StrUtil.toString(format), arguments);
+		LogEntryForwarder.forward(DEPTH, level, t, StringUtil.toString(format), arguments);
 	}
 
 	/**
@@ -148,7 +148,7 @@ public class TinyLog extends AbstractLog {
 			tinyLevel = Level.OFF;
 			break;
 		default:
-			throw new Error(StrUtil.format("Can not identify level: {}", level));
+			throw new Error(StringUtil.format("Can not identify level: {}", level));
 		}
 		return tinyLevel;
 	}

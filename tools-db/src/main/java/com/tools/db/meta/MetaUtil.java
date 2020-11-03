@@ -1,7 +1,7 @@
 package com.tools.db.meta;
 
 import com.tools.core.convert.Convert;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.db.DbRuntimeException;
 import com.tools.db.DbUtil;
 import com.tools.db.Entity;
@@ -90,7 +90,7 @@ public class MetaUtil {
 					String table;
 					while (rs.next()) {
 						table = rs.getString("TABLE_NAME");
-						if (StrUtil.isNotBlank(table)) {
+						if (StringUtil.isNotBlank(table)) {
 							tables.add(table);
 						}
 					}

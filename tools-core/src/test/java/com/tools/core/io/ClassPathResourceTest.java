@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.tools.core.io.resource.ClassPathResource;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * ClassPath资源读取测试
@@ -20,14 +20,14 @@ public class ClassPathResourceTest {
 	public void readStringTest() throws IOException{
 		ClassPathResource resource = new ClassPathResource("test.properties");
 		String content = resource.readUtf8Str();
-		Assert.assertTrue(StrUtil.isNotEmpty(content));
+		Assert.assertTrue(StringUtil.isNotEmpty(content));
 	}
 
 	@Test
 	public void readStringTest2() throws IOException{
 		ClassPathResource resource = new ClassPathResource("/");
 		String content = resource.readUtf8Str();
-		Assert.assertTrue(StrUtil.isNotEmpty(content));
+		Assert.assertTrue(StringUtil.isNotEmpty(content));
 	}
 
 	@Test

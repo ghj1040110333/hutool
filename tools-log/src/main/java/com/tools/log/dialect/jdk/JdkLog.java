@@ -4,7 +4,7 @@ import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.log.AbstractLog;
 
 /**
@@ -24,7 +24,7 @@ public class JdkLog extends AbstractLog {
 	}
 
 	public JdkLog(Class<?> clazz) {
-		this((null == clazz) ? StrUtil.NULL : clazz.getName());
+		this((null == clazz) ? StringUtil.NULL : clazz.getName());
 	}
 
 	public JdkLog(String name) {
@@ -112,7 +112,7 @@ public class JdkLog extends AbstractLog {
 				jdkLevel = Level.SEVERE;
 				break;
 			default:
-				throw new Error(StrUtil.format("Can not identify level: {}", level));
+				throw new Error(StringUtil.format("Can not identify level: {}", level));
 		}
 		logIfEnabled(fqcn, jdkLevel, t, format, arguments);
 	}
@@ -129,7 +129,7 @@ public class JdkLog extends AbstractLog {
 	 */
 	private void logIfEnabled(String callerFQCN, Level level, Throwable throwable, String format, Object[] arguments){
 		if(logger.isLoggable(level)){
-			LogRecord record = new LogRecord(level, StrUtil.format(format, arguments));
+			LogRecord record = new LogRecord(level, StringUtil.format(format, arguments));
 			record.setLoggerName(getName());
 			record.setThrown(throwable);
 			fillCallerData(callerFQCN, record);

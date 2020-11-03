@@ -1,6 +1,6 @@
 package com.tools.crypto.test.symmetric;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.crypto.Mode;
 import com.tools.crypto.Padding;
 import com.tools.crypto.SecureUtil;
@@ -30,8 +30,8 @@ public class DesTest {
 		final DES des = new DES(
 				Mode.CTS,
 				Padding.PKCS5Padding,
-				StrUtil.bytes("12345678"),
-				StrUtil.bytes("11223344")
+				StringUtil.bytes("12345678"),
+				StringUtil.bytes("11223344")
 		);
 
 		final String encryptHex = des.encryptHex(content);

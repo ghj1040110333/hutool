@@ -5,7 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.spi.AbstractLogger;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.log.AbstractLog;
 
 /**
@@ -113,7 +113,7 @@ public class Log4j2Log extends AbstractLog {
 				log4j2Level = Level.ERROR;
 				break;
 			default:
-				throw new Error(StrUtil.format("Can not identify level: {}", level));
+				throw new Error(StringUtil.format("Can not identify level: {}", level));
 		}
 		logIfEnabled(fqcn, log4j2Level, t, format, arguments);
 	}
@@ -132,10 +132,10 @@ public class Log4j2Log extends AbstractLog {
 	private void logIfEnabled(String fqcn, Level level, Throwable t, String msgTemplate, Object... arguments) {
 		if(this.logger.isEnabled(level)) {
 			if(this.logger instanceof AbstractLogger){
-				((AbstractLogger)this.logger).logIfEnabled(fqcn, level, null, StrUtil.format(msgTemplate, arguments), t);
+				((AbstractLogger)this.logger).logIfEnabled(fqcn, level, null, StringUtil.format(msgTemplate, arguments), t);
 			} else {
 				// FQCN无效
-				this.logger.log(level, StrUtil.format(msgTemplate, arguments), t);
+				this.logger.log(level, StringUtil.format(msgTemplate, arguments), t);
 			}
 		}
 	}

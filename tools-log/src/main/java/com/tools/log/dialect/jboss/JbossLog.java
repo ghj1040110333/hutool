@@ -4,7 +4,7 @@ import com.tools.log.AbstractLog;
 import com.tools.log.level.Level;
 import org.jboss.logging.Logger;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * <a href="https://github.com/jboss-logging">Jboss-Logging</a> log.
@@ -33,7 +33,7 @@ public class JbossLog extends AbstractLog {
 	 * @param clazz 日志打印所在类
 	 */
 	public JbossLog(Class<?> clazz) {
-		this((null == clazz) ? StrUtil.NULL : clazz.getName());
+		this((null == clazz) ? StringUtil.NULL : clazz.getName());
 	}
 
 	/**
@@ -59,7 +59,7 @@ public class JbossLog extends AbstractLog {
 	@Override
 	public void trace(String fqcn, Throwable t, String format, Object... arguments) {
 		if (isTraceEnabled()) {
-			logger.trace(fqcn, StrUtil.format(format, arguments), t);
+			logger.trace(fqcn, StringUtil.format(format, arguments), t);
 		}
 	}
 
@@ -72,7 +72,7 @@ public class JbossLog extends AbstractLog {
 	@Override
 	public void debug(String fqcn, Throwable t, String format, Object... arguments) {
 		if (isDebugEnabled()) {
-			logger.debug(fqcn, StrUtil.format(format, arguments), t);
+			logger.debug(fqcn, StringUtil.format(format, arguments), t);
 		}
 	}
 
@@ -85,7 +85,7 @@ public class JbossLog extends AbstractLog {
 	@Override
 	public void info(String fqcn, Throwable t, String format, Object... arguments) {
 		if (isInfoEnabled()) {
-			logger.info(fqcn, StrUtil.format(format, arguments), t);
+			logger.info(fqcn, StringUtil.format(format, arguments), t);
 		}
 	}
 
@@ -98,7 +98,7 @@ public class JbossLog extends AbstractLog {
 	@Override
 	public void warn(String fqcn, Throwable t, String format, Object... arguments) {
 		if (isWarnEnabled()) {
-			logger.warn(fqcn, StrUtil.format(format, arguments), t);
+			logger.warn(fqcn, StringUtil.format(format, arguments), t);
 		}
 	}
 
@@ -111,7 +111,7 @@ public class JbossLog extends AbstractLog {
 	@Override
 	public void error(String fqcn, Throwable t, String format, Object... arguments) {
 		if (isErrorEnabled()) {
-			logger.error(fqcn, StrUtil.format(format, arguments), t);
+			logger.error(fqcn, StringUtil.format(format, arguments), t);
 		}
 	}
 
@@ -135,7 +135,7 @@ public class JbossLog extends AbstractLog {
 			error(fqcn, t, format, arguments);
 			break;
 		default:
-			throw new Error(StrUtil.format("Can not identify level: {}", level));
+			throw new Error(StringUtil.format("Can not identify level: {}", level));
 		}
 	}
 }

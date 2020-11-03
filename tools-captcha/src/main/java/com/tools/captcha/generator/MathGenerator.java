@@ -3,7 +3,7 @@ package com.tools.captcha.generator;
 import com.tools.core.math.Calculator;
 import com.tools.core.util.CharUtil;
 import com.tools.core.util.RandomUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * 数字计算验证码生成器
@@ -40,10 +40,10 @@ public class MathGenerator implements CodeGenerator {
 		final int limit = getLimit();
 		String number1 = Integer.toString(RandomUtil.randomInt(limit));
 		String number2 = Integer.toString(RandomUtil.randomInt(limit));
-		number1 = StrUtil.padAfter(number1, this.numberLength, CharUtil.SPACE);
-		number2 = StrUtil.padAfter(number2, this.numberLength, CharUtil.SPACE);
+		number1 = StringUtil.padAfter(number1, this.numberLength, CharUtil.SPACE);
+		number2 = StringUtil.padAfter(number2, this.numberLength, CharUtil.SPACE);
 
-		return StrUtil.builder()//
+		return StringUtil.builder()//
 				.append(number1)//
 				.append(RandomUtil.randomChar(operators))//
 				.append(number2)//
@@ -79,6 +79,6 @@ public class MathGenerator implements CodeGenerator {
 	 * @return 最大值
 	 */
 	private int getLimit() {
-		return Integer.parseInt("1" + StrUtil.repeat('0', this.numberLength));
+		return Integer.parseInt("1" + StringUtil.repeat('0', this.numberLength));
 	}
 }

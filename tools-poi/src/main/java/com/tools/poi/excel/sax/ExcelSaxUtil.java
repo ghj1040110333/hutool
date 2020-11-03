@@ -4,7 +4,7 @@ import com.tools.core.date.DateTime;
 import com.tools.core.date.DateUtil;
 import com.tools.core.exceptions.DependencyException;
 import com.tools.core.io.IORuntimeException;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.poi.excel.sax.handler.RowHandler;
 import com.tools.poi.exceptions.POIException;
 import org.apache.poi.ooxml.util.SAXHelper;
@@ -56,10 +56,10 @@ public class ExcelSaxUtil {
 				result = (value.charAt(0) != '0');
 				break;
 			case ERROR:
-				result = StrUtil.format("\\\"ERROR: {} ", value);
+				result = StringUtil.format("\\\"ERROR: {} ", value);
 				break;
 			case FORMULA:
-				result = StrUtil.format("\"{}\"", value);
+				result = StringUtil.format("\"{}\"", value);
 				break;
 			case INLINESTR:
 				result = new XSSFRichTextString(value).toString();
@@ -123,13 +123,13 @@ public class ExcelSaxUtil {
 	public static int countNullCell(String preRef, String ref) {
 		// excel2007最大行数是1048576，最大列数是16384，最后一列列名是XFD
 		// 数字代表列，去掉列信息
-		String preXfd = StrUtil.nullToDefault(preRef, "@").replaceAll("\\d+", "");
-		String xfd = StrUtil.nullToDefault(ref, "@").replaceAll("\\d+", "");
+		String preXfd = StringUtil.nullToDefault(preRef, "@").replaceAll("\\d+", "");
+		String xfd = StringUtil.nullToDefault(ref, "@").replaceAll("\\d+", "");
 
 		// A表示65，@表示64，如果A算作1，那@代表0
 		// 填充最大位数3
-		preXfd = StrUtil.fillBefore(preXfd, CELL_FILL_CHAR, MAX_CELL_BIT);
-		xfd = StrUtil.fillBefore(xfd, CELL_FILL_CHAR, MAX_CELL_BIT);
+		preXfd = StringUtil.fillBefore(preXfd, CELL_FILL_CHAR, MAX_CELL_BIT);
+		xfd = StringUtil.fillBefore(xfd, CELL_FILL_CHAR, MAX_CELL_BIT);
 
 		char[] preLetter = preXfd.toCharArray();
 		char[] letter = xfd.toCharArray();
@@ -216,12 +216,12 @@ public class ExcelSaxUtil {
 	 * @since 4.1.0
 	 */
 	private static Number getNumberValue(String value, String numFmtString) {
-		if (StrUtil.isBlank(value)) {
+		if (StringUtil.isBlank(value)) {
 			return null;
 		}
 		double numValue = Double.parseDouble(value);
 		// 普通数字
-		if (null != numFmtString && numFmtString.indexOf(StrUtil.C_DOT) < 0) {
+		if (null != numFmtString && numFmtString.indexOf(StringUtil.C_DOT) < 0) {
 			final long longPart = (long) numValue;
 			//noinspection RedundantIfStatement
 			if (longPart == numValue) {

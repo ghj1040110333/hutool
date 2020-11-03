@@ -5,7 +5,7 @@ import com.tools.core.io.IORuntimeException;
 import com.tools.core.lang.Assert;
 import com.tools.core.lang.copier.SrcToDestCopier;
 import com.tools.core.util.ArrayUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -216,7 +216,7 @@ public class FileCopier extends SrcToDestCopier<File, FileCopier>{
 			//noinspection ResultOfMethodCallIgnored
 			dest.mkdirs();
 		} else if (false == dest.isDirectory()) {
-			throw new IORuntimeException(StrUtil.format("Src [{}] is a directory but dest [{}] is a file!", src.getPath(), dest.getPath()));
+			throw new IORuntimeException(StringUtil.format("Src [{}] is a directory but dest [{}] is a file!", src.getPath(), dest.getPath()));
 		}
 
 		final String[] files = src.list();

@@ -1,6 +1,6 @@
 package com.tools.extra.pinyin.engine.bopomofo4j;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.extra.pinyin.PinyinEngine;
 import com.rnkrsoft.bopomofo4j.Bopomofo4j;
 import com.rnkrsoft.bopomofo4j.ToneType;
@@ -33,7 +33,7 @@ public class Bopomofo4jEngine implements PinyinEngine {
 
 	@Override
 	public String getPinyin(char c) {
-		return Bopomofo4j.pinyin(String.valueOf(c), ToneType.WITHOUT_TONE, false, false, StrUtil.EMPTY);
+		return Bopomofo4j.pinyin(String.valueOf(c), ToneType.WITHOUT_TONE, false, false, StringUtil.EMPTY);
 	}
 
 	@Override

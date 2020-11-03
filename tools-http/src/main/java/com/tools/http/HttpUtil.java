@@ -12,7 +12,7 @@ import com.tools.core.text.StrBuilder;
 import com.tools.core.util.CharsetUtil;
 import com.tools.core.util.ObjectUtil;
 import com.tools.core.util.ReUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.core.util.URLUtil;
 import com.tools.http.server.SimpleServer;
 
@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
 /**
  * Http请求工具类
  *
- * @author xiaoleilu
+ * @author fruit
  */
 public class HttpUtil {
 
@@ -248,7 +248,7 @@ public class HttpUtil {
 	 * @return 文本
 	 */
 	public static String downloadString(String url, Charset customCharset, StreamProgress streamPress) {
-		if (StrUtil.isBlank(url)) {
+		if (StringUtil.isBlank(url)) {
 			throw new NullPointerException("[url] is null!");
 		}
 
@@ -436,7 +436,7 @@ public class HttpUtil {
 	 * @return 文件大小
 	 */
 	public static long download(String url, OutputStream out, boolean isCloseOut, StreamProgress streamProgress) {
-		if (StrUtil.isBlank(url)) {
+		if (StringUtil.isBlank(url)) {
 			throw new NullPointerException("[url] is null!");
 		}
 		if (null == out) {
@@ -460,7 +460,7 @@ public class HttpUtil {
 	 * @since 5.3.6
 	 */
 	public static byte[] downloadBytes(String url) {
-		if (StrUtil.isBlank(url)) {
+		if (StringUtil.isBlank(url)) {
 			throw new NullPointerException("[url] is null!");
 		}
 
@@ -523,8 +523,8 @@ public class HttpUtil {
 	 * @since 4.0.1
 	 */
 	public static String encodeParams(String urlWithParams, Charset charset) {
-		if (StrUtil.isBlank(urlWithParams)) {
-			return StrUtil.EMPTY;
+		if (StringUtil.isBlank(urlWithParams)) {
+			return StringUtil.EMPTY;
 		}
 
 		String urlPart = null; // url部分，不包括问号
@@ -532,13 +532,13 @@ public class HttpUtil {
 		final int pathEndPos = urlWithParams.indexOf('?');
 		if (pathEndPos > -1) {
 			// url + 参数
-			urlPart = StrUtil.subPre(urlWithParams, pathEndPos);
-			paramPart = StrUtil.subSuf(urlWithParams, pathEndPos + 1);
-			if (StrUtil.isBlank(paramPart)) {
+			urlPart = StringUtil.subPre(urlWithParams, pathEndPos);
+			paramPart = StringUtil.subSuf(urlWithParams, pathEndPos + 1);
+			if (StringUtil.isBlank(paramPart)) {
 				// 无参数，返回url
 				return urlPart;
 			}
-		} else if (false == StrUtil.contains(urlWithParams, '=')) {
+		} else if (false == StringUtil.contains(urlWithParams, '=')) {
 			// 无参数的URL
 			return urlWithParams;
 		} else {
@@ -548,7 +548,7 @@ public class HttpUtil {
 
 		paramPart = normalizeParams(paramPart, charset);
 
-		return StrUtil.isBlank(urlPart) ? paramPart : urlPart + "?" + paramPart;
+		return StringUtil.isBlank(urlPart) ? paramPart : urlPart + "?" + paramPart;
 	}
 
 	/**
@@ -573,7 +573,7 @@ public class HttpUtil {
 			if (c == '=') { // 键值对的分界点
 				if (null == name) {
 					// 只有=前未定义name时被当作键值分界符，否则做为普通字符
-					name = (pos == i) ? StrUtil.EMPTY : paramPart.substring(pos, i);
+					name = (pos == i) ? StringUtil.EMPTY : paramPart.substring(pos, i);
 					pos = i + 1;
 				}
 			} else if (c == '&') { // 参数对的分界点
@@ -667,9 +667,9 @@ public class HttpUtil {
 
 		final Map<String, List<String>> params = new LinkedHashMap<>();
 		queryMap.forEach((key, value) -> {
-			final List<String> values = params.computeIfAbsent(StrUtil.str(key), k -> new ArrayList<>(1));
+			final List<String> values = params.computeIfAbsent(StringUtil.str(key), k -> new ArrayList<>(1));
 			// 一般是一个参数
-			values.add(StrUtil.str(value));
+			values.add(StringUtil.str(value));
 		});
 		return params;
 	}
@@ -685,7 +685,7 @@ public class HttpUtil {
 	 * @return 合成后的URL
 	 */
 	public static String urlWithForm(String url, Map<String, Object> form, Charset charset, boolean isEncodeParams) {
-		if (isEncodeParams && StrUtil.contains(url, '?')) {
+		if (isEncodeParams && StringUtil.contains(url, '?')) {
 			// 在需要编码的情况下，如果url中已经有部分参数，则编码之
 			url = encodeParams(url, charset);
 		}
@@ -704,9 +704,9 @@ public class HttpUtil {
 	 * @return 拼接后的字符串
 	 */
 	public static String urlWithForm(String url, String queryString, Charset charset, boolean isEncode) {
-		if (StrUtil.isBlank(queryString)) {
+		if (StringUtil.isBlank(queryString)) {
 			// 无额外参数
-			if (StrUtil.contains(url, '?')) {
+			if (StringUtil.contains(url, '?')) {
 				// url中包含参数
 				return isEncode ? encodeParams(url, charset) : url;
 			}
@@ -719,7 +719,7 @@ public class HttpUtil {
 		if (qmIndex > 0) {
 			// 原URL带参数，则对这部分参数单独编码（如果选项为进行编码）
 			urlBuilder.append(isEncode ? encodeParams(url, charset) : url);
-			if (false == StrUtil.endWith(url, '&')) {
+			if (false == StringUtil.endWith(url, '&')) {
 				// 已经带参数的情况下追加参数
 				urlBuilder.append('&');
 			}
@@ -758,7 +758,7 @@ public class HttpUtil {
 	 * @since 5.2.6
 	 */
 	public static String getCharset(String contentType) {
-		if (StrUtil.isBlank(contentType)) {
+		if (StringUtil.isBlank(contentType)) {
 			return null;
 		}
 		return ReUtil.get(CHARSET_PATTERN, contentType, 1);
@@ -798,14 +798,14 @@ public class HttpUtil {
 		String content = new String(contentBytes, charset);
 		if (isGetCharsetFromContent) {
 			final String charsetInContentStr = ReUtil.get(META_CHARSET_PATTERN, content, 1);
-			if (StrUtil.isNotBlank(charsetInContentStr)) {
+			if (StringUtil.isNotBlank(charsetInContentStr)) {
 				Charset charsetInContent = null;
 				try {
 					charsetInContent = Charset.forName(charsetInContentStr);
 				} catch (Exception e) {
-					if (StrUtil.containsIgnoreCase(charsetInContentStr, "utf-8") || StrUtil.containsIgnoreCase(charsetInContentStr, "utf8")) {
+					if (StringUtil.containsIgnoreCase(charsetInContentStr, "utf-8") || StringUtil.containsIgnoreCase(charsetInContentStr, "utf8")) {
 						charsetInContent = CharsetUtil.CHARSET_UTF_8;
-					} else if (StrUtil.containsIgnoreCase(charsetInContentStr, "gbk")) {
+					} else if (StringUtil.containsIgnoreCase(charsetInContentStr, "gbk")) {
 						charsetInContent = CharsetUtil.CHARSET_GBK;
 					}
 					// ignore

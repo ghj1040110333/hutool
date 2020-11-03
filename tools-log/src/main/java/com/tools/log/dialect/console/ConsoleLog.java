@@ -4,7 +4,7 @@ import com.tools.core.date.DateUtil;
 import com.tools.core.lang.Assert;
 import com.tools.core.lang.Console;
 import com.tools.core.lang.Dict;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.log.AbstractLog;
 import com.tools.log.level.Level;
 
@@ -29,7 +29,7 @@ public class ConsoleLog extends AbstractLog {
 	 * @param clazz 类
 	 */
 	public ConsoleLog(Class<?> clazz) {
-		this.name = (null == clazz) ? StrUtil.NULL : clazz.getName();
+		this.name = (null == clazz) ? StringUtil.NULL : clazz.getName();
 	}
 
 	/**
@@ -125,9 +125,9 @@ public class ConsoleLog extends AbstractLog {
 				.set("date", DateUtil.now())
 				.set("level", level.toString())
 				.set("name", this.name)
-				.set("msg", StrUtil.format(format, arguments));
+				.set("msg", StringUtil.format(format, arguments));
 
-		final String logMsg = StrUtil.format(logFormat, dict);
+		final String logMsg = StringUtil.format(logFormat, dict);
 
 		//WARN以上级别打印至System.err
 		if (level.ordinal() >= Level.WARN.ordinal()) {

@@ -2,7 +2,7 @@ package com.tools.core.date;
 
 import com.tools.core.util.ObjectUtil;
 import com.tools.core.util.ReUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -253,16 +253,16 @@ public class LocalDateTimeUtil {
 		}
 
 		DateTimeFormatter formatter = null;
-		if(StrUtil.isNotBlank(format)){
+		if(StringUtil.isNotBlank(format)){
 			// 修复yyyyMMddHHmmssSSS格式不能解析的问题
 			// fix issue#1082
 			//see https://stackoverflow.com/questions/22588051/is-java-time-failing-to-parse-fraction-of-second
 			// jdk8 bug at: https://bugs.openjdk.java.net/browse/JDK-8031085
-			if(StrUtil.startWithIgnoreEquals(format, DatePattern.PURE_DATETIME_PATTERN)){
-				final String fraction = StrUtil.removePrefix(format, DatePattern.PURE_DATETIME_PATTERN);
+			if(StringUtil.startWithIgnoreEquals(format, DatePattern.PURE_DATETIME_PATTERN)){
+				final String fraction = StringUtil.removePrefix(format, DatePattern.PURE_DATETIME_PATTERN);
 				if(ReUtil.isMatch("[S]{1,2}", fraction)){
 					//将yyyyMMddHHmmssS、yyyyMMddHHmmssSS的日期统一替换为yyyyMMddHHmmssSSS格式，用0补
-					text += StrUtil.repeat('0', 3-fraction.length());
+					text += StringUtil.repeat('0', 3-fraction.length());
 				}
 				formatter = new DateTimeFormatterBuilder()
 						.appendPattern(DatePattern.PURE_DATETIME_PATTERN)

@@ -1,6 +1,6 @@
 package com.tools.db.dialect.impl;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.db.Page;
 import com.tools.db.dialect.DialectName;
 import com.tools.db.sql.SqlBuilder;
@@ -22,7 +22,7 @@ public class SqlServer2012Dialect extends AnsiSqlDialect {
 
 	@Override
 	protected SqlBuilder wrapPageSql(SqlBuilder find, Page page) {
-		if (false == StrUtil.containsIgnoreCase(find.toString(), "order by")) {
+		if (false == StringUtil.containsIgnoreCase(find.toString(), "order by")) {
 			//offset 分页必须要跟在order by后面，没有情况下补充默认排序
 			find.append(" order by current_timestamp");
 		}

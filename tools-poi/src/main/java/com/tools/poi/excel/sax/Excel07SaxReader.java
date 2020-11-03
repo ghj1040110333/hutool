@@ -4,7 +4,7 @@ import com.tools.core.io.IORuntimeException;
 import com.tools.core.io.IoUtil;
 import com.tools.core.text.StrBuilder;
 import com.tools.core.util.NumberUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.poi.excel.sax.handler.RowHandler;
 import com.tools.poi.exceptions.POIException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -64,7 +64,7 @@ public class Excel07SaxReader extends DefaultHandler implements ExcelSaxReader<E
 	private String numFmtString;
 
 	// 上一次的内容
-	private final StrBuilder lastContent = StrUtil.strBuilder();
+	private final StrBuilder lastContent = StringUtil.strBuilder();
 	// 存储每行的列元素
 	private List<Object> rowCellList = new ArrayList<>();
 
@@ -233,11 +233,11 @@ public class Excel07SaxReader extends DefaultHandler implements ExcelSaxReader<E
 		if (NumberUtil.isInteger(idOrRid)) {
 			final SheetRidReader ridReader = new SheetRidReader();
 			final String rid = ridReader.read(xssfReader).getRidBySheetId(idOrRid);
-			if (StrUtil.isNotEmpty(rid)) {
+			if (StringUtil.isNotEmpty(rid)) {
 				idOrRid = rid;
 			}
 		}
-		this.sheetIndex = Integer.parseInt(StrUtil.removePrefixIgnoreCase(idOrRid, RID_PREFIX));
+		this.sheetIndex = Integer.parseInt(StringUtil.removePrefixIgnoreCase(idOrRid, RID_PREFIX));
 		InputStream sheetInputStream = null;
 		try {
 			if (this.sheetIndex > -1) {
@@ -305,7 +305,7 @@ public class Excel07SaxReader extends DefaultHandler implements ExcelSaxReader<E
 	 * 一个单元格结尾
 	 */
 	private void endCell() {
-		final String contentStr = StrUtil.trim(lastContent);
+		final String contentStr = StringUtil.trim(lastContent);
 		final Object value = ExcelSaxUtil.getDataValue(this.cellDataType, contentStr, this.sharedStringsTable, this.numFmtString);
 		// 补全单元格之间的空格
 		fillBlankCell(preCoordinate, curCoordinate, false);

@@ -4,7 +4,7 @@ import com.tools.core.builder.Builder;
 import com.tools.core.collection.CollectionUtil;
 import com.tools.core.util.ArrayUtil;
 import com.tools.core.util.ObjectUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.db.DbRuntimeException;
 import com.tools.db.Entity;
 import com.tools.db.dialect.DialectName;
@@ -124,7 +124,7 @@ public class SqlBuilder implements Builder<String>{
 		for (Entry<String, Object> entry : entity.entrySet()) {
 			field = entry.getKey();
 			value = entry.getValue();
-			if (StrUtil.isNotBlank(field) /* && null != value */) {
+			if (StringUtil.isNotBlank(field) /* && null != value */) {
 				if (isFirst) {
 					isFirst = false;
 				} else {
@@ -135,7 +135,7 @@ public class SqlBuilder implements Builder<String>{
 
 				this.fields.add(field);
 				fieldsPart.append((null != wrapper) ? wrapper.wrap(field) : field);
-				if (isOracle && value instanceof String && StrUtil.endWithIgnoreCase((String) value, ".nextval")) {
+				if (isOracle && value instanceof String && StringUtil.endWithIgnoreCase((String) value, ".nextval")) {
 					// Oracle的特殊自增键，通过字段名.nextval获得下一个值
 					placeHolder.append(value);
 				} else {
@@ -158,7 +158,7 @@ public class SqlBuilder implements Builder<String>{
 	 * @return 自己
 	 */
 	public SqlBuilder delete(String tableName) {
-		if (StrUtil.isBlank(tableName)) {
+		if (StringUtil.isBlank(tableName)) {
 			throw new DbRuntimeException("Table name is blank !");
 		}
 
@@ -192,7 +192,7 @@ public class SqlBuilder implements Builder<String>{
 		String field;
 		for (Entry<String, Object> entry : entity.entrySet()) {
 			field = entry.getKey();
-			if (StrUtil.isNotBlank(field)) {
+			if (StringUtil.isNotBlank(field)) {
 				if (paramValues.size() > 0) {
 					sql.append(", ");
 				}
@@ -236,7 +236,7 @@ public class SqlBuilder implements Builder<String>{
 				// 包装字段名
 				fields = wrapper.wrap(fields);
 			}
-			sql.append(CollectionUtil.join(fields, StrUtil.COMMA));
+			sql.append(CollectionUtil.join(fields, StringUtil.COMMA));
 		}
 
 		return this;
@@ -269,7 +269,7 @@ public class SqlBuilder implements Builder<String>{
 	 * @return 自己
 	 */
 	public SqlBuilder from(String... tableNames) {
-		if (ArrayUtil.isEmpty(tableNames) || StrUtil.hasBlank(tableNames)) {
+		if (ArrayUtil.isEmpty(tableNames) || StringUtil.hasBlank(tableNames)) {
 			throw new DbRuntimeException("Table name is blank in table names !");
 		}
 
@@ -278,7 +278,7 @@ public class SqlBuilder implements Builder<String>{
 			tableNames = wrapper.wrap(tableNames);
 		}
 
-		sql.append(" FROM ").append(ArrayUtil.join(tableNames, StrUtil.COMMA));
+		sql.append(" FROM ").append(ArrayUtil.join(tableNames, StringUtil.COMMA));
 
 		return this;
 	}
@@ -319,7 +319,7 @@ public class SqlBuilder implements Builder<String>{
 	 * @return 自己
 	 */
 	public SqlBuilder where(String where) {
-		if (StrUtil.isNotBlank(where)) {
+		if (StringUtil.isNotBlank(where)) {
 			sql.append(" WHERE ").append(where);
 		}
 		return this;
@@ -335,7 +335,7 @@ public class SqlBuilder implements Builder<String>{
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> SqlBuilder in(String field, T... values) {
-		sql.append(wrapper.wrap(field)).append(" IN ").append("(").append(ArrayUtil.join(values, StrUtil.COMMA)).append(")");
+		sql.append(wrapper.wrap(field)).append(" IN ").append("(").append(ArrayUtil.join(values, StringUtil.COMMA)).append(")");
 		return this;
 	}
 
@@ -352,7 +352,7 @@ public class SqlBuilder implements Builder<String>{
 				fields = wrapper.wrap(fields);
 			}
 
-			sql.append(" GROUP BY ").append(ArrayUtil.join(fields, StrUtil.COMMA));
+			sql.append(" GROUP BY ").append(ArrayUtil.join(fields, StringUtil.COMMA));
 		}
 
 		return this;
@@ -393,7 +393,7 @@ public class SqlBuilder implements Builder<String>{
 	 * @return 自己
 	 */
 	public SqlBuilder having(String having) {
-		if (StrUtil.isNotBlank(having)) {
+		if (StringUtil.isNotBlank(having)) {
 			sql.append(" HAVING ").append(having);
 		}
 		return this;
@@ -419,7 +419,7 @@ public class SqlBuilder implements Builder<String>{
 				// 包装字段名
 				field = wrapper.wrap(field);
 			}
-			if (StrUtil.isBlank(field)) {
+			if (StringUtil.isBlank(field)) {
 				continue;
 			}
 
@@ -427,12 +427,12 @@ public class SqlBuilder implements Builder<String>{
 			if (isFirst) {
 				isFirst = false;
 			} else {
-				sql.append(StrUtil.COMMA);
+				sql.append(StringUtil.COMMA);
 			}
 			sql.append(field);
 			final Direction direction = order.getDirection();
 			if (null != direction) {
-				sql.append(StrUtil.SPACE).append(direction);
+				sql.append(StringUtil.SPACE).append(direction);
 			}
 		}
 		return this;
@@ -446,12 +446,12 @@ public class SqlBuilder implements Builder<String>{
 	 * @return 自己
 	 */
 	public SqlBuilder join(String tableName, Join join) {
-		if (StrUtil.isBlank(tableName)) {
+		if (StringUtil.isBlank(tableName)) {
 			throw new DbRuntimeException("Table name is blank !");
 		}
 
 		if (null != join) {
-			sql.append(StrUtil.SPACE).append(join).append(" JOIN ");
+			sql.append(StringUtil.SPACE).append(join).append(" JOIN ");
 			if (null != wrapper) {
 				// 包装表名
 				tableName = wrapper.wrap(tableName);
@@ -498,7 +498,7 @@ public class SqlBuilder implements Builder<String>{
 	 * @return 自己
 	 */
 	public SqlBuilder on(String on) {
-		if (StrUtil.isNotBlank(on)) {
+		if (StringUtil.isNotBlank(on)) {
 			this.sql.append(" ON ").append(on);
 		}
 		return this;
@@ -603,7 +603,7 @@ public class SqlBuilder implements Builder<String>{
 	 */
 	private String buildCondition(Condition... conditions) {
 		if (ArrayUtil.isEmpty(conditions)) {
-			return StrUtil.EMPTY;
+			return StringUtil.EMPTY;
 		}
 
 		if (null != wrapper) {
@@ -624,7 +624,7 @@ public class SqlBuilder implements Builder<String>{
 		if (null == entity) {
 			throw new DbRuntimeException("Entity is null !");
 		}
-		if (StrUtil.isBlank(entity.getTableName())) {
+		if (StringUtil.isBlank(entity.getTableName())) {
 			throw new DbRuntimeException("Entity`s table name is null !");
 		}
 		if (entity.isEmpty()) {

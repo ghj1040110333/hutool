@@ -169,7 +169,7 @@ public class SyncFinisher {
 	/**
 	 * 工作者，为一个线程
 	 *
-	 * @author xiaoleilu
+	 * @author fruit
 	 *
 	 */
 	public abstract class Worker implements Runnable {

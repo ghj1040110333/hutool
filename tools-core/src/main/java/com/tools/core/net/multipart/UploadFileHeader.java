@@ -1,7 +1,7 @@
 package com.tools.core.net.multipart;
 
 import com.tools.core.io.FileUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * 上传的文件的头部信息<br>
@@ -116,7 +116,7 @@ public class UploadFileHeader {
 	 */
 	private String getDataFieldValue(String dataHeader, String fieldName) {
 		String value = null;
-		String token = StrUtil.format("{}=\"", fieldName);
+		String token = StringUtil.format("{}=\"", fieldName);
 		int pos = dataHeader.indexOf(token);
 		if (pos > 0) {
 			int start = pos + token.length();
@@ -138,7 +138,7 @@ public class UploadFileHeader {
 		String token = "Content-Type:";
 		int start = dataHeader.indexOf(token);
 		if (start == -1) {
-			return StrUtil.EMPTY;
+			return StringUtil.EMPTY;
 		}
 		start += token.length();
 		return dataHeader.substring(start);
@@ -181,12 +181,12 @@ public class UploadFileHeader {
 				return;
 			}
 			if (formFileName.length() == 0) {
-				path = StrUtil.EMPTY;
-				fileName = StrUtil.EMPTY;
+				path = StringUtil.EMPTY;
+				fileName = StringUtil.EMPTY;
 			}
 			int ls = FileUtil.lastIndexOfSeparator(formFileName);
 			if (ls == -1) {
-				path = StrUtil.EMPTY;
+				path = StringUtil.EMPTY;
 				fileName = formFileName;
 			} else {
 				path = formFileName.substring(0, ls);

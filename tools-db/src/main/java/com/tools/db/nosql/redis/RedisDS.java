@@ -1,7 +1,7 @@
 package com.tools.db.nosql.redis;
 
 import com.tools.core.io.IoUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.setting.Setting;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -98,7 +98,7 @@ public class RedisDS implements Closeable{
 		final JedisPoolConfig config = new JedisPoolConfig();
 		// 共用配置
 		setting.toBean(config);
-		if (StrUtil.isNotBlank(group)) {
+		if (StringUtil.isNotBlank(group)) {
 			// 特有配置
 			setting.toBean(group, config);
 		}

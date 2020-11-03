@@ -8,10 +8,6 @@ import com.tools.core.lang.Assert;
 import com.tools.core.lang.Filter;
 import com.tools.core.lang.SimpleCache;
 import com.tools.core.map.MapUtil;
-import com.tools.core.util.ArrayUtil;
-import com.tools.core.util.ClassUtil;
-import com.tools.core.util.StrUtil;
-import com.tools.core.convert.Convert;
 
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Constructor;
@@ -231,7 +227,7 @@ public class ReflectUtil {
 	 * @throws UtilException 包装IllegalAccessException异常
 	 */
 	public static Object getFieldValue(Object obj, String fieldName) throws UtilException {
-		if (null == obj || StrUtil.isBlank(fieldName)) {
+		if (null == obj || StringUtil.isBlank(fieldName)) {
 			return null;
 		}
 		return getFieldValue(obj, getField(obj instanceof Class ? (Class<?>) obj : obj.getClass(), fieldName));
@@ -459,7 +455,7 @@ public class ReflectUtil {
 	 * @throws SecurityException 无访问权限抛出异常
 	 */
 	public static Method getMethodOfObj(Object obj, String methodName, Object... args) throws SecurityException {
-		if (null == obj || StrUtil.isBlank(methodName)) {
+		if (null == obj || StringUtil.isBlank(methodName)) {
 			return null;
 		}
 		return getMethod(obj.getClass(), methodName, ClassUtil.getClasses(args));
@@ -516,14 +512,14 @@ public class ReflectUtil {
 	 * @since 3.2.0
 	 */
 	public static Method getMethod(Class<?> clazz, boolean ignoreCase, String methodName, Class<?>... paramTypes) throws SecurityException {
-		if (null == clazz || StrUtil.isBlank(methodName)) {
+		if (null == clazz || StringUtil.isBlank(methodName)) {
 			return null;
 		}
 
 		final Method[] methods = getMethods(clazz);
 		if (ArrayUtil.isNotEmpty(methods)) {
 			for (Method method : methods) {
-				if (StrUtil.equals(methodName, method.getName(), ignoreCase)) {
+				if (StringUtil.equals(methodName, method.getName(), ignoreCase)) {
 					if (ClassUtil.isAllAssignableFrom(method.getParameterTypes(), paramTypes)) {
 						return method;
 					}
@@ -582,14 +578,14 @@ public class ReflectUtil {
 	 * @since 4.3.2
 	 */
 	public static Method getMethodByName(Class<?> clazz, boolean ignoreCase, String methodName) throws SecurityException {
-		if (null == clazz || StrUtil.isBlank(methodName)) {
+		if (null == clazz || StringUtil.isBlank(methodName)) {
 			return null;
 		}
 
 		final Method[] methods = getMethods(clazz);
 		if (ArrayUtil.isNotEmpty(methods)) {
 			for (Method method : methods) {
-				if (StrUtil.equals(methodName, method.getName(), ignoreCase)) {
+				if (StringUtil.equals(methodName, method.getName(), ignoreCase)) {
 					return method;
 				}
 			}
@@ -940,7 +936,7 @@ public class ReflectUtil {
 	public static <T> T invoke(Object obj, String methodName, Object... args) throws UtilException {
 		final Method method = getMethodOfObj(obj, methodName, args);
 		if (null == method) {
-			throw new UtilException(StrUtil.format("No such method: [{}]", methodName));
+			throw new UtilException(StringUtil.format("No such method: [{}]", methodName));
 		}
 		return invoke(obj, method, args);
 	}

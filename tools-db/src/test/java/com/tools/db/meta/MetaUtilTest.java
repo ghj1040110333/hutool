@@ -8,7 +8,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.tools.core.collection.CollectionUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.db.ds.DSFactory;
 
 /**
@@ -35,6 +35,6 @@ public class MetaUtilTest {
 	@Test
 	public void getColumnNamesTest() {
 		String[] names = MetaUtil.getColumnNames(ds, "user");
-		Assert.assertArrayEquals(StrUtil.splitToArray("id,name,age,birthday,gender", ','), names);
+		Assert.assertArrayEquals(StringUtil.splitToArray("id,name,age,birthday,gender", ','), names);
 	}
 }

@@ -5,7 +5,7 @@ import com.tools.core.exceptions.UtilException;
 import com.tools.core.lang.Assert;
 import com.tools.core.util.CharsetUtil;
 import com.tools.core.util.HexUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -46,7 +46,7 @@ import java.util.zip.Checksum;
  * IO工具类<br>
  * IO工具类只是辅助流的读写，并不负责关闭流。原因是流可能被多次读写，读写关闭后容易造成问题。
  *
- * @author xiaoleilu
+ * @author fruit
  */
 public class IoUtil {
 
@@ -443,7 +443,7 @@ public class IoUtil {
 	 */
 	public static String read(InputStream in, String charsetName) throws IORuntimeException {
 		FastByteArrayOutputStream out = read(in);
-		return StrUtil.isBlank(charsetName) ? out.toString() : out.toString(charsetName);
+		return StringUtil.isBlank(charsetName) ? out.toString() : out.toString(charsetName);
 	}
 
 	/**
@@ -507,7 +507,7 @@ public class IoUtil {
 	 * @throws IORuntimeException IO异常
 	 */
 	public static String read(Reader reader) throws IORuntimeException {
-		final StringBuilder builder = StrUtil.builder();
+		final StringBuilder builder = StringUtil.builder();
 		final CharBuffer buffer = CharBuffer.allocate(DEFAULT_BUFFER_SIZE);
 		try {
 			while (-1 != reader.read(buffer)) {
@@ -557,7 +557,7 @@ public class IoUtil {
 		} catch (IOException e) {
 			throw new IORuntimeException(e);
 		}
-		return StrUtil.str(buffer, charset);
+		return StringUtil.str(buffer, charset);
 	}
 
 	/**
@@ -855,7 +855,7 @@ public class IoUtil {
 		if (content == null) {
 			return null;
 		}
-		return toStream(StrUtil.bytes(content, charset));
+		return toStream(StringUtil.bytes(content, charset));
 	}
 
 	/**
@@ -1012,7 +1012,7 @@ public class IoUtil {
 			osw = getWriter(out, charset);
 			for (Object content : contents) {
 				if (content != null) {
-					osw.write(Convert.toStr(content, StrUtil.EMPTY));
+					osw.write(Convert.toStr(content, StringUtil.EMPTY));
 				}
 			}
 			osw.flush();

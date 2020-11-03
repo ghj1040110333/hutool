@@ -5,7 +5,7 @@ import com.tools.core.collection.IterUtil;
 import com.tools.core.convert.Convert;
 import com.tools.core.map.MapUtil;
 import com.tools.core.map.TableMap;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.core.util.URLUtil;
 
 import java.nio.charset.Charset;
@@ -102,15 +102,15 @@ public class UrlQuery {
 	 * @return this
 	 */
 	public UrlQuery parse(String queryStr, Charset charset) {
-		if (StrUtil.isBlank(queryStr)) {
+		if (StringUtil.isBlank(queryStr)) {
 			return this;
 		}
 
 		// 去掉Path部分
 		int pathEndPos = queryStr.indexOf('?');
 		if (pathEndPos > -1) {
-			queryStr = StrUtil.subSuf(queryStr, pathEndPos + 1);
-			if (StrUtil.isBlank(queryStr)) {
+			queryStr = StringUtil.subSuf(queryStr, pathEndPos + 1);
+			if (StringUtil.isBlank(queryStr)) {
 				return this;
 			}
 		}
@@ -180,7 +180,7 @@ public class UrlQuery {
 	 */
 	public String build(Charset charset) {
 		if (MapUtil.isEmpty(this.query)) {
-			return StrUtil.EMPTY;
+			return StringUtil.EMPTY;
 		}
 
 		final StringBuilder sb = new StringBuilder();
@@ -194,11 +194,11 @@ public class UrlQuery {
 				sb.append("&");
 			}
 			key = entry.getKey();
-			if (StrUtil.isNotEmpty(key)) {
-				sb.append(URLUtil.encodeAll(StrUtil.str(key), charset));
+			if (StringUtil.isNotEmpty(key)) {
+				sb.append(URLUtil.encodeAll(StringUtil.str(key), charset));
 				value = entry.getValue();
 				if (null != value) {
-					sb.append("=").append(URLUtil.encodeAll(StrUtil.str(value), charset));
+					sb.append("=").append(URLUtil.encodeAll(StringUtil.str(value), charset));
 				}
 			}
 		}
@@ -244,7 +244,7 @@ public class UrlQuery {
 	private void addParam(String key, String value, Charset charset) {
 		if (null != key) {
 			final String actualKey = URLUtil.decode(key, charset);
-			this.query.put(actualKey, StrUtil.nullToEmpty(URLUtil.decode(value, charset)));
+			this.query.put(actualKey, StringUtil.nullToEmpty(URLUtil.decode(value, charset)));
 		} else if (null != value) {
 			// name为空，value作为name，value赋值null
 			this.query.put(URLUtil.decode(value, charset), null);

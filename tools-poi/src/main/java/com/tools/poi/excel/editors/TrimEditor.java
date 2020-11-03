@@ -2,7 +2,7 @@ package com.tools.poi.excel.editors;
 
 import org.apache.poi.ss.usermodel.Cell;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.poi.excel.cell.CellEditor;
 
 /**
@@ -15,7 +15,7 @@ public class TrimEditor implements CellEditor{
 	@Override
 	public Object edit(Cell cell, Object value) {
 		if(value instanceof String) {
-			return StrUtil.trim((String)value);
+			return StringUtil.trim((String)value);
 		}
 		return value;
 	}

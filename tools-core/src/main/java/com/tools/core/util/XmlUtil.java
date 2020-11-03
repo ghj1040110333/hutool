@@ -9,7 +9,6 @@ import com.tools.core.io.IoUtil;
 import com.tools.core.lang.Assert;
 import com.tools.core.map.BiMap;
 import com.tools.core.map.MapUtil;
-import com.tools.core.util.StrUtil;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -62,7 +61,7 @@ import java.util.Map;
  * 此工具使用w3c dom工具，不需要依赖第三方包。<br>
  * 工具类封装了XML文档的创建、读取、写出和部分XML操作
  *
- * @author xiaoleilu
+ * @author fruit
  */
 public class XmlUtil {
 
@@ -152,7 +151,7 @@ public class XmlUtil {
 	 * @since 3.0.9
 	 */
 	public static Document readXML(String pathOrContent) {
-		if (StrUtil.startWith(pathOrContent, '<')) {
+		if (StringUtil.startWith(pathOrContent, '<')) {
 			return parseXml(pathOrContent);
 		}
 		return readXML(FileUtil.file(pathOrContent));
@@ -293,11 +292,11 @@ public class XmlUtil {
 	 * @return XML文档
 	 */
 	public static Document parseXml(String xmlStr) {
-		if (StrUtil.isBlank(xmlStr)) {
+		if (StringUtil.isBlank(xmlStr)) {
 			throw new IllegalArgumentException("XML content string is empty !");
 		}
 		xmlStr = cleanInvalid(xmlStr);
-		return readXML(StrUtil.getReader(xmlStr));
+		return readXML(StringUtil.getReader(xmlStr));
 	}
 
 	/**
@@ -320,7 +319,7 @@ public class XmlUtil {
 	 * @since 3.2.0
 	 */
 	public static <T> T readObjectFromXml(String xmlStr) {
-		return readObjectFromXml(new InputSource(StrUtil.getReader(xmlStr)));
+		return readObjectFromXml(new InputSource(StringUtil.getReader(xmlStr)));
 	}
 
 	/**
@@ -437,7 +436,7 @@ public class XmlUtil {
 	 * @since 5.1.2
 	 */
 	public static String toStr(Node doc, String charset, boolean isPretty, boolean omitXmlDeclaration) {
-		final StringWriter writer = StrUtil.getWriter();
+		final StringWriter writer = StringUtil.getWriter();
 		try {
 			write(doc, writer, charset, isPretty ? INDENT_DEFAULT : 0, omitXmlDeclaration);
 		} catch (Exception e) {
@@ -487,10 +486,10 @@ public class XmlUtil {
 	 * @param charset 自定义XML文件的编码，如果为{@code null} 读取XML文档中的编码，否则默认UTF-8
 	 */
 	public static void toFile(Document doc, String path, String charset) {
-		if (StrUtil.isBlank(charset)) {
+		if (StringUtil.isBlank(charset)) {
 			charset = doc.getXmlEncoding();
 		}
-		if (StrUtil.isBlank(charset)) {
+		if (StringUtil.isBlank(charset)) {
 			charset = CharsetUtil.UTF_8;
 		}
 
@@ -590,7 +589,7 @@ public class XmlUtil {
 				xformer.setOutputProperty(OutputKeys.INDENT, "yes");
 				xformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", String.valueOf(indent));
 			}
-			if (StrUtil.isNotBlank(charset)) {
+			if (StringUtil.isNotBlank(charset)) {
 				xformer.setOutputProperty(OutputKeys.ENCODING, charset);
 			}
 			if (omitXmlDeclaration) {
@@ -642,7 +641,7 @@ public class XmlUtil {
 	 */
 	public static DocumentBuilderFactory createDocumentBuilderFactory() {
 		final DocumentBuilderFactory factory;
-		if (StrUtil.isNotEmpty(defaultDocumentBuilderFactory)) {
+		if (StringUtil.isNotEmpty(defaultDocumentBuilderFactory)) {
 			factory = DocumentBuilderFactory.newInstance(defaultDocumentBuilderFactory, null);
 		} else {
 			factory = DocumentBuilderFactory.newInstance();
@@ -727,7 +726,7 @@ public class XmlUtil {
 		if (xmlContent == null) {
 			return null;
 		}
-		return xmlContent.replaceAll(COMMENT_REGEX, StrUtil.EMPTY);
+		return xmlContent.replaceAll(COMMENT_REGEX, StringUtil.EMPTY);
 	}
 
 	/**
@@ -738,7 +737,7 @@ public class XmlUtil {
 	 * @return 节点列表
 	 */
 	public static List<Element> getElements(Element element, String tagName) {
-		final NodeList nodeList = StrUtil.isBlank(tagName) ? element.getChildNodes() : element.getElementsByTagName(tagName);
+		final NodeList nodeList = StringUtil.isBlank(tagName) ? element.getChildNodes() : element.getElementsByTagName(tagName);
 		return transElements(element, nodeList);
 	}
 
@@ -1358,7 +1357,7 @@ public class XmlUtil {
 	 * @since 5.3.0
 	 */
 	private static Node appendText(Document doc, Node node, CharSequence text) {
-		return node.appendChild(doc.createTextNode(StrUtil.str(text)));
+		return node.appendChild(doc.createTextNode(StringUtil.str(text)));
 	}
 
 	/**

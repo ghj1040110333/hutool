@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
  * 正则相关工具类<br>
  * 常用正则请见 {@link Validator}
  *
- * @author xiaoleilu
+ * @author fruit
  */
 public class ReUtil {
 
@@ -241,7 +241,7 @@ public class ReUtil {
 				int group = Integer.parseInt(var);
 				template = template.replace("$" + var, matcher.group(group));
 			}
-			contentHolder.set(StrUtil.sub(content, matcher.end(), content.length()));
+			contentHolder.set(StringUtil.sub(content, matcher.end(), content.length()));
 			return template;
 		}
 		return null;
@@ -275,8 +275,8 @@ public class ReUtil {
 	 * @return 删除后剩余的内容
 	 */
 	public static String delFirst(String regex, CharSequence content) {
-		if (StrUtil.hasBlank(regex, content)) {
-			return StrUtil.str(content);
+		if (StringUtil.hasBlank(regex, content)) {
+			return StringUtil.str(content);
 		}
 
 		// Pattern pattern = Pattern.compile(regex, Pattern.DOTALL);
@@ -292,11 +292,11 @@ public class ReUtil {
 	 * @return 删除后剩余的内容
 	 */
 	public static String delFirst(Pattern pattern, CharSequence content) {
-		if (null == pattern || StrUtil.isBlank(content)) {
-			return StrUtil.str(content);
+		if (null == pattern || StringUtil.isBlank(content)) {
+			return StringUtil.str(content);
 		}
 
-		return pattern.matcher(content).replaceFirst(StrUtil.EMPTY);
+		return pattern.matcher(content).replaceFirst(StringUtil.EMPTY);
 	}
 
 	/**
@@ -307,8 +307,8 @@ public class ReUtil {
 	 * @return 删除后剩余的内容
 	 */
 	public static String delAll(String regex, CharSequence content) {
-		if (StrUtil.hasBlank(regex, content)) {
-			return StrUtil.str(content);
+		if (StringUtil.hasBlank(regex, content)) {
+			return StringUtil.str(content);
 		}
 
 		// Pattern pattern = Pattern.compile(regex, Pattern.DOTALL);
@@ -324,11 +324,11 @@ public class ReUtil {
 	 * @return 删除后剩余的内容
 	 */
 	public static String delAll(Pattern pattern, CharSequence content) {
-		if (null == pattern || StrUtil.isBlank(content)) {
-			return StrUtil.str(content);
+		if (null == pattern || StringUtil.isBlank(content)) {
+			return StringUtil.str(content);
 		}
 
-		return pattern.matcher(content).replaceAll(StrUtil.EMPTY);
+		return pattern.matcher(content).replaceAll(StringUtil.EMPTY);
 	}
 
 	/**
@@ -340,16 +340,16 @@ public class ReUtil {
 	 */
 	public static String delPre(String regex, CharSequence content) {
 		if (null == content || null == regex) {
-			return StrUtil.str(content);
+			return StringUtil.str(content);
 		}
 
 		// Pattern pattern = Pattern.compile(regex, Pattern.DOTALL);
 		final Pattern pattern = PatternPool.get(regex, Pattern.DOTALL);
 		Matcher matcher = pattern.matcher(content);
 		if (matcher.find()) {
-			return StrUtil.sub(content, matcher.end(), content.length());
+			return StringUtil.sub(content, matcher.end(), content.length());
 		}
-		return StrUtil.str(content);
+		return StringUtil.str(content);
 	}
 
 	/**
@@ -563,7 +563,7 @@ public class ReUtil {
 			return false;
 		}
 
-		if (StrUtil.isEmpty(regex)) {
+		if (StringUtil.isEmpty(regex)) {
 			// 正则不存在则为全匹配
 			return true;
 		}
@@ -622,8 +622,8 @@ public class ReUtil {
 	 * @since 3.0.4
 	 */
 	public static String replaceAll(CharSequence content, Pattern pattern, String replacementTemplate) {
-		if (StrUtil.isEmpty(content)) {
-			return StrUtil.str(content);
+		if (StringUtil.isEmpty(content)) {
+			return StringUtil.str(content);
 		}
 
 		final Matcher matcher = pattern.matcher(content);
@@ -643,7 +643,7 @@ public class ReUtil {
 			matcher.appendTail(sb);
 			return sb.toString();
 		}
-		return StrUtil.str(content);
+		return StringUtil.str(content);
 	}
 
 	/**
@@ -669,8 +669,8 @@ public class ReUtil {
 	 * @since 4.2.2
 	 */
 	public static String replaceAll(CharSequence str, Pattern pattern, Func1<Matcher, String> replaceFun) {
-		if (StrUtil.isEmpty(str)) {
-			return StrUtil.str(str);
+		if (StringUtil.isEmpty(str)) {
+			return StringUtil.str(str);
 		}
 
 		final Matcher matcher = pattern.matcher(str);
@@ -708,8 +708,8 @@ public class ReUtil {
 	 * @return 转义后的文本
 	 */
 	public static String escape(CharSequence content) {
-		if (StrUtil.isBlank(content)) {
-			return StrUtil.str(content);
+		if (StringUtil.isBlank(content)) {
+			return StringUtil.str(content);
 		}
 
 		final StringBuilder builder = new StringBuilder();

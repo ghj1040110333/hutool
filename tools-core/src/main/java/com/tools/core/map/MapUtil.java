@@ -9,7 +9,7 @@ import com.tools.core.lang.TypeReference;
 import com.tools.core.util.ArrayUtil;
 import com.tools.core.util.ObjectUtil;
 import com.tools.core.util.ReflectUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
@@ -356,7 +356,7 @@ public class MapUtil {
 					}
 				}
 			} else {
-				throw new IllegalArgumentException(StrUtil.format("Array element {}, '{}', is not type of Map.Entry or Array or Iterable or Iterator", i, object));
+				throw new IllegalArgumentException(StringUtil.format("Array element {}, '{}', is not type of Map.Entry or Array or Iterable or Iterator", i, object));
 			}
 		}
 		return map;
@@ -583,7 +583,7 @@ public class MapUtil {
 	 * @since 3.1.1
 	 */
 	public static <K, V> String join(Map<K, V> map, String separator, String keyValueSeparator, boolean isIgnoreNull, String... otherParams) {
-		final StringBuilder strBuilder = StrUtil.builder();
+		final StringBuilder strBuilder = StringUtil.builder();
 		boolean isFirst = true;
 		if (isNotEmpty(map)) {
 			for (Entry<K, V> entry : map.entrySet()) {
@@ -1206,7 +1206,7 @@ public class MapUtil {
 	public static <K, V> Map<K, V> renameKey(Map<K, V> map, K oldKey, K newKey) {
 		if (isNotEmpty(map) && map.containsKey(oldKey)) {
 			if (map.containsKey(newKey)) {
-				throw new IllegalArgumentException(StrUtil.format("The key '{}' exist !", newKey));
+				throw new IllegalArgumentException(StringUtil.format("The key '{}' exist !", newKey));
 			}
 			map.put(newKey, map.remove(oldKey));
 		}
@@ -1283,7 +1283,7 @@ public class MapUtil {
 		}
 
 		// 不支持空集合的集合类型
-		throw new IllegalArgumentException(StrUtil.format("[{}] is not support to get empty!", mapClass));
+		throw new IllegalArgumentException(StringUtil.format("[{}] is not support to get empty!", mapClass));
 	}
 
 	/**

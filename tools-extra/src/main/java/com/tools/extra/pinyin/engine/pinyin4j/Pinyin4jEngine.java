@@ -2,7 +2,7 @@ package com.tools.extra.pinyin.engine.pinyin4j;
 
 import com.tools.core.text.StrBuilder;
 import com.tools.core.util.ArrayUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.extra.pinyin.PinyinEngine;
 import com.tools.extra.pinyin.PinyinException;
 import net.sourceforge.pinyin4j.PinyinHelper;
@@ -84,7 +84,7 @@ public class Pinyin4jEngine implements PinyinEngine {
 
 	@Override
 	public String getPinyin(String str, String separator) {
-		final StrBuilder result = StrUtil.strBuilder();
+		final StrBuilder result = StringUtil.strBuilder();
 		boolean isFirst = true;
 		final int strLen = str.length();
 		try {

@@ -7,7 +7,6 @@ import com.tools.core.exceptions.UtilException;
 import com.tools.core.io.FastByteArrayOutputStream;
 import com.tools.core.io.IoUtil;
 import com.tools.core.map.MapUtil;
-import com.tools.core.util.ReflectUtil;
 
 import java.io.ByteArrayInputStream;
 import java.io.ObjectInputStream;
@@ -244,7 +243,7 @@ public class ObjectUtil {
 		}
 
 		if (obj instanceof CharSequence) {
-			return StrUtil.isEmpty((CharSequence) obj);
+			return StringUtil.isEmpty((CharSequence) obj);
 		} else if (obj instanceof Map) {
 			return MapUtil.isEmpty((Map) obj);
 		} else if (obj instanceof Iterable) {
@@ -316,7 +315,7 @@ public class ObjectUtil {
 	 * @since 5.0.4
 	 */
 	public static <T extends CharSequence> T defaultIfEmpty(final T str, final T defaultValue) {
-		return StrUtil.isEmpty(str) ? defaultValue : str;
+		return StringUtil.isEmpty(str) ? defaultValue : str;
 	}
 
 	/**
@@ -337,7 +336,7 @@ public class ObjectUtil {
 	 * @since 5.0.4
 	 */
 	public static <T extends CharSequence> T defaultIfBlank(final T str, final T defaultValue) {
-		return StrUtil.isBlank(str) ? defaultValue : str;
+		return StringUtil.isBlank(str) ? defaultValue : str;
 	}
 
 	/**
@@ -548,7 +547,7 @@ public class ObjectUtil {
 	 */
 	public static String toString(Object obj) {
 		if (null == obj) {
-			return StrUtil.NULL;
+			return StringUtil.NULL;
 		}
 		if (obj instanceof Map) {
 			return obj.toString();

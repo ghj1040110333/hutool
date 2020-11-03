@@ -3,7 +3,7 @@ package com.tools.core.bean.copier.provider;
 import com.tools.core.bean.copier.ValueProvider;
 import com.tools.core.convert.Convert;
 import com.tools.core.map.CaseInsensitiveMap;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.lang.reflect.Type;
 import java.util.Map;
@@ -53,7 +53,7 @@ public class MapValueProvider implements ValueProvider<String> {
 		Object value = map.get(key);
 		if (null == value) {
 			//检查下划线模式
-			value = map.get(StrUtil.toUnderlineCase(key));
+			value = map.get(StringUtil.toUnderlineCase(key));
 		}
 
 		return Convert.convertWithCheck(valueType, value, null, this.ignoreError);
@@ -65,7 +65,7 @@ public class MapValueProvider implements ValueProvider<String> {
 			return true;
 		} else {
 			//检查下划线模式
-			return map.containsKey(StrUtil.toUnderlineCase(key));
+			return map.containsKey(StringUtil.toUnderlineCase(key));
 		}
 	}
 

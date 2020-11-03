@@ -10,7 +10,7 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 
 import com.tools.core.util.ArrayUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * SSLSocketFactory构建器
@@ -55,7 +55,7 @@ public class SSLSocketFactoryBuilder{
 	 * @return 自身
 	 */
 	public SSLSocketFactoryBuilder setProtocol(String protocol){
-		if(StrUtil.isNotBlank(protocol)){
+		if(StringUtil.isNotBlank(protocol)){
 			this.protocol = protocol;
 		}
 		return this;

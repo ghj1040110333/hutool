@@ -3,7 +3,7 @@ package com.tools.json;
 import com.tools.core.util.ArrayUtil;
 import com.tools.core.util.CharUtil;
 import com.tools.core.util.EscapeUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.util.Iterator;
 
@@ -317,7 +317,7 @@ public class XML {
 				key = keys.next();
 				value = jo.get(key);
 				if (value == null) {
-					value = StrUtil.EMPTY;
+					value = StringUtil.EMPTY;
 				} else if (ArrayUtil.isArray(value)) {
 					value = new JSONArray(value);
 				}

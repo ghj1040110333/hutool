@@ -6,7 +6,7 @@ import com.tools.core.lang.Validator;
 import com.tools.core.map.MapUtil;
 import com.tools.core.util.HexUtil;
 import com.tools.core.util.IdUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.crypto.asymmetric.AsymmetricAlgorithm;
 import com.tools.crypto.asymmetric.RSA;
 import com.tools.crypto.asymmetric.Sign;
@@ -48,7 +48,7 @@ import java.util.Map;
  * 2、非对称加密（asymmetric），例如：RSA、DSA等<br>
  * 3、摘要加密（digest），例如：MD5、SHA-1、SHA-256、HMAC等<br>
  *
- * @author xiaoleilu, Gsealy
+ * @author fruit, Gsealy
  */
 public final class SecureUtil {
 
@@ -275,7 +275,7 @@ public final class SecureUtil {
 	 */
 	public static String generateAlgorithm(AsymmetricAlgorithm asymmetricAlgorithm, DigestAlgorithm digestAlgorithm) {
 		final String digestPart = (null == digestAlgorithm) ? "NONE" : digestAlgorithm.name();
-		return StrUtil.format("{}with{}", digestPart, asymmetricAlgorithm.getValue());
+		return StringUtil.format("{}with{}", digestPart, asymmetricAlgorithm.getValue());
 	}
 
 	/**
@@ -631,7 +631,7 @@ public final class SecureUtil {
 	 * @since 3.3.0
 	 */
 	public static HMac hmac(HmacAlgorithm algorithm, String key) {
-		return new HMac(algorithm, StrUtil.utf8Bytes(key));
+		return new HMac(algorithm, StringUtil.utf8Bytes(key));
 	}
 
 	/**
@@ -669,7 +669,7 @@ public final class SecureUtil {
 	 * @since 3.3.0
 	 */
 	public static HMac hmacMd5(String key) {
-		return hmacMd5(StrUtil.utf8Bytes(key));
+		return hmacMd5(StringUtil.utf8Bytes(key));
 	}
 
 	/**
@@ -708,7 +708,7 @@ public final class SecureUtil {
 	 * @since 3.3.0
 	 */
 	public static HMac hmacSha1(String key) {
-		return hmacSha1(StrUtil.utf8Bytes(key));
+		return hmacSha1(StringUtil.utf8Bytes(key));
 	}
 
 	/**
@@ -831,7 +831,7 @@ public final class SecureUtil {
 	 * @since 4.0.1
 	 */
 	public static String signParams(SymmetricCrypto crypto, Map<?, ?> params, String... otherParams) {
-		return signParams(crypto, params, StrUtil.EMPTY, StrUtil.EMPTY, true, otherParams);
+		return signParams(crypto, params, StringUtil.EMPTY, StringUtil.EMPTY, true, otherParams);
 	}
 
 	/**
@@ -906,7 +906,7 @@ public final class SecureUtil {
 	 * @since 4.0.1
 	 */
 	public static String signParams(DigestAlgorithm digestAlgorithm, Map<?, ?> params, String... otherParams) {
-		return signParams(digestAlgorithm, params, StrUtil.EMPTY, StrUtil.EMPTY, true, otherParams);
+		return signParams(digestAlgorithm, params, StringUtil.EMPTY, StringUtil.EMPTY, true, otherParams);
 	}
 
 	/**

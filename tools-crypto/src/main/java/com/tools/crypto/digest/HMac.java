@@ -4,7 +4,7 @@ import com.tools.core.io.FileUtil;
 import com.tools.core.io.IoUtil;
 import com.tools.core.util.CharsetUtil;
 import com.tools.core.util.HexUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.crypto.CryptoException;
 import com.tools.crypto.digest.mac.MacEngine;
 import com.tools.crypto.digest.mac.MacEngineFactory;
@@ -97,7 +97,7 @@ public class HMac implements Serializable {
 	 * @return 摘要
 	 */
 	public byte[] digest(String data, String charset) {
-		return digest(StrUtil.bytes(data, charset));
+		return digest(StringUtil.bytes(data, charset));
 	}
 
 	/**

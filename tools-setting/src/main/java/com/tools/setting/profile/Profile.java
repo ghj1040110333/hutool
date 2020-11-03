@@ -1,7 +1,7 @@
 package com.tools.setting.profile;
 
 import com.tools.core.lang.Assert;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.setting.Setting;
 
 import java.io.Serializable;
@@ -138,11 +138,11 @@ public class Profile implements Serializable {
 	 */
 	private String fixNameForProfile(String name) {
 		Assert.notBlank(name, "Setting name must be not blank !");
-		final String actralProfile = StrUtil.nullToEmpty(this.profile);
-		if (false == name.contains(StrUtil.DOT)) {
-			return StrUtil.format("{}/{}.setting", actralProfile, name);
+		final String actralProfile = StringUtil.nullToEmpty(this.profile);
+		if (false == name.contains(StringUtil.DOT)) {
+			return StringUtil.format("{}/{}.setting", actralProfile, name);
 		}
-		return StrUtil.format("{}/{}", actralProfile, name);
+		return StringUtil.format("{}/{}", actralProfile, name);
 	}
 	// -------------------------------------------------------------------------------- Private method end
 }

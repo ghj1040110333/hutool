@@ -7,7 +7,7 @@ import com.tools.core.io.resource.Resource;
 import com.tools.core.map.MapUtil;
 import com.tools.core.util.ObjectUtil;
 import com.tools.core.util.RandomUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.http.ContentType;
 import com.tools.http.HttpUtil;
 
@@ -24,7 +24,7 @@ import java.util.Map;
 public class MultipartBody implements RequestBody{
 
 	private static final String BOUNDARY = "--------------------tools_" + RandomUtil.randomString(16);
-	private static final String BOUNDARY_END = StrUtil.format("--{}--\r\n", BOUNDARY);
+	private static final String BOUNDARY_END = StringUtil.format("--{}--\r\n", BOUNDARY);
 	private static final String CONTENT_DISPOSITION_TEMPLATE = "Content-Disposition: form-data; name=\"{}\"\r\n\r\n";
 	private static final String CONTENT_DISPOSITION_FILE_TEMPLATE = "Content-Disposition: form-data; name=\"{}\"; filename=\"{}\"\r\n";
 
@@ -113,23 +113,23 @@ public class MultipartBody implements RequestBody{
 			return;
 		}
 
-		write(out, "--", BOUNDARY, StrUtil.CRLF);
+		write(out, "--", BOUNDARY, StringUtil.CRLF);
 
 		if(value instanceof Resource){
 			// 文件资源（二进制资源）
 			final Resource resource = (Resource)value;
 			final String fileName = resource.getName();
-			write(out, StrUtil.format(CONTENT_DISPOSITION_FILE_TEMPLATE, formFieldName, ObjectUtil.defaultIfNull(fileName, formFieldName)));
+			write(out, StringUtil.format(CONTENT_DISPOSITION_FILE_TEMPLATE, formFieldName, ObjectUtil.defaultIfNull(fileName, formFieldName)));
 			// 根据name的扩展名指定互联网媒体类型，默认二进制流数据
-			write(out, StrUtil.format(CONTENT_TYPE_FILE_TEMPLATE, HttpUtil.getMimeType(fileName, "application/octet-stream")));
+			write(out, StringUtil.format(CONTENT_TYPE_FILE_TEMPLATE, HttpUtil.getMimeType(fileName, "application/octet-stream")));
 			resource.writeTo(out);
 		} else{
 			// 普通数据
-			write(out, StrUtil.format(CONTENT_DISPOSITION_TEMPLATE, formFieldName));
+			write(out, StringUtil.format(CONTENT_DISPOSITION_TEMPLATE, formFieldName));
 			write(out, value);
 		}
 
-		write(out, StrUtil.CRLF);
+		write(out, StringUtil.CRLF);
 	}
 
 	/**

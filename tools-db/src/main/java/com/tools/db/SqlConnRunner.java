@@ -4,7 +4,7 @@ import com.tools.core.collection.CollUtil;
 import com.tools.core.lang.Assert;
 import com.tools.core.map.MapUtil;
 import com.tools.core.util.ArrayUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.db.dialect.Dialect;
 import com.tools.db.dialect.DialectFactory;
 import com.tools.db.handler.EntityListHandler;
@@ -279,7 +279,7 @@ public class SqlConnRunner implements Serializable {
 
 		//表名可以从被更新记录的Entity中获得，也可以从Where中获得
 		String tableName = record.getTableName();
-		if (StrUtil.isBlank(tableName)) {
+		if (StringUtil.isBlank(tableName)) {
 			tableName = where.getTableName();
 			record.setTableName(tableName);
 		}

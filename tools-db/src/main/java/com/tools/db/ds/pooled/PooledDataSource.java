@@ -3,7 +3,7 @@ package com.tools.db.ds.pooled;
 import com.tools.core.collection.CollectionUtil;
 import com.tools.core.io.IoUtil;
 import com.tools.core.thread.ThreadUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.db.DbRuntimeException;
 import com.tools.db.ds.simple.AbstractDataSource;
 
@@ -49,7 +49,7 @@ public class PooledDataSource extends AbstractDataSource {
 	 * 构造，读取默认的配置文件和默认分组
 	 */
 	public PooledDataSource() {
-		this(StrUtil.EMPTY);
+		this(StringUtil.EMPTY);
 	}
 
 	/**

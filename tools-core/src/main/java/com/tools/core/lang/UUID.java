@@ -1,7 +1,7 @@
 package com.tools.core.lang;
 
 import com.tools.core.util.RandomUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -344,7 +344,7 @@ public class UUID implements java.io.Serializable, Comparable<UUID> {
 	 * @return 此{@code UUID} 的字符串表现形式
 	 */
 	public String toString(boolean isSimple) {
-		final StringBuilder builder = StrUtil.builder(isSimple ? 32 : 36);
+		final StringBuilder builder = StringUtil.builder(isSimple ? 32 : 36);
 		// time_low
 		builder.append(digits(mostSigBits >> 32, 8));
 		if (false == isSimple) {

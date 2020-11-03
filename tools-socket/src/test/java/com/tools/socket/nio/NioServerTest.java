@@ -4,8 +4,7 @@ import com.tools.core.io.BufferUtil;
 import com.tools.core.io.IORuntimeException;
 import com.tools.core.io.IoUtil;
 import com.tools.core.lang.Console;
-import com.tools.core.util.StrUtil;
-import com.tools.socket.nio.NioServer;
+import com.tools.core.util.StringUtil;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -29,7 +28,7 @@ public class NioServerTest {
 					byte[] bytes = new byte[readBuffer.remaining()];
 					//将缓冲区的数据读到bytes数组
 					readBuffer.get(bytes);
-					String body = StrUtil.utf8Str(bytes);
+					String body = StringUtil.utf8Str(bytes);
 					Console.log("[{}]: {}", sc.getRemoteAddress(), body);
 
 					doWrite(sc, body);
@@ -48,4 +47,5 @@ public class NioServerTest {
 		//将缓冲数据写入渠道，返回给客户端
 		channel.write(BufferUtil.createUtf8(response));
 	}
+
 }

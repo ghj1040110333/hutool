@@ -10,7 +10,7 @@ import com.tools.core.lang.Assert;
 import com.tools.core.map.MapUtil;
 import com.tools.core.util.CharsetUtil;
 import com.tools.core.util.IdUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.core.util.URLUtil;
 import com.tools.poi.excel.cell.CellLocation;
 import com.tools.poi.excel.cell.CellUtil;
@@ -372,13 +372,13 @@ public class ExcelWriter extends ExcelBase<ExcelWriter> {
 			charset = CharsetUtil.CHARSET_UTF_8;
 		}
 
-		if (StrUtil.isBlank(fileName)) {
+		if (StringUtil.isBlank(fileName)) {
 			// 未提供文件名使用随机UUID作为文件名
 			fileName = IdUtil.fastSimpleUUID();
 		}
 
-		fileName = StrUtil.addSuffixIfNot(URLUtil.encodeAll(fileName, charset), isXlsx() ? ".xlsx" : ".xls");
-		return StrUtil.format("attachment; filename=\"{}\"; filename*={}''{}", fileName, charset.name(), fileName);
+		fileName = StringUtil.addSuffixIfNot(URLUtil.encodeAll(fileName, charset), isXlsx() ? ".xlsx" : ".xls");
+		return StringUtil.format("attachment; filename=\"{}\"; filename*={}''{}", fileName, charset.name(), fileName);
 	}
 
 	/**
@@ -830,7 +830,7 @@ public class ExcelWriter extends ExcelBase<ExcelWriter> {
 		for (Object value : rowData) {
 			cell = row.createCell(i);
 			CellUtil.setCellValue(cell, value, this.styleSet, true);
-			this.headLocationCache.put(StrUtil.toString(value), i);
+			this.headLocationCache.put(StringUtil.toString(value), i);
 			i++;
 		}
 		return this;
@@ -904,7 +904,7 @@ public class ExcelWriter extends ExcelBase<ExcelWriter> {
 			final Row row = RowUtil.getOrCreateRow(this.sheet, this.currentRow.getAndIncrement());
 			Integer location;
 			for (Entry<?, ?> entry : aliasMap.entrySet()) {
-				location = this.headLocationCache.get(StrUtil.toString(entry.getKey()));
+				location = this.headLocationCache.get(StringUtil.toString(entry.getKey()));
 				if (null != location) {
 					CellUtil.setCellValue(CellUtil.getOrCreateCell(row, location), entry.getValue(), this.styleSet, false);
 				}
@@ -1134,7 +1134,7 @@ public class ExcelWriter extends ExcelBase<ExcelWriter> {
 		final Map<Object, Object> filteredMap = MapUtil.newHashMap(rowMap.size(), true);
 		String aliasName;
 		for (Entry<?, ?> entry : rowMap.entrySet()) {
-			aliasName = this.headerAlias.get(StrUtil.toString(entry.getKey()));
+			aliasName = this.headerAlias.get(StringUtil.toString(entry.getKey()));
 			if (null != aliasName) {
 				// 别名键值对加入
 				filteredMap.put(aliasName, entry.getValue());

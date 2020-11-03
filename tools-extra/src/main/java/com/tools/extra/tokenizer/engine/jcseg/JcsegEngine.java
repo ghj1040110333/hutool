@@ -1,6 +1,6 @@
 package com.tools.extra.tokenizer.engine.jcseg;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.extra.tokenizer.Result;
 import com.tools.extra.tokenizer.TokenizerEngine;
 import com.tools.extra.tokenizer.TokenizerException;
@@ -48,7 +48,7 @@ public class JcsegEngine implements TokenizerEngine {
 	@Override
 	public Result parse(CharSequence text) {
 		try {
-			this.segment.reset(new StringReader(StrUtil.str(text)));
+			this.segment.reset(new StringReader(StringUtil.str(text)));
 		} catch (IOException e) {
 			throw new TokenizerException(e);
 		}

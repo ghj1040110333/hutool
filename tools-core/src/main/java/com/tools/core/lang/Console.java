@@ -2,7 +2,7 @@ package com.tools.core.lang;
 
 import com.tools.core.util.ArrayUtil;
 import com.tools.core.util.CharUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.util.Scanner;
 
@@ -68,7 +68,7 @@ public class Console {
 	 * @param values   值
 	 */
 	public static void log(String template, Object... values) {
-		if (ArrayUtil.isEmpty(values) || StrUtil.contains(template, TEMPLATE_VAR)) {
+		if (ArrayUtil.isEmpty(values) || StringUtil.contains(template, TEMPLATE_VAR)) {
 			logInternal(template, values);
 		} else {
 			logInternal(buildTemplateSplitBySpace(values.length + 1), ArrayUtil.insert(values, 0, template));
@@ -83,7 +83,7 @@ public class Console {
 	 * @param values   值
 	 */
 	public static void log(Throwable t, String template, Object... values) {
-		out.println(StrUtil.format(template, values));
+		out.println(StringUtil.format(template, values));
 		if (null != t) {
 			t.printStackTrace();
 			out.flush();
@@ -147,7 +147,7 @@ public class Console {
 	 * @since 3.3.1
 	 */
 	public static void print(String template, Object... values) {
-		if (ArrayUtil.isEmpty(values) || StrUtil.contains(template, TEMPLATE_VAR)) {
+		if (ArrayUtil.isEmpty(values) || StringUtil.contains(template, TEMPLATE_VAR)) {
 			printInternal(template, values);
 		} else {
 			printInternal(buildTemplateSplitBySpace(values.length + 1), ArrayUtil.insert(values, 0, template));
@@ -162,7 +162,7 @@ public class Console {
 	 * @since 4.5.6
 	 */
 	public static void printProgress(char showChar, int len) {
-		print("{}{}", CharUtil.CR, StrUtil.repeat(showChar, len));
+		print("{}{}", CharUtil.CR, StringUtil.repeat(showChar, len));
 	}
 
 	/**
@@ -186,7 +186,7 @@ public class Console {
 	 * @since 5.4.3
 	 */
 	private static void printInternal(String template, Object... values) {
-		out.print(StrUtil.format(template, values));
+		out.print(StringUtil.format(template, values));
 	}
 
 	// --------------------------------------------------------------------------------- Error
@@ -235,7 +235,7 @@ public class Console {
 	 * @param values   值
 	 */
 	public static void error(String template, Object... values) {
-		if (ArrayUtil.isEmpty(values) || StrUtil.contains(template, TEMPLATE_VAR)) {
+		if (ArrayUtil.isEmpty(values) || StringUtil.contains(template, TEMPLATE_VAR)) {
 			errorInternal(template, values);
 		} else {
 			errorInternal(buildTemplateSplitBySpace(values.length + 1), ArrayUtil.insert(values, 0, template));
@@ -250,7 +250,7 @@ public class Console {
 	 * @param values   值
 	 */
 	public static void error(Throwable t, String template, Object... values) {
-		err.println(StrUtil.format(template, values));
+		err.println(StringUtil.format(template, values));
 		if (null != t) {
 			t.printStackTrace(err);
 			err.flush();
@@ -324,7 +324,7 @@ public class Console {
 	 * @return 模板
 	 */
 	private static String buildTemplateSplitBySpace(int count) {
-		return StrUtil.repeatAndJoin(TEMPLATE_VAR, count, StrUtil.SPACE);
+		return StringUtil.repeatAndJoin(TEMPLATE_VAR, count, StringUtil.SPACE);
 	}
 
 }

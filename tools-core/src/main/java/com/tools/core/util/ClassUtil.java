@@ -9,9 +9,6 @@ import com.tools.core.lang.Assert;
 import com.tools.core.lang.ClassScanner;
 import com.tools.core.lang.Filter;
 import com.tools.core.lang.Singleton;
-import com.tools.core.util.CharUtil;
-import com.tools.core.util.CharsetUtil;
-import com.tools.core.util.ReflectUtil;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
@@ -32,7 +29,7 @@ import java.util.Set;
 /**
  * 类工具类 <br>
  *
- * @author xiaoleilu
+ * @author fruit
  */
 public class ClassUtil {
 
@@ -96,7 +93,7 @@ public class ClassUtil {
 	 * 例如：ClassUtil这个类<br>
 	 *
 	 * <pre>
-	 * isSimple为false: "com.xiaoleilu.tools.util.ClassUtil"
+	 * isSimple为false: "com.fruit.tools.util.ClassUtil"
 	 * isSimple为true: "ClassUtil"
 	 * </pre>
 	 *
@@ -121,13 +118,13 @@ public class ClassUtil {
 	 * @since 4.1.9
 	 */
 	public static String getShortClassName(String className) {
-		final List<String> packages = StrUtil.split(className, CharUtil.DOT);
+		final List<String> packages = StringUtil.split(className, CharUtil.DOT);
 		if (null == packages || packages.size() < 2) {
 			return className;
 		}
 
 		final int size = packages.size();
-		final StringBuilder result = StrUtil.builder();
+		final StringBuilder result = StringUtil.builder();
 		result.append(packages.get(0).charAt(0));
 		for (int i = 1; i < size - 1; i++) {
 			result.append(CharUtil.DOT).append(packages.get(i).charAt(0));
@@ -162,7 +159,7 @@ public class ClassUtil {
 	 * @since 3.0.7
 	 */
 	public static boolean equals(Class<?> clazz, String className, boolean ignoreCase) {
-		if (null == clazz || StrUtil.isBlank(className)) {
+		if (null == clazz || StringUtil.isBlank(className)) {
 			return false;
 		}
 		if (ignoreCase) {
@@ -359,7 +356,7 @@ public class ClassUtil {
 	 * @throws SecurityException 安全异常
 	 */
 	public static Field getDeclaredField(Class<?> clazz, String fieldName) throws SecurityException {
-		if (null == clazz || StrUtil.isBlank(fieldName)) {
+		if (null == clazz || StringUtil.isBlank(fieldName)) {
 			return null;
 		}
 		try {
@@ -403,7 +400,7 @@ public class ClassUtil {
 	 * @since 4.0.11
 	 */
 	public static Set<String> getClassPathResources(boolean isDecode) {
-		return getClassPaths(StrUtil.EMPTY, isDecode);
+		return getClassPaths(StringUtil.EMPTY, isDecode);
 	}
 
 	/**
@@ -425,7 +422,7 @@ public class ClassUtil {
 	 * @since 4.0.11
 	 */
 	public static Set<String> getClassPaths(String packageName, boolean isDecode) {
-		String packagePath = packageName.replace(StrUtil.DOT, StrUtil.SLASH);
+		String packagePath = packageName.replace(StringUtil.DOT, StringUtil.SLASH);
 		Enumeration<URL> resources;
 		try {
 			resources = getClassLoader().getResources(packagePath);
@@ -470,7 +467,7 @@ public class ClassUtil {
 	 * @return ClassPath URL
 	 */
 	public static URL getClassPathURL() {
-		return getResourceURL(StrUtil.EMPTY);
+		return getResourceURL(StringUtil.EMPTY);
 	}
 
 	/**
@@ -621,7 +618,7 @@ public class ClassUtil {
 	 * 非单例模式，如果是非静态方法，每次创建一个新对象
 	 *
 	 * @param <T>                     对象类型
-	 * @param classNameWithMethodName 类名和方法名表达式，类名与方法名用<code>.</code>或<code>#</code>连接 例如：com.xiaoleilu.tools.StrUtil.isEmpty 或 com.xiaoleilu.tools.StrUtil#isEmpty
+	 * @param classNameWithMethodName 类名和方法名表达式，类名与方法名用<code>.</code>或<code>#</code>连接 例如：com.fruit.tools.StrUtil.isEmpty 或 com.fruit.tools.StrUtil#isEmpty
 	 * @param args                    参数，必须严格对应指定方法的参数类型和数量
 	 * @return 返回结果
 	 */
@@ -635,13 +632,13 @@ public class ClassUtil {
 	 * 执行非static方法时，必须满足对象有默认构造方法<br>
 	 *
 	 * @param <T>                     对象类型
-	 * @param classNameWithMethodName 类名和方法名表达式，例如：com.xiaoleilu.tools.StrUtil#isEmpty或com.xiaoleilu.tools.StrUtil.isEmpty
+	 * @param classNameWithMethodName 类名和方法名表达式，例如：com.fruit.tools.StrUtil#isEmpty或com.fruit.tools.StrUtil.isEmpty
 	 * @param isSingleton             是否为单例对象，如果此参数为false，每次执行方法时创建一个新对象
 	 * @param args                    参数，必须严格对应指定方法的参数类型和数量
 	 * @return 返回结果
 	 */
 	public static <T> T invoke(String classNameWithMethodName, boolean isSingleton, Object... args) {
-		if (StrUtil.isBlank(classNameWithMethodName)) {
+		if (StringUtil.isBlank(classNameWithMethodName)) {
 			throw new UtilException("Blank classNameDotMethodName!");
 		}
 
@@ -692,7 +689,7 @@ public class ClassUtil {
 		try {
 			final Method method = getDeclaredMethod(clazz, methodName, getClasses(args));
 			if (null == method) {
-				throw new NoSuchMethodException(StrUtil.format("No such method: [{}]", methodName));
+				throw new NoSuchMethodException(StringUtil.format("No such method: [{}]", methodName));
 			}
 			if (isStatic(method)) {
 				return ReflectUtil.invoke(null, method, args);
@@ -954,19 +951,19 @@ public class ClassUtil {
 	/**
 	 * 获得给定类所在包的名称<br>
 	 * 例如：<br>
-	 * com.xiaoleilu.tools.util.ClassUtil =》 com.xiaoleilu.tools.util
+	 * com.fruit.tools.util.ClassUtil =》 com.fruit.tools.util
 	 *
 	 * @param clazz 类
 	 * @return 包名
 	 */
 	public static String getPackage(Class<?> clazz) {
 		if (clazz == null) {
-			return StrUtil.EMPTY;
+			return StringUtil.EMPTY;
 		}
 		final String className = clazz.getName();
-		int packageEndIndex = className.lastIndexOf(StrUtil.DOT);
+		int packageEndIndex = className.lastIndexOf(StringUtil.DOT);
 		if (packageEndIndex == -1) {
-			return StrUtil.EMPTY;
+			return StringUtil.EMPTY;
 		}
 		return className.substring(0, packageEndIndex);
 	}
@@ -974,13 +971,13 @@ public class ClassUtil {
 	/**
 	 * 获得给定类所在包的路径<br>
 	 * 例如：<br>
-	 * com.xiaoleilu.tools.util.ClassUtil =》 com/xiaoleilu/tools/util
+	 * com.fruit.tools.util.ClassUtil =》 com/fruit/tools/util
 	 *
 	 * @param clazz 类
 	 * @return 包名
 	 */
 	public static String getPackagePath(Class<?> clazz) {
-		return getPackage(clazz).replace(StrUtil.C_DOT, StrUtil.C_SLASH);
+		return getPackage(clazz).replace(StringUtil.C_DOT, StringUtil.C_SLASH);
 	}
 
 	/**

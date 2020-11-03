@@ -3,7 +3,7 @@ package com.tools.extra.template.engine;
 import com.tools.core.lang.Singleton;
 import com.tools.core.util.ReflectUtil;
 import com.tools.core.util.ServiceLoaderUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.extra.template.TemplateConfig;
 import com.tools.extra.template.TemplateEngine;
 import com.tools.extra.template.TemplateException;
@@ -46,7 +46,7 @@ public class TemplateFactory {
 	 */
 	public static TemplateEngine create(TemplateConfig config) {
 		final TemplateEngine engine = doCreate(config);
-		StaticLog.debug("Use [{}] Engine As Default.", StrUtil.removeSuffix(engine.getClass().getSimpleName(), "Engine"));
+		StaticLog.debug("Use [{}] Engine As Default.", StringUtil.removeSuffix(engine.getClass().getSimpleName(), "Engine"));
 		return engine;
 	}
 

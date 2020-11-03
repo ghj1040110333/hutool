@@ -1,7 +1,7 @@
 package com.tools.core.math;
 
 import com.tools.core.util.NumberUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.math.BigDecimal;
 import java.util.Collections;
@@ -38,8 +38,8 @@ public class Calculator {
 	 * @return 转换后的字符串
 	 */
 	private static String transform(String expression) {
-		expression = StrUtil.cleanBlank(expression);
-		expression = StrUtil.removeSuffix(expression, "=");
+		expression = StringUtil.cleanBlank(expression);
+		expression = StringUtil.removeSuffix(expression, "=");
 		final char[] arr = expression.toCharArray();
 		for (int i = 0; i < arr.length; i++) {
 			if (arr[i] == '-') {

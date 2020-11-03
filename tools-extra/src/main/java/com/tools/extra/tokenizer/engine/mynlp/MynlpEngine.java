@@ -4,7 +4,7 @@ import com.mayabot.nlp.segment.Lexer;
 import com.mayabot.nlp.segment.Lexers;
 import com.mayabot.nlp.segment.Sentence;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.extra.tokenizer.Result;
 import com.tools.extra.tokenizer.TokenizerEngine;
 
@@ -37,7 +37,7 @@ public class MynlpEngine implements TokenizerEngine {
 
 	@Override
 	public Result parse(CharSequence text) {
-		final Sentence sentence = this.lexer.scan(StrUtil.str(text));
+		final Sentence sentence = this.lexer.scan(StringUtil.str(text));
 		return new MynlpResult(sentence);
 	}
 

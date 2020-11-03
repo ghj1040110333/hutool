@@ -1,9 +1,6 @@
 package com.tools.core.util;
 
 import com.tools.core.lang.PatternPool;
-import com.tools.core.util.RandomUtil;
-import com.tools.core.util.ReUtil;
-import com.tools.core.util.StrUtil;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -53,7 +50,7 @@ public class CreditCodeUtil {
 	 * @return 校验结果
 	 */
 	public static boolean isCreditCodeSimple(CharSequence creditCode) {
-		if (StrUtil.isBlank(creditCode)) {
+		if (StringUtil.isBlank(creditCode)) {
 			return false;
 		}
 		return ReUtil.isMatch(CREDIT_CODE_PATTERN, creditCode);

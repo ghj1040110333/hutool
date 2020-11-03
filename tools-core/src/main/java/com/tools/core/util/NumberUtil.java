@@ -2,7 +2,6 @@ package com.tools.core.util;
 
 import com.tools.core.exceptions.UtilException;
 import com.tools.core.lang.Assert;
-import com.tools.core.util.CharUtil;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -1100,7 +1099,7 @@ public class NumberUtil {
 	 * @return 是否为数字
 	 */
 	public static boolean isNumber(CharSequence str) {
-		if (StrUtil.isBlank(str)) {
+		if (StringUtil.isBlank(str)) {
 			return false;
 		}
 		char[] chars = str.toString().toCharArray();
@@ -1443,7 +1442,7 @@ public class NumberUtil {
 	public static long factorial(long start, long end) {
 		// 负数没有阶乘
 		if (start < 0 || end < 0) {
-			throw new IllegalArgumentException(StrUtil.format("Factorial start and end both must be >= 0, but got start={}, end={}", start, end));
+			throw new IllegalArgumentException(StringUtil.format("Factorial start and end both must be >= 0, but got start={}, end={}", start, end));
 		}
 		if (0L == start || start == end) {
 			return 1L;
@@ -1465,7 +1464,7 @@ public class NumberUtil {
 		if (a <= Long.MAX_VALUE / b) {
 			return a * b;
 		}
-		throw new IllegalArgumentException(StrUtil.format("Overflow in multiplication: {} * {}", a, b));
+		throw new IllegalArgumentException(StringUtil.format("Overflow in multiplication: {} * {}", a, b));
 	}
 
 	/**
@@ -1479,7 +1478,7 @@ public class NumberUtil {
 	 */
 	public static long factorial(long n) {
 		if (n < 0 || n > 20) {
-			throw new IllegalArgumentException(StrUtil.format("Factorial must have n >= 0 and n <= 20 for n!, but got n = {}", n));
+			throw new IllegalArgumentException(StringUtil.format("Factorial must have n >= 0 and n <= 20 for n!, but got n = {}", n));
 		}
 		return FACTORIALS[(int) n];
 	}
@@ -2139,7 +2138,7 @@ public class NumberUtil {
 	 * @since 3.2.1
 	 */
 	public static BigInteger newBigInteger(String str) {
-		str = StrUtil.trimToNull(str);
+		str = StringUtil.trimToNull(str);
 		if (null == str) {
 			return null;
 		}
@@ -2282,17 +2281,17 @@ public class NumberUtil {
 	 * @since 4.1.4
 	 */
 	public static int parseInt(String number) throws NumberFormatException {
-		if (StrUtil.isBlank(number)) {
+		if (StringUtil.isBlank(number)) {
 			return 0;
 		}
 
 		// 对于带小数转换为整数采取去掉小数的策略
-		number = StrUtil.subBefore(number, CharUtil.DOT, false);
-		if (StrUtil.isEmpty(number)) {
+		number = StringUtil.subBefore(number, CharUtil.DOT, false);
+		if (StringUtil.isEmpty(number)) {
 			return 0;
 		}
 
-		if (StrUtil.startWithIgnoreCase(number, "0x")) {
+		if (StringUtil.startWithIgnoreCase(number, "0x")) {
 			// 0x04表示16进制数
 			return Integer.parseInt(number.substring(2), 16);
 		}
@@ -2315,13 +2314,13 @@ public class NumberUtil {
 	 * @since 4.1.4
 	 */
 	public static long parseLong(String number) {
-		if (StrUtil.isBlank(number)) {
+		if (StringUtil.isBlank(number)) {
 			return 0;
 		}
 
 		// 对于带小数转换为整数采取去掉小数的策略
-		number = StrUtil.subBefore(number, CharUtil.DOT, false);
-		if (StrUtil.isEmpty(number)) {
+		number = StringUtil.subBefore(number, CharUtil.DOT, false);
+		if (StringUtil.isEmpty(number)) {
 			return 0;
 		}
 
@@ -2503,7 +2502,7 @@ public class NumberUtil {
 		final int lastPos = number.length() - 1;
 		final char lastCharUpper = Character.toUpperCase(number.charAt(lastPos));
 		if ('D' == lastCharUpper || 'L' == lastCharUpper || 'F' == lastCharUpper) {
-			number = StrUtil.subPre(number, lastPos);
+			number = StringUtil.subPre(number, lastPos);
 		}
 		return number;
 	}

@@ -5,9 +5,7 @@ import com.tools.core.convert.ConvertException;
 import com.tools.core.date.DateUtil;
 import com.tools.core.util.BooleanUtil;
 import com.tools.core.util.NumberUtil;
-import com.tools.core.util.StrUtil;
-import com.tools.core.convert.AbstractConverter;
-import com.tools.core.convert.ConvertException;
+import com.tools.core.util.StringUtil;
 
 import java.time.temporal.TemporalAccessor;
 import java.util.Calendar;
@@ -58,7 +56,7 @@ public class PrimitiveConverter extends AbstractConverter<Object> {
 				return BooleanUtil.toByte((Boolean) value);
 			}
 			final String valueStr = convertToStr(value);
-			if (StrUtil.isBlank(valueStr)) {
+			if (StringUtil.isBlank(valueStr)) {
 				return 0;
 			}
 			return Byte.parseByte(valueStr);
@@ -70,7 +68,7 @@ public class PrimitiveConverter extends AbstractConverter<Object> {
 				return BooleanUtil.toShort((Boolean) value);
 			}
 			final String valueStr = convertToStr(value);
-			if (StrUtil.isBlank(valueStr)) {
+			if (StringUtil.isBlank(valueStr)) {
 				return 0;
 			}
 			return Short.parseShort(valueStr);
@@ -89,7 +87,7 @@ public class PrimitiveConverter extends AbstractConverter<Object> {
 			}
 
 			final String valueStr = convertToStr(value);
-			if (StrUtil.isBlank(valueStr)) {
+			if (StringUtil.isBlank(valueStr)) {
 				return 0;
 			}
 			return NumberUtil.parseInt(valueStr);
@@ -108,7 +106,7 @@ public class PrimitiveConverter extends AbstractConverter<Object> {
 			}
 
 			final String valueStr = convertToStr(value);
-			if (StrUtil.isBlank(valueStr)) {
+			if (StringUtil.isBlank(valueStr)) {
 				return 0;
 			}
 			return NumberUtil.parseLong(valueStr);
@@ -120,7 +118,7 @@ public class PrimitiveConverter extends AbstractConverter<Object> {
 				return BooleanUtil.toFloat((Boolean) value);
 			}
 			final String valueStr = convertToStr(value);
-			if (StrUtil.isBlank(valueStr)) {
+			if (StringUtil.isBlank(valueStr)) {
 				return 0;
 			}
 			return Float.parseFloat(valueStr);
@@ -132,7 +130,7 @@ public class PrimitiveConverter extends AbstractConverter<Object> {
 				return BooleanUtil.toDouble((Boolean) value);
 			}
 			final String valueStr = convertToStr(value);
-			if (StrUtil.isBlank(valueStr)) {
+			if (StringUtil.isBlank(valueStr)) {
 				return 0;
 			}
 			return Double.parseDouble(valueStr);
@@ -145,7 +143,7 @@ public class PrimitiveConverter extends AbstractConverter<Object> {
 				return BooleanUtil.toChar((Boolean) value);
 			}
 			final String valueStr = convertToStr(value);
-			if (StrUtil.isBlank(valueStr)) {
+			if (StringUtil.isBlank(valueStr)) {
 				return 0;
 			}
 			return valueStr.charAt(0);
@@ -163,7 +161,7 @@ public class PrimitiveConverter extends AbstractConverter<Object> {
 
 	@Override
 	protected String convertToStr(Object value) {
-		return StrUtil.trim(super.convertToStr(value));
+		return StringUtil.trim(super.convertToStr(value));
 	}
 
 	@Override

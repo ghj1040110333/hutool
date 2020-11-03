@@ -1,6 +1,6 @@
 package com.tools.db.ds;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.db.ds.bee.BeeDSFactory;
 import com.tools.db.ds.c3p0.C3p0DSFactory;
 import com.tools.db.ds.dbcp.DbcpDSFactory;
@@ -59,7 +59,7 @@ public abstract class DSFactory implements Closeable, Serializable{
 	 * @return 数据源
 	 */
 	public DataSource getDataSource() {
-		return getDataSource(StrUtil.EMPTY);
+		return getDataSource(StringUtil.EMPTY);
 	}
 
 	/**
@@ -75,7 +75,7 @@ public abstract class DSFactory implements Closeable, Serializable{
 	 */
 	@Override
 	public void close() {
-		close(StrUtil.EMPTY);
+		close(StringUtil.EMPTY);
 	}
 
 	/**

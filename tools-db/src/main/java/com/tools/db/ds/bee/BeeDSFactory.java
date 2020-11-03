@@ -2,7 +2,7 @@ package com.tools.db.ds.bee;
 
 import cn.beecp.BeeDataSource;
 import cn.beecp.BeeDataSourceConfig;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.db.ds.AbstractDSFactory;
 import com.tools.setting.Setting;
 
@@ -42,7 +42,7 @@ public class BeeDSFactory extends AbstractDSFactory {
 		String connValue;
 		for (String key : KEY_CONN_PROPS) {
 			connValue = poolSetting.getAndRemoveStr(key);
-			if(StrUtil.isNotBlank(connValue)){
+			if(StringUtil.isNotBlank(connValue)){
 				beeConfig.addConnectProperty(key, connValue);
 			}
 		}

@@ -2,7 +2,7 @@ package com.tools.extra.pinyin.engine;
 
 import com.tools.core.lang.Singleton;
 import com.tools.core.util.ServiceLoaderUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.extra.pinyin.PinyinEngine;
 import com.tools.extra.template.TemplateException;
 import com.tools.log.StaticLog;
@@ -31,7 +31,7 @@ public class PinyinFactory {
 	 */
 	public static PinyinEngine create() {
 		final PinyinEngine engine = doCreate();
-		StaticLog.debug("Use [{}] Engine As Default.", StrUtil.removeSuffix(engine.getClass().getSimpleName(), "Engine"));
+		StaticLog.debug("Use [{}] Engine As Default.", StringUtil.removeSuffix(engine.getClass().getSimpleName(), "Engine"));
 		return engine;
 	}
 

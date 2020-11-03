@@ -2,13 +2,11 @@ package com.tools.core.io;
 
 import java.nio.ByteBuffer;
 
-import com.tools.core.io.BufferUtil;
 import com.tools.core.util.CharsetUtil;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.tools.core.util.CharsetUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * BufferUtil单元测试
@@ -24,7 +22,7 @@ public class BufferUtilTest {
 		ByteBuffer buffer = ByteBuffer.wrap(bytes);
 
 		ByteBuffer buffer2 = BufferUtil.copy(buffer, ByteBuffer.allocate(5));
-		Assert.assertEquals("AAABB", StrUtil.utf8Str(buffer2));
+		Assert.assertEquals("AAABB", StringUtil.utf8Str(buffer2));
 	}
 
 	@Test
@@ -33,7 +31,7 @@ public class BufferUtilTest {
 		ByteBuffer buffer = ByteBuffer.wrap(bytes);
 
 		byte[] bs = BufferUtil.readBytes(buffer, 5);
-		Assert.assertEquals("AAABB", StrUtil.utf8Str(bs));
+		Assert.assertEquals("AAABB", StringUtil.utf8Str(bs));
 	}
 
 	@Test
@@ -42,7 +40,7 @@ public class BufferUtilTest {
 		ByteBuffer buffer = ByteBuffer.wrap(bytes);
 
 		byte[] bs = BufferUtil.readBytes(buffer, 5);
-		Assert.assertEquals("AAABB", StrUtil.utf8Str(bs));
+		Assert.assertEquals("AAABB", StringUtil.utf8Str(bs));
 	}
 
 	@Test
@@ -63,6 +61,6 @@ public class BufferUtilTest {
 		Assert.assertNull(line);
 
 		// 读取剩余部分
-		Assert.assertEquals("cc", StrUtil.utf8Str(BufferUtil.readBytes(buffer)));
+		Assert.assertEquals("cc", StringUtil.utf8Str(BufferUtil.readBytes(buffer)));
 	}
 }

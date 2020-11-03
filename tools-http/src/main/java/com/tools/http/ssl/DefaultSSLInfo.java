@@ -1,6 +1,6 @@
 package com.tools.http.ssl;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.http.HttpException;
 
 import javax.net.ssl.SSLSocketFactory;
@@ -27,7 +27,7 @@ public class DefaultSSLInfo {
 		TRUST_ANY_HOSTNAME_VERIFIER = new TrustAnyHostnameVerifier();
 
 		try {
-			if (StrUtil.equalsIgnoreCase("dalvik", System.getProperty("java.vm.name"))) {
+			if (StringUtil.equalsIgnoreCase("dalvik", System.getProperty("java.vm.name"))) {
 				// 兼容android低版本SSL连接
 				DEFAULT_SSF = new AndroidSupportSSLFactory();
 			} else {

@@ -2,7 +2,7 @@ package com.tools.poi.excel;
 
 import com.tools.core.collection.CollectionUtil;
 import com.tools.core.lang.Assert;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import org.apache.poi.hssf.usermodel.HSSFClientAnchor;
 import org.apache.poi.hssf.usermodel.HSSFPicture;
 import org.apache.poi.hssf.usermodel.HSSFPictureData;
@@ -48,7 +48,7 @@ public class ExcelPicUtil {
 		} else if (workbook instanceof XSSFWorkbook) {
 			return getPicMapXlsx((XSSFWorkbook) workbook, sheetIndex);
 		} else {
-			throw new IllegalArgumentException(StrUtil.format("Workbook type [{}] is not supported!", workbook.getClass()));
+			throw new IllegalArgumentException(StringUtil.format("Workbook type [{}] is not supported!", workbook.getClass()));
 		}
 	}
 
@@ -71,7 +71,7 @@ public class ExcelPicUtil {
 				if (shape instanceof HSSFPicture) {
 					pictureIndex = ((HSSFPicture) shape).getPictureIndex() - 1;
 					anchor = (HSSFClientAnchor) shape.getAnchor();
-					picMap.put(StrUtil.format("{}_{}", anchor.getRow1(), anchor.getCol1()), pictures.get(pictureIndex));
+					picMap.put(StringUtil.format("{}_{}", anchor.getRow1(), anchor.getCol1()), pictures.get(pictureIndex));
 				}
 			}
 		}
@@ -98,7 +98,7 @@ public class ExcelPicUtil {
 				for (XSSFShape shape : shapes) {
 					pic = (XSSFPicture) shape;
 					ctMarker = pic.getPreferredSize().getFrom();
-					sheetIndexPicMap.put(StrUtil.format("{}_{}", ctMarker.getRow(), ctMarker.getCol()), pic.getPictureData());
+					sheetIndexPicMap.put(StringUtil.format("{}_{}", ctMarker.getRow(), ctMarker.getCol()), pic.getPictureData());
 				}
 			}
 		}

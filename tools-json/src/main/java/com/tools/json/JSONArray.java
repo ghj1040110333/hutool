@@ -6,7 +6,7 @@ import com.tools.core.collection.CollUtil;
 import com.tools.core.util.ArrayUtil;
 import com.tools.core.util.CharUtil;
 import com.tools.core.util.ObjectUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.core.util.TypeUtil;
 import com.tools.json.serialize.GlobalSerializeMapping;
 import com.tools.json.serialize.JSONSerializer;
@@ -618,7 +618,7 @@ public class JSONArray implements JSON, JSONGetter<Integer>, List<Object>, Rando
 	 */
 	private void init(CharSequence source) {
 		if (null != source) {
-			init(new JSONTokener(StrUtil.trim(source), this.config));
+			init(new JSONTokener(StringUtil.trim(source), this.config));
 		}
 	}
 

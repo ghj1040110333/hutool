@@ -3,7 +3,7 @@ package com.tools.poi.excel.test;
 import com.tools.core.collection.CollUtil;
 import com.tools.core.convert.Convert;
 import com.tools.core.lang.Console;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.poi.excel.ExcelUtil;
 import com.tools.poi.excel.sax.Excel03SaxReader;
 import com.tools.poi.excel.sax.handler.RowHandler;
@@ -40,7 +40,7 @@ public class ExcelSaxReadTest {
 	@Ignore
 	public void readBlankLineTest() {
 		ExcelUtil.readBySax("e:/ExcelBlankLine.xlsx", 0, (sheetIndex, rowIndex, rowList) -> {
-			if (StrUtil.isAllEmpty(Convert.toStrArray(rowList))) {
+			if (StringUtil.isAllEmpty(Convert.toStrArray(rowList))) {
 				return;
 			}
 			Console.log(rowList);
@@ -107,7 +107,7 @@ public class ExcelSaxReadTest {
 	@Ignore
 	public void dateReadTest() {
 		ExcelUtil.readBySax("d:/test/sax_date_test.xlsx", 0, (i, i1, list) ->
-				Console.log(StrUtil.join(", ", list)));
+				Console.log(StringUtil.join(", ", list)));
 	}
 
 	@Test

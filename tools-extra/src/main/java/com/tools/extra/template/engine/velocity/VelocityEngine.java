@@ -1,6 +1,6 @@
 package com.tools.extra.template.engine.velocity;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.extra.template.Template;
 import com.tools.extra.template.TemplateConfig;
 import com.tools.extra.template.TemplateEngine;
@@ -89,7 +89,7 @@ public class VelocityEngine implements TemplateEngine {
 			final TemplateConfig.ResourceMode resourceMode = this.config.getResourceMode();
 			if(TemplateConfig.ResourceMode.CLASSPATH == resourceMode
 					|| TemplateConfig.ResourceMode.WEB_ROOT == resourceMode){
-				resource = StrUtil.addPrefixIfNot(resource, StrUtil.addSuffixIfNot(root, "/"));
+				resource = StringUtil.addPrefixIfNot(resource, StringUtil.addSuffixIfNot(root, "/"));
 			}
 		}
 
@@ -131,7 +131,7 @@ public class VelocityEngine implements TemplateEngine {
 		case WEB_ROOT:
 			ve.setProperty(Velocity.RESOURCE_LOADER, "webapp");
 			ve.setProperty("webapp.resource.loader.class", "org.apache.velocity.tools.view.servlet.WebappLoader");
-			ve.setProperty("webapp.resource.loader.path", StrUtil.nullToDefault(config.getPath(), StrUtil.SLASH));
+			ve.setProperty("webapp.resource.loader.path", StringUtil.nullToDefault(config.getPath(), StringUtil.SLASH));
 			break;
 		case STRING:
 			ve.setProperty(Velocity.RESOURCE_LOADER, "str");

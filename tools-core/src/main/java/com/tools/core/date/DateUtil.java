@@ -10,7 +10,7 @@ import com.tools.core.lang.PatternPool;
 import com.tools.core.util.CharUtil;
 import com.tools.core.util.NumberUtil;
 import com.tools.core.util.ReUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -28,7 +28,7 @@ import java.util.regex.Matcher;
 /**
  * 时间工具类
  *
- * @author xiaoleilu
+ * @author fruit
  */
 public class DateUtil extends CalendarUtil {
 
@@ -503,7 +503,7 @@ public class DateUtil extends CalendarUtil {
 	 * @return 格式化后的字符串
 	 */
 	public static String format(Date date, String format) {
-		if (null == date || StrUtil.isBlank(format)) {
+		if (null == date || StringUtil.isBlank(format)) {
 			return null;
 		}
 
@@ -790,8 +790,8 @@ public class DateUtil extends CalendarUtil {
 	 * @since 3.1.1
 	 */
 	public static DateTime parseTimeToday(CharSequence timeString) {
-		timeString = StrUtil.format("{} {}", today(), timeString);
-		if (1 == StrUtil.count(timeString, ':')) {
+		timeString = StringUtil.format("{} {}", today(), timeString);
+		if (1 == StringUtil.count(timeString, ':')) {
 			// 时间格式为 HH:mm
 			return parse(timeString, DatePattern.NORM_DATETIME_MINUTE_PATTERN);
 		} else {
@@ -818,7 +818,7 @@ public class DateUtil extends CalendarUtil {
 			return null;
 		}
 		int length = utcString.length();
-		if (StrUtil.contains(utcString, 'Z')) {
+		if (StringUtil.contains(utcString, 'Z')) {
 			if (length == DatePattern.UTC_PATTERN.length() - 4) {
 				// 格式类似：2018-09-13T05:34:31Z
 				return parse(utcString, DatePattern.UTC_FORMAT);
@@ -889,12 +889,12 @@ public class DateUtil extends CalendarUtil {
 	 * @return 日期
 	 */
 	public static DateTime parse(CharSequence dateCharSequence) {
-		if (StrUtil.isBlank(dateCharSequence)) {
+		if (StringUtil.isBlank(dateCharSequence)) {
 			return null;
 		}
 		String dateStr = dateCharSequence.toString();
 		// 去掉两边空格并去掉中文日期中的“日”和“秒”，以规范长度
-		dateStr = StrUtil.removeAll(dateStr.trim(), '日', '秒');
+		dateStr = StringUtil.removeAll(dateStr.trim(), '日', '秒');
 		int length = dateStr.length();
 
 		if (NumberUtil.isNumber(dateStr)) {
@@ -911,13 +911,13 @@ public class DateUtil extends CalendarUtil {
 		} else if (ReUtil.isMatch(PatternPool.TIME, dateStr)) {
 			// HH:mm:ss 或者 HH:mm 时间格式匹配单独解析
 			return parseTimeToday(dateStr);
-		} else if (StrUtil.containsAnyIgnoreCase(dateStr, wtb)) {
+		} else if (StringUtil.containsAnyIgnoreCase(dateStr, wtb)) {
 			// JDK的Date对象toString默认格式，类似于：
 			// Tue Jun 4 16:25:15 +0800 2019
 			// Thu May 16 17:57:18 GMT+08:00 2019
 			// Wed Aug 01 00:00:00 CST 2012
 			return parseCST(dateStr);
-		} else if (StrUtil.contains(dateStr, 'T')) {
+		} else if (StringUtil.contains(dateStr, 'T')) {
 			// UTC时间
 			return parseUTC(dateStr);
 		}
@@ -926,7 +926,7 @@ public class DateUtil extends CalendarUtil {
 		dateStr = normalize(dateStr);
 		final Matcher matcher = DatePattern.REGEX_NORM.matcher(dateStr);
 		if (ReUtil.isMatch(DatePattern.REGEX_NORM, dateStr)) {
-			final int colonCount = StrUtil.count(dateStr, CharUtil.COLON);
+			final int colonCount = StringUtil.count(dateStr, CharUtil.COLON);
 			switch (colonCount) {
 				case 0:
 					// yyyy-MM-dd
@@ -935,7 +935,7 @@ public class DateUtil extends CalendarUtil {
 					// yyyy-MM-dd HH:mm
 					return parse(dateStr, DatePattern.NORM_DATETIME_MINUTE_FORMAT);
 				case 2:
-					if (StrUtil.contains(dateStr, CharUtil.DOT)) {
+					if (StringUtil.contains(dateStr, CharUtil.DOT)) {
 						// yyyy-MM-dd HH:mm:ss.SSS
 						return parse(dateStr, DatePattern.NORM_DATETIME_MS_FORMAT);
 					}
@@ -1728,11 +1728,11 @@ public class DateUtil extends CalendarUtil {
 	 * @since 3.1.2
 	 */
 	public static int timeToSecond(String timeStr) {
-		if (StrUtil.isEmpty(timeStr)) {
+		if (StringUtil.isEmpty(timeStr)) {
 			return 0;
 		}
 
-		final List<String> hms = StrUtil.splitTrim(timeStr, StrUtil.C_COLON, 3);
+		final List<String> hms = StringUtil.splitTrim(timeStr, StringUtil.C_COLON, 3);
 		int lastIndex = hms.size() - 1;
 
 		int result = 0;
@@ -1960,30 +1960,30 @@ public class DateUtil extends CalendarUtil {
 	 * @return 格式化后的日期字符串
 	 */
 	private static String normalize(CharSequence dateStr) {
-		if (StrUtil.isBlank(dateStr)) {
-			return StrUtil.str(dateStr);
+		if (StringUtil.isBlank(dateStr)) {
+			return StringUtil.str(dateStr);
 		}
 
 		// 日期时间分开处理
-		final List<String> dateAndTime = StrUtil.splitTrim(dateStr, ' ');
+		final List<String> dateAndTime = StringUtil.splitTrim(dateStr, ' ');
 		final int size = dateAndTime.size();
 		if (size < 1 || size > 2) {
 			// 非可被标准处理的格式
-			return StrUtil.str(dateStr);
+			return StringUtil.str(dateStr);
 		}
 
-		final StringBuilder builder = StrUtil.builder();
+		final StringBuilder builder = StringUtil.builder();
 
 		// 日期部分（"\"、"/"、"."、"年"、"月"都替换为"-"）
 		String datePart = dateAndTime.get(0).replaceAll("[/.年月]", "-");
-		datePart = StrUtil.removeSuffix(datePart, "日");
+		datePart = StringUtil.removeSuffix(datePart, "日");
 		builder.append(datePart);
 
 		// 时间部分
 		if (size == 2) {
 			builder.append(' ');
 			String timePart = dateAndTime.get(1).replaceAll("[时分秒]", ":");
-			timePart = StrUtil.removeSuffix(timePart, ":");
+			timePart = StringUtil.removeSuffix(timePart, ":");
 			//将ISO8601中的逗号替换为.
 			timePart = timePart.replace(',', '.');
 			builder.append(timePart);

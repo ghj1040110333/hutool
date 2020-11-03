@@ -1,6 +1,6 @@
 package com.tools.db.sql;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 /**
  * 逻辑运算符
@@ -21,7 +21,7 @@ public enum LogicalOperator{
 	 * @since 3.2.1
 	 */
 	public boolean isSame(String logicalOperatorStr) {
-		if(StrUtil.isBlank(logicalOperatorStr)) {
+		if(StringUtil.isBlank(logicalOperatorStr)) {
 			return false;
 		}
 		return this.name().equalsIgnoreCase(logicalOperatorStr.trim());

@@ -4,7 +4,7 @@ import com.tools.core.collection.CollUtil;
 import com.tools.core.collection.CollectionUtil;
 import com.tools.core.map.CaseInsensitiveMap;
 import com.tools.core.util.CharsetUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -59,7 +59,7 @@ public abstract class HttpBase<T> {
 	 * @since 3.1.1
 	 */
 	public List<String> headerList(String name) {
-		if(StrUtil.isBlank(name)) {
+		if(StringUtil.isBlank(name)) {
 			return null;
 		}
 
@@ -149,7 +149,7 @@ public abstract class HttpBase<T> {
 		}
 
 		for (Entry<String, String> entry : headers.entrySet()) {
-			this.header(entry.getKey(), StrUtil.nullToEmpty(entry.getValue()), isOverride);
+			this.header(entry.getKey(), StringUtil.nullToEmpty(entry.getValue()), isOverride);
 		}
 		return (T)this;
 	}
@@ -182,7 +182,7 @@ public abstract class HttpBase<T> {
 		for (Entry<String, List<String>> entry : headers.entrySet()) {
 			name = entry.getKey();
 			for (String value : entry.getValue()) {
-				this.header(name, StrUtil.nullToEmpty(value), isOverride);
+				this.header(name, StringUtil.nullToEmpty(value), isOverride);
 			}
 		}
 		return (T)this;
@@ -202,7 +202,7 @@ public abstract class HttpBase<T> {
 		}
 
 		for (Entry<String,String> entry : headers.entrySet()) {
-			this.header(entry.getKey(), StrUtil.nullToEmpty(entry.getValue()), false);
+			this.header(entry.getKey(), StringUtil.nullToEmpty(entry.getValue()), false);
 		}
 		return (T)this;
 	}
@@ -270,7 +270,7 @@ public abstract class HttpBase<T> {
 	 * @see CharsetUtil
 	 */
 	public T charset(String charset) {
-		if(StrUtil.isNotBlank(charset)){
+		if(StringUtil.isNotBlank(charset)){
 			charset(Charset.forName(charset));
 		}
 		return (T) this;
@@ -291,16 +291,16 @@ public abstract class HttpBase<T> {
 
 	@Override
 	public String toString() {
-		StringBuilder sb = StrUtil.builder();
-		sb.append("Request Headers: ").append(StrUtil.CRLF);
+		StringBuilder sb = StringUtil.builder();
+		sb.append("Request Headers: ").append(StringUtil.CRLF);
 		for (Entry<String, List<String>> entry : this.headers.entrySet()) {
 			sb.append("    ").append(
 					entry.getKey()).append(": ").append(CollUtil.join(entry.getValue(), ","))
-					.append(StrUtil.CRLF);
+					.append(StringUtil.CRLF);
 		}
 
-		sb.append("Request Body: ").append(StrUtil.CRLF);
-		sb.append("    ").append(StrUtil.str(this.bodyBytes, this.charset)).append(StrUtil.CRLF);
+		sb.append("Request Body: ").append(StringUtil.CRLF);
+		sb.append("    ").append(StringUtil.str(this.bodyBytes, this.charset)).append(StringUtil.CRLF);
 
 		return sb.toString();
 	}

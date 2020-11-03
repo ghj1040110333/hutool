@@ -13,7 +13,7 @@ import com.tools.core.util.ArrayUtil;
 import com.tools.core.util.CharUtil;
 import com.tools.core.util.ObjectUtil;
 import com.tools.core.util.ReflectUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.json.serialize.GlobalSerializeMapping;
 import com.tools.json.serialize.JSONObjectSerializer;
 import com.tools.json.serialize.JSONSerializer;
@@ -693,12 +693,12 @@ public class JSONObject implements JSON, JSONGetter<String>, Map<String, Object>
 	 * @param source JSON字符串
 	 */
 	private void init(CharSequence source) {
-		final String jsonStr = StrUtil.trim(source);
-		if (StrUtil.startWith(jsonStr, '<')) {
+		final String jsonStr = StringUtil.trim(source);
+		if (StringUtil.startWith(jsonStr, '<')) {
 			// 可能为XML
 			XML.toJSONObject(this, jsonStr, false);
 		}
-		init(new JSONTokener(StrUtil.trim(source), this.config));
+		init(new JSONTokener(StringUtil.trim(source), this.config));
 	}
 
 	/**

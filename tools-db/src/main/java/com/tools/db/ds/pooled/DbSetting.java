@@ -1,7 +1,7 @@
 package com.tools.db.ds.pooled;
 
 import com.tools.core.collection.CollectionUtil;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.db.DbRuntimeException;
 import com.tools.db.dialect.DriverUtil;
 import com.tools.db.ds.DSFactory;
@@ -55,13 +55,13 @@ public class DbSetting {
 
 		// 基本信息
 		final String url = config.getAndRemoveStr(DSFactory.KEY_ALIAS_URL);
-		if (StrUtil.isBlank(url)) {
+		if (StringUtil.isBlank(url)) {
 			throw new DbRuntimeException("No JDBC URL for group: [{}]", group);
 		}
 		dbConfig.setUrl(url);
 		// 自动识别Driver
 		final String driver = config.getAndRemoveStr(DSFactory.KEY_ALIAS_DRIVER);
-		dbConfig.setDriver(StrUtil.isNotBlank(driver) ? driver : DriverUtil.identifyDriver(url));
+		dbConfig.setDriver(StringUtil.isNotBlank(driver) ? driver : DriverUtil.identifyDriver(url));
 		dbConfig.setUser(config.getAndRemoveStr(DSFactory.KEY_ALIAS_USER));
 		dbConfig.setPass(config.getAndRemoveStr(DSFactory.KEY_ALIAS_PASSWORD));
 
@@ -75,7 +75,7 @@ public class DbSetting {
 		String connValue;
 		for (String key : DSFactory.KEY_CONN_PROPS) {
 			connValue = config.get(key);
-			if(StrUtil.isNotBlank(connValue)){
+			if(StringUtil.isNotBlank(connValue)){
 				dbConfig.addConnProps(key, connValue);
 			}
 		}

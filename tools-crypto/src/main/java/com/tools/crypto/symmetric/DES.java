@@ -3,7 +3,7 @@ package com.tools.crypto.symmetric;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.crypto.Mode;
 import com.tools.crypto.Padding;
 import com.tools.crypto.SecureUtil;
@@ -148,7 +148,7 @@ public class DES extends SymmetricCrypto {
 	 * @param iv 加盐
 	 */
 	public DES(String mode, String padding, SecretKey key, IvParameterSpec iv) {
-		super(StrUtil.format("DES/{}/{}", mode, padding), key, iv);
+		super(StringUtil.format("DES/{}/{}", mode, padding), key, iv);
 	}
 	// ------------------------------------------------------------------------- Constrctor end
 }

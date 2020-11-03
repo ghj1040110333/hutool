@@ -6,8 +6,6 @@ import com.tools.core.date.DateUtil;
 import com.tools.core.lang.Assert;
 import com.tools.core.lang.PatternPool;
 import com.tools.core.lang.Validator;
-import com.tools.core.util.ReUtil;
-import com.tools.core.util.StrUtil;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -136,7 +134,7 @@ public class IdcardUtil {
 				// 2000年之后不存在15位身份证号，此处用于修复此问题的判断
 				sYear -= 100;
 			}
-			idCard18 = StrUtil.builder().append(idCard, 0, 6).append(sYear).append(idCard.substring(8));
+			idCard18 = StringUtil.builder().append(idCard, 0, 6).append(sYear).append(idCard.substring(8));
 			// 获取校验位
 			char sVal = getCheckCode18(idCard18.toString());
 			idCard18.append(sVal);
@@ -262,7 +260,7 @@ public class IdcardUtil {
 	 * </p>
 	 */
 	public static String[] isValidCard10(String idcard) {
-		if (StrUtil.isBlank(idcard)) {
+		if (StringUtil.isBlank(idcard)) {
 			return null;
 		}
 		String[] info = new String[3];
@@ -303,7 +301,7 @@ public class IdcardUtil {
 	 * @return 验证码是否符合
 	 */
 	public static boolean isValidTWCard(String idcard) {
-		if (StrUtil.isEmpty(idcard)) {
+		if (StringUtil.isEmpty(idcard)) {
 			return false;
 		}
 		String start = idcard.substring(0, 1);
@@ -530,11 +528,11 @@ public class IdcardUtil {
 	 * @param startInclude 开始位置（包含）
 	 * @param endExclude   结束位置（不包含）
 	 * @return 隐藏后的身份证号码
-	 * @see StrUtil#hide(CharSequence, int, int)
+	 * @see StringUtil#hide(CharSequence, int, int)
 	 * @since 3.2.2
 	 */
 	public static String hide(String idcard, int startInclude, int endExclude) {
-		return StrUtil.hide(idcard, startInclude, endExclude);
+		return StringUtil.hide(idcard, startInclude, endExclude);
 	}
 
 	/**
@@ -592,7 +590,7 @@ public class IdcardUtil {
 			case 0:
 				return '1';
 			default:
-				return StrUtil.C_SPACE;
+				return StringUtil.C_SPACE;
 		}
 	}
 

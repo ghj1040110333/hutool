@@ -3,7 +3,7 @@ package com.tools.db.ds;
 import com.tools.core.collection.CollectionUtil;
 import com.tools.core.io.resource.NoResourceException;
 import com.tools.core.lang.Assert;
-import com.tools.core.util.StrUtil;
+import com.tools.core.util.StringUtil;
 import com.tools.db.DbRuntimeException;
 import com.tools.db.DbUtil;
 import com.tools.db.dialect.DriverUtil;
@@ -80,7 +80,7 @@ public abstract class AbstractDSFactory extends DSFactory {
 	@Override
 	synchronized public DataSource getDataSource(String group) {
 		if (group == null) {
-			group = StrUtil.EMPTY;
+			group = StringUtil.EMPTY;
 		}
 
 		// 如果已经存在已有数据源（连接池）直接返回
@@ -103,7 +103,7 @@ public abstract class AbstractDSFactory extends DSFactory {
 	 */
 	private DataSourceWrapper createDataSource(String group) {
 		if (group == null) {
-			group = StrUtil.EMPTY;
+			group = StringUtil.EMPTY;
 		}
 
 		final Setting config = setting.getSetting(group);
@@ -113,12 +113,12 @@ public abstract class AbstractDSFactory extends DSFactory {
 
 		// 基本信息
 		final String url = config.getAndRemoveStr(KEY_ALIAS_URL);
-		if (StrUtil.isBlank(url)) {
+		if (StringUtil.isBlank(url)) {
 			throw new DbRuntimeException("No JDBC URL for group: [{}]", group);
 		}
 		// 自动识别Driver
 		String driver = config.getAndRemoveStr(KEY_ALIAS_DRIVER);
-		if (StrUtil.isBlank(driver)) {
+		if (StringUtil.isBlank(driver)) {
 			driver = DriverUtil.identifyDriver(url);
 		}
 		final String user = config.getAndRemoveStr(KEY_ALIAS_USER);
@@ -142,7 +142,7 @@ public abstract class AbstractDSFactory extends DSFactory {
 	@Override
 	public void close(String group) {
 		if (group == null) {
-			group = StrUtil.EMPTY;
+			group = StringUtil.EMPTY;
 		}
 
 		DataSourceWrapper ds = dsMap.get(group);
